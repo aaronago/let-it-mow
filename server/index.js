@@ -18,7 +18,7 @@ if(process.env.NODE_ENV != 'production') {
 
 global.secret = secret;
 
-const routes = require('./routes/routes');
+const routes = require('./routes/user-routes');
 
 const User = require('./models/user');
 

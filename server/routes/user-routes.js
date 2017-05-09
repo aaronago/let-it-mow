@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bearer = require('../auth/bearer');
 const passportGoogle = require('../auth/google');
+const bodyParser = ('body-parser');
 
 const User = require('../models/user');
 const Listing = require ('../models/listing');
@@ -42,6 +43,19 @@ router.post('/api/new-listing', passportGoogle.authenticate('bearer', {session: 
     })
     .catch(err => {
       res.status(500).json({err: err});
+    });
+});
+
+router.get('/api/listings', (req, res) => {
+  Listing
+    .find()
+    .exec()
+    .then(listings => {
+      res.json(listings);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({error: 'something went wrong'});
     });
 });
 

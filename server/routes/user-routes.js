@@ -7,7 +7,6 @@ const passportGoogle = require('../auth/google');
 const User = require('../models/user');
 const Listing = require ('../models/listing');
 
-
 mongoose.Promise = global.Promise;
 
 router.get('/api/auth/google',
@@ -39,7 +38,7 @@ router.post('/api/new-listing', passportGoogle.authenticate('bearer', {session: 
 
   Listing.create(listingDetails)
     .then(listing => {
-      res.json({listing: listing});
+      res.status(200).json({listing});
     })
     .catch(err => {
       res.status(500).json({err: err});

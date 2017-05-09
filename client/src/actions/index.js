@@ -33,5 +33,5 @@ export const fetchUser = () => dispatch => {
     })
     .catch(error => {
         dispatch(fetchUserFailure(error));
-    })
-}
+    });
+};

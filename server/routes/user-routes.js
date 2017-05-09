@@ -70,5 +70,17 @@ router.get('/api/listings/:id', (req, res) => {
     });
 });
 
+router.delete('/api/listings/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+  (req, res) => {
+    Listing
+      .findByIdAndRemove(req.params.id)
+      .exec()
+      .then(() => {
+        res.status(200).json({message: 'success'});
+      })
+      .catch(err => {
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
 
 module.exports = router;

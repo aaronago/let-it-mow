@@ -34,7 +34,6 @@ passport.use(
       upsert: true,
       new: true
     };
-
     User.findOneAndUpdate(searchQuery, {$set: updates}, options, (err, user) => {
       if (err) {
         console.log(err);

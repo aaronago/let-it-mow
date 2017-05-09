@@ -4,6 +4,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const busboyBodyParser = require('busboy-body-parser');
 mongoose.Promise = global.Promise;
 
 let secret = {
@@ -20,6 +21,8 @@ global.secret = secret;
 
 const routes = require('./routes/user-routes');
 
+const listRoutes = require('./routes/listing-routes');
+
 const User = require('./models/user');
 
 const app = express();
@@ -29,10 +32,13 @@ const database = {
 };
 app.use(bodyParser.json());
 
+app.use(busboyBodyParser({ limit: '10mb'}));
+
 app.use(passport.initialize());
 
 app.use('/', routes);
 
+app.use('/api/listing', listRoutes);
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 

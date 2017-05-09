@@ -83,4 +83,26 @@ router.delete('/api/listings/:createBy/:id', passportGoogle.authenticate('bearer
     });
 });
 
+router.put('/api/listings/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+  (req, res) => {
+    if(!(req.params.id && req.body._id && req.params.id === req.body._id)) {
+      res.status(400).json({
+        error:'Request path id and request body id values must match'
+      });
+    }
+    const updated = {};
+    const canBeUpdated = ['title', 'price', 'categories', 'images'];
+    canBeUpdated.forEach(field => {
+      if (field in req.body) {
+        updated[field] = req.body[field];
+      }
+    });
+
+    Listing
+      .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+      .exec()
+      .then(updatedListing => res.status(201).json(updatedListing))
+      .catch(err => res.status(500).json({message: 'Something went wrong'}));
+});
+
 module.exports = router;

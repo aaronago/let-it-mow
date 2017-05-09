@@ -54,9 +54,21 @@ router.get('/api/listings', (req, res) => {
       res.json(listings);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({error: 'something went wrong'});
     });
 });
+
+router.get('/api/listings/:id', (req, res) => {
+  Listing
+    .find({_id: req.params.id})
+    .exec()
+    .then(listing => {
+      res.json(listing);
+    })
+    .catch(err => {
+      res.status(500).json({error: 'something went wrong'});
+    });
+});
+
 
 module.exports = router;

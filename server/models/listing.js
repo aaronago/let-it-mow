@@ -8,10 +8,13 @@ const ListingSchema = mongoose.Schema({
   price: {type: Number, required: true},
   product_url: {type: String, required: false},
   images: {type: Array, required: false},
+  zipcode: {type: Number, required: false},
   createdBy: {
     type: Number,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
+  position: {type: Object, required: true}
 });
 
 const Listing = mongoose.model('Listing', ListingSchema);

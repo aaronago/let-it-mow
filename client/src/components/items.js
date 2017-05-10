@@ -6,12 +6,11 @@ class Items extends React.Component {
   }
 
   render(){
-    console.log(this.props.markers[0].location.lat)
 		const list = this.props.markers.map((i, item) => {
       const marker = {
         position: {
-          lat: item.location.lat,
-          lng: item.location.lng
+          lat: 'test',
+          lng: 'test'
         }
       }
 			return (

@@ -10,15 +10,18 @@ import Items from './items'
 
 
 const mapStateToProps = (state,props) => ({
-      name: state.name
+      name: state.name,
+      listings: state.listings
 })
 
 export class Home extends React.Component {
 
     componentDidMount() {
       this.props.dispatch(actions.fetchUser());
+      this.props.dispatch(actions.fetchListings());
     }
     render() {
+      console.log(this.props.listings)
         return (
             <div>
             <GeoMap/>

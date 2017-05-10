@@ -14,12 +14,9 @@ export const fetchUserFailure = (error) => ({
     error,
 });
 export const FETCH_LISTINGS_SUCCESS = 'FETCH_LISTINGS_SUCCESS';
-export const fetchListingsSuccess = (title,images,categories,location) => ({
+export const fetchListingsSuccess = (listings) => ({
     type: FETCH_LISTINGS_SUCCESS,
-    title,
-    categories,
-    images,
-    location,
+    listings
 });
 
 export const FETCH_LISTINGS_FAILURE = 'FETCH_LISTINGS_FAILURE';
@@ -30,7 +27,7 @@ export const fetchListingsFailure = (error) => ({
 //--------------------USERS REQUEST -----------------------------------------//
 export const fetchUser = () => dispatch => {
     const accessToken = Cookies.get('accessToken');
-    return fetch(`/api/me`, {
+    return fetch(`/api/auth/me`, {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         }
@@ -58,7 +55,14 @@ export const fetchListings = () => dispatch => {
   return fetch('/api/listings')
   .then(response => response.json())
   .then(json => {
+<<<<<<< HEAD
     dispatch(fetchListingsSuccess())
+||||||| merged common ancestors
+    dispatch(fetchListingsSucess())
+=======
+    console.log(json)
+    dispatch(fetchListingsSuccess(json))
+>>>>>>> 7dcea7f8b0618f2039505d78ec25ec5f601c2b30
   })
   .catch(error => {
     dispatch(fetchListingsFailure())

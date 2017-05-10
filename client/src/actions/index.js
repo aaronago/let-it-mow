@@ -13,14 +13,29 @@ export const fetchUserFailure = (error) => ({
     type: FETCH_USER_FAILURE,
     error,
 });
+export const FETCH_LISTINGS_SUCCESS = 'FETCH_LISTINGS_SUCCESS';
+export const fetchListingsSuccess = (title,images,categories,location) => ({
+    type: FETCH_LISTINGS_SUCCESS,
+    title
+    categories
+    images
+    location
+});
 
+export const FETCH_LISTINGS_FAILURE = 'FETCH_LISTINGS_FAILURE';
+export const fetchListingsFailure = (error) => ({
+    type: FETCH_LISTINGS_FAILURE,
+    error,
+});
+//--------------------USERS REQUEST -----------------------------------------//
 export const fetchUser = () => dispatch => {
     const accessToken = Cookies.get('accessToken');
     return fetch(`/api/me`, {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         }
-    }).then(response => {
+    })
+    .then(response => {
         if (!response.ok) {
             Cookies.remove('accessToken');
             browserHistory.replace('/login');
@@ -33,5 +48,19 @@ export const fetchUser = () => dispatch => {
     })
     .catch(error => {
         dispatch(fetchUserFailure(error));
-    });
-};
+    })
+}
+
+//--------------------LISTINGS ASYNC REQUEST---------------------------------//
+
+export const fetchListings = () => dispatch => {
+  console.log('fetching listing data....')
+  return fetch('/api/listings')
+  .then(response => response.json())
+  .then(json => {
+    dispatch(fetchListingsSucess())
+  })
+  .catch(error => {
+    dispatch(fetchListingsFailure())
+  })
+  }

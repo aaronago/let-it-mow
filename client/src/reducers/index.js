@@ -2,10 +2,9 @@ import * as actions from '../actions/index';
 
 const initialState = {
   name: '',
-  images: [],
-  categories: [],
-  location: ''
-  
+  listings: [],
+  singleListing: [],
+
 
 }
 export default (state=initialState, action) => {
@@ -17,11 +16,7 @@ export default (state=initialState, action) => {
   }
   if (action.type === actions.FETCH_LISTINGS_SUCCESS) {
     return {...state,
-      categories: action.categories,
-      images: action.images,
-      title: action.title,
-      location: action.location
-
+      listings: action.listings 
     }
   }
   return state;

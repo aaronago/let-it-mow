@@ -14,12 +14,10 @@ export const fetchUserFailure = (error) => ({
     error,
 });
 export const FETCH_LISTINGS_SUCCESS = 'FETCH_LISTINGS_SUCCESS';
-export const fetchListingsSuccess = (title,images,categories,location) => ({
+export const fetchListingsSuccess = (listings) => ({
     type: FETCH_LISTINGS_SUCCESS,
-    title,
-    categories,
-    images,
-    location
+    listings
+
 });
 
 export const FETCH_LISTINGS_FAILURE = 'FETCH_LISTINGS_FAILURE';
@@ -58,7 +56,8 @@ export const fetchListings = () => dispatch => {
   return fetch('/api/listings')
   .then(response => response.json())
   .then(json => {
-    dispatch(fetchListingsSuccess())
+    console.log(json)
+    dispatch(fetchListingsSuccess(json))
   })
   .catch(error => {
     dispatch(fetchListingsFailure())

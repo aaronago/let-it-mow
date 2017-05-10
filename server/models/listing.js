@@ -11,7 +11,8 @@ const ListingSchema = mongoose.Schema({
   zipcode: {type: Number, required: false},
   createdBy: {
     type: Number,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   position: {type: Object, required: true}
 });

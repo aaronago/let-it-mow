@@ -56,7 +56,8 @@ export const fetchListings = () => dispatch => {
   return fetch('/api/listings')
   .then(response => response.json())
   .then(json => {
-    dispatch(fetchListingsSuccess())
+    console.log(json)
+    dispatch(fetchListingsSuccess(json))
   })
   .catch(error => {
     dispatch(fetchListingsFailure())

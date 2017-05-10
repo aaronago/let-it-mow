@@ -14,7 +14,7 @@ class App extends React.Component {
           <LoginPage />
           <ImgUpload />
         </div>
-    )
+    );
     }
 }
 

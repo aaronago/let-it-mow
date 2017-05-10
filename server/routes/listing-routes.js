@@ -3,21 +3,93 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bearer = require('../auth/bearer');
 const passportGoogle = require('../auth/google');
-const fs = require('fs');
-const User = require('../models/user');
 const Listing = require ('../models/listing');
-const cloudinary = require('cloudinary');
 
 mongoose.Promise = global.Promise;
 
-const cloudinaryConfig = {
-  cloud_name: 'dez1byutg',
-  api_key: '447436759672695',
-  api_secret: 'cuKAgIXupCoe8adzqWSL_sWE9qY'
-};
+router.post('/new-listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
+  const listingDetails = {
+    createdBy: req.user.googleID,
+    title: req.body.title,
+    categories: req.body.categories,
+    price: req.body.price,
+    images: req.body.images
+  };
+
+  Listing.create(listingDetails)
+    .then(listing => {
+      res.status(200).json({listing});
+    })
+    .catch(err => {
+      res.status(500).json({err: err});
+    });
+});
+
+router.get('/all', (req, res) => {
+  Listing
+    .find()
+    .exec()
+    .then(listings => {
+      res.json(listings);
+    })
+    .catch(err => {
+      res.status(500).json({error: 'something went wrong'});
+    });
+});
+
+router.get('/:id', (req, res) => {
+  Listing
+    .find({_id: req.params.id})
+    .exec()
+    .then(listing => {
+      res.json(listing);
+    })
+    .catch(err => {
+      res.status(500).json({error: 'something went wrong'});
+    });
+});
+
+router.delete('/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+  (req, res) => {
+    Listing
+      .findByIdAndRemove(req.params.id)
+      .exec()
+      .then(() => {
+        res.status(200).json({message: 'success'});
+      })
+      .catch(err => {
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
+
+router.put('/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+  (req, res) => {
+    if(!(req.params.id && req.body._id && req.params.id === req.body._id)) {
+      res.status(400).json({
+        error:'Request path id and request body id values must match'
+      });
+    }
+    const updated = {};
+    const canBeUpdated = ['title', 'price', 'categories', 'images'];
+    canBeUpdated.forEach(field => {
+      if (field in req.body) {
+        updated[field] = req.body[field];
+      }
+    });
+
+    Listing
+      .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+      .exec()
+      .then(updatedListing => res.status(201).json(updatedListing))
+      .catch(err => res.status(500).json({message: 'Something went wrong'}));
+});
 
 
 
+
+
+
+module.exports = router;
 
 
 // let Grid = require('gridfs-stream');
@@ -85,6 +157,3 @@ const cloudinaryConfig = {
 //
 // });
 //
-
-
-module.exports = router;

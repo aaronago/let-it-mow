@@ -11,7 +11,8 @@ export default class ImgUpload extends Component {
     super(props);
 
     this.state = {
-      uploadedFileCloudinaryUrl: ''
+      uploadedFileCloudinaryUrl: '',
+      public_ids: []
     };
     this.onDrop = this.onDrop.bind(this);
   }
@@ -25,7 +26,7 @@ export default class ImgUpload extends Component {
   }
 
   handleImageUpload(file) {
-
+    console.log(this.state.public_ids)
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file);
@@ -35,7 +36,8 @@ export default class ImgUpload extends Component {
       if (res.body.secure_url !== '') {
         console.log(res.body);
         this.setState({
-          uploadedFileCloudinaryUrl: res.body.secure_url
+          uploadedFileCloudinaryUrl: res.body.secure_url,
+          public_ids: [...this.state.public_ids, res.body.public_id]
         });
       }
     });

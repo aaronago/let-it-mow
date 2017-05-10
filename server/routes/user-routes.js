@@ -10,10 +10,10 @@ const Listing = require ('../models/listing');
 
 mongoose.Promise = global.Promise;
 
-router.get('/api/auth/google',
+router.get('/google',
     passportGoogle.authenticate('google', {scope: ['profile']}));
 
-router.get('/api/auth/google/callback',
+router.get('/google/callback',
     passportGoogle.authenticate('google', {
       failureRedirect: '/',
       session: false
@@ -24,7 +24,7 @@ router.get('/api/auth/google/callback',
     }
 );
 
-router.get('/api/me',
+router.get('/me',
     passportGoogle.authenticate('bearer', {session: false}),
     (req, res) => res.json({googleId: req.user.googleId})
 );

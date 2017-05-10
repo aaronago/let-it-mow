@@ -17,6 +17,7 @@ export const FETCH_LISTINGS_SUCCESS = 'FETCH_LISTINGS_SUCCESS';
 export const fetchListingsSuccess = (listings) => ({
     type: FETCH_LISTINGS_SUCCESS,
     listings
+
 });
 
 export const FETCH_LISTINGS_FAILURE = 'FETCH_LISTINGS_FAILURE';
@@ -27,7 +28,7 @@ export const fetchListingsFailure = (error) => ({
 //--------------------USERS REQUEST -----------------------------------------//
 export const fetchUser = () => dispatch => {
     const accessToken = Cookies.get('accessToken');
-    return fetch(`/api/me`, {
+    return fetch(`/api/auth/me`, {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         }

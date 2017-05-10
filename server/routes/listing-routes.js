@@ -7,7 +7,7 @@ const Listing = require ('../models/listing');
 
 mongoose.Promise = global.Promise;
 
-router.post('/new', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
+router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
   const listingDetails = {
     createdBy: req.user.googleID,
     title: req.body.title,
@@ -25,7 +25,7 @@ router.post('/new', passportGoogle.authenticate('bearer', {session: false}), (re
     });
 });
 
-router.get('/all', (req, res) => {
+router.get('/listings', (req, res) => {
   Listing
     .find()
     .exec()
@@ -37,7 +37,7 @@ router.get('/all', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/listing/:id', (req, res) => {
   Listing
     .find({_id: req.params.id})
     .exec()
@@ -49,7 +49,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.delete('/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+router.delete('listing/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
   (req, res) => {
     Listing
       .findByIdAndRemove(req.params.id)
@@ -62,7 +62,7 @@ router.delete('/:createBy/:id', passportGoogle.authenticate('bearer', {session: 
     });
 });
 
-router.put('/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+router.put('listing/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
   (req, res) => {
     if(!(req.params.id && req.body._id && req.params.id === req.body._id)) {
       res.status(400).json({

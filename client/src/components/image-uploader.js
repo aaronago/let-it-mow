@@ -4,7 +4,7 @@ import request from 'superagent';
 
 const CLOUDINARY_UPLOAD_PRESET = 'e6ai6rw0';
 
-const CLOUDINARY_UPLOAD_URL = ' https://api.cloudinary.com/v1_1/letitmow/upload';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/letitmow/upload';
 
 export default class ImgUpload extends Component {
   constructor(props){

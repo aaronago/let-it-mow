@@ -7,13 +7,14 @@ const Listing = require ('../models/listing');
 
 mongoose.Promise = global.Promise;
 
-router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
+router.post('/listing', (req, res) => {
   const listingDetails = {
-    createdBy: req.user.googleID,
+    createdBy: req.body.googleID,
     title: req.body.title,
     categories: req.body.categories,
     price: req.body.price,
-    images: req.body.images
+    images: req.body.images,
+    position: req.body.position
   };
 
   Listing.create(listingDetails)

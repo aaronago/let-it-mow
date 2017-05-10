@@ -19,7 +19,6 @@ export default class ImgUpload extends Component {
   onDrop(files) {
 
     this.setState({
-
       uploadedFile: files[0]
     });
     this.handleImageUpload(files[0]);
@@ -30,21 +29,36 @@ export default class ImgUpload extends Component {
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file);
 
-    upload.end((err, response) => {
+    upload.end((err, res) => {
       if (err) console.error(err);
-      console.log(response.body);
+      if (res.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: res.body.secure_url
+        });
+      }
     });
   }
 
 
   render() {
     return (
-      <Dropzone
-        multiple={false}
-        accept="image/*"
-        onDrop={this.onDrop}>
-        <p>Drop Your Image Here Please</p>
-      </Dropzone>
+      <div>
+        <div className="dropzone">
+          <Dropzone
+            multiple={false}
+            accept="image/*"
+            onDrop={this.onDrop}>
+            <p>Drop Your Image Here Please</p>
+          </Dropzone>
+        </div>
+          {this.state.uploadedFileCloudinaryUrl === '' ? null:
+          <div>
+            <p>{this.state.uploadedFile.name}</p>
+            <img src={this.state.uploadedFileCloudinaryUrl} alt=""/>
+          </div>
+
+          }
+      </div>
     );
   }
 }

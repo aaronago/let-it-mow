@@ -14,13 +14,9 @@ class Map extends React.Component {
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
 
-
   toggleInfoWindow() {
     this.setState({showInfo:!this.state.showInfo})
-
   }
-
-
 
   render() {
 
@@ -34,7 +30,6 @@ class Map extends React.Component {
           title: 'Lawn Mower',
           price: "$10/day",
           images: './lawn_mower.jpg',
-
       }
       return <Marker
       key={i}

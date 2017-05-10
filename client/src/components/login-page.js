@@ -8,5 +8,5 @@ export default function LoginPage() {
     <div>
       <a href={'/api/auth/google'}>Login with Google</a>;
     </div>
-  )
+    );
 }

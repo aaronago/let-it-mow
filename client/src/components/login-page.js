@@ -9,5 +9,5 @@ export default function LoginPage() {
       <h1 className='login-title'>Let It Mow</h1>
       <a href={'/api/auth/google'}>Login with Google</a>;
     </div>
-  )
+    );
 }

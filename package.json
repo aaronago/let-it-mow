@@ -34,6 +34,7 @@
     "xp": "^1.0.1"
   },
   "devDependencies": {
+    "busboy-body-parser": "^0.3.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

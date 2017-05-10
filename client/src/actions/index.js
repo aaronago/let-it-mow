@@ -55,14 +55,8 @@ export const fetchListings = () => dispatch => {
   return fetch('/api/listings')
   .then(response => response.json())
   .then(json => {
-<<<<<<< HEAD
-    dispatch(fetchListingsSuccess())
-||||||| merged common ancestors
-    dispatch(fetchListingsSucess())
-=======
     console.log(json)
     dispatch(fetchListingsSuccess(json))
->>>>>>> 7dcea7f8b0618f2039505d78ec25ec5f601c2b30
   })
   .catch(error => {
     dispatch(fetchListingsFailure())

@@ -30,7 +30,7 @@ export const fetchListingsFailure = (error) => ({
 //--------------------USERS REQUEST -----------------------------------------//
 export const fetchUser = () => dispatch => {
     const accessToken = Cookies.get('accessToken');
-    return fetch(`/api/me`, {
+    return fetch(`/api/auth/me`, {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         }

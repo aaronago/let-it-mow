@@ -36,9 +36,9 @@ app.use(busboyBodyParser({ limit: '10mb'}));
 
 app.use(passport.initialize());
 
-app.use('/', routes);
+app.use('/api/auth', routes);
 
-app.use('/api/listing', listRoutes);
+app.use('/api', listRoutes);
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-const SimpleForm = props => {
+const AddItemForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label>Item Category</label>
         <div>
-          <Field name="itemCat" component="select">
+          <Field name="itemCategory" component="select">
             <option />
             <option value="">Mowers</option>
             <option value="">Tillers</option>
@@ -31,7 +31,7 @@ const SimpleForm = props => {
         <label>Product Description Link</label>
         <div>
           <Field
-            name="prodDescLink"
+            name="productDescriptionLink"
             component="input"
             type="email"
             placeholder="Product Description Link"
@@ -49,5 +49,5 @@ const SimpleForm = props => {
 };
 
 export default reduxForm({
-  form: 'simple', // a unique identifier for this form
-})(SimpleForm);
+  form: 'addItem', // a unique identifier for this form
+})(AddItemForm);

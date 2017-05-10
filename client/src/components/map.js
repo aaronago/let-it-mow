@@ -1,33 +1,70 @@
 import React from 'react'
 import {withGoogleMap, GoogleMap, Marker,InfoWindow} from 'react-google-maps'
+import Items from './items'
 
 
 
 class Map extends React.Component {
 
+  constructor() {
+    super()
+    this.state={
+      showInfo: false
+    }
+    this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
+  }
+
+
+  toggleInfoWindow() {
+    this.setState({showInfo:!this.state.showInfo})
+
+  }
+
+
+
   render() {
 
     const markers = this.props.markers.map((item, i) => {
+
       const marker = {
         position: {
           lat: item.location.lat,
           lng: item.location.lng
-        }
+        },
+          title: 'Lawn Mower',
+          price: "$10/day",
+          images: './lawn_mower.jpg',
+
       }
-      return <Marker key={i} {...marker}>
-      <InfoWindow>this is info</InfoWindow>
+      return <Marker
+      key={i}
+      onClick={this.toggleInfoWindow}
+      {...marker}>
+     {this.state.showInfo && (
+      <InfoWindow
+       onCloseClick={this.state.toggleInfoWindow}
+       >
+        <div>
+          <h2>{marker.title}</h2>
+          <img src={marker.images} />
+          <h3>{marker.price}</h3>
+        </div>
+      </InfoWindow>
+    )}
       </Marker>
     })
 
     return (
-      <div>
-      <h1> This is the Google Map</h1>
+      <div className='main-map'>
       <GoogleMap
         defaultZoom={10}
         defaultCenter={this.props.center}
         >
         {markers}
       </GoogleMap>
+      <Items
+       markers={this.props.markers}
+       />
       </div>
     )
   }

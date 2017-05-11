@@ -18,7 +18,7 @@ export default class ImgUpload extends Component {
   }
 
   onDrop(files) {
-
+    console.log(this.state.public_ids)
     this.setState({
       uploadedFile: files[0]
     });
@@ -26,7 +26,6 @@ export default class ImgUpload extends Component {
   }
 
   handleImageUpload(file) {
-    console.log(this.state.public_ids)
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file);

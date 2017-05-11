@@ -41,12 +41,13 @@ export const fetchUser = () => dispatch => {
         return response.json();
     })
     .then(user => {
+        console.log(user)
         dispatch(fetchUserSuccess(user));
     })
     .catch(error => {
         dispatch(fetchUserFailure(error));
-    })
-}
+    });
+};
 
 //--------------------LISTINGS ASYNC REQUEST---------------------------------//
 
@@ -70,14 +71,13 @@ export const createListing = (values) => dispatch => {
 }
 
 export const fetchListings = () => dispatch => {
-  console.log('fetching listing data....')
   return fetch('/api/listings')
   .then(response => response.json())
   .then(json => {
-    console.log(json)
-    dispatch(fetchListingsSuccess(json))
+    console.log(json);
+    dispatch(fetchListingsSuccess(json));
   })
   .catch(error => {
-    dispatch(fetchListingsFailure())
-  })
-  }
+    dispatch(fetchListingsFailure());
+  });
+};

@@ -7,15 +7,15 @@ import ImgUpload from './image-uploader';
 
 class App extends Component {
 
-    render() {
-        return(
+  render() {
+      return(
         <div>
           <Header />
           <Home />
           <ImgUpload />
         </div>
-    );
-    }
+      );
+  }
 }
 
 export default App;

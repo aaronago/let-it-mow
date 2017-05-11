@@ -18,7 +18,7 @@ export default class ImgUpload extends Component {
   }
 
   onDrop(files) {
-
+    console.log(this.state.public_ids)
     this.setState({
       uploadedFile: files[0]
     });

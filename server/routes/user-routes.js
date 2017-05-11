@@ -26,7 +26,7 @@ router.get('/google/callback',
 
 router.get('/me',
     passportGoogle.authenticate('bearer', {session: false}),
-    (req, res) => res.json({googleId: req.user.googleId})
+    (req, res) => res.json(req.user)
 );
 
 

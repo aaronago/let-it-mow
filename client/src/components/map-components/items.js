@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class Items extends React.Component {
   constructor(props) {
@@ -12,11 +12,11 @@ class Items extends React.Component {
           lat: 'test',
           lng: 'test'
         }
-      }
+      };
 			return (
 				<li key={i}>{marker.position}</li>
-			)
-		})
+			);
+		});
 
 		return (
 			<div>
@@ -24,8 +24,8 @@ class Items extends React.Component {
 					{list}
 				</ul>
 			</div>
-		)
+		);
 	}
 }
 
-export default(Items)
+export default(Items);

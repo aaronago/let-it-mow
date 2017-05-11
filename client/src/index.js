@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import * as Cookies from 'js-cookie';
 import LoginPage from './components/login-page';
-import Home from './components/home'
+import Home from './components/home';
 import './index.css';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {createStore, applyMiddleware} from 'redux';

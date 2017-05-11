@@ -7,9 +7,11 @@ const Listing = require ('../models/listing');
 
 mongoose.Promise = global.Promise;
 
-router.post('/listing', (req, res) => {
+
+//change this back to req.user.googleID and protect path
+router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
   const listingDetails = {
-    createdBy: req.body.googleID,
+    createdBy: req.user.googleID,
     title: req.body.title,
     categories: req.body.categories,
     price: req.body.price,

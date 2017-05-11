@@ -1,23 +1,10 @@
-import * as actions from '../actions/index';
+import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+import ListingsReducer from './reducer_listings';
 
-const initialState = {
-  name: '',
-  listings: [],
-  singleListing: [],
+const rootReducer = combineReducers ({
+  listings: ListingsReducer,
+  form: formReducer
+});
 
-
-}
-export default (state=initialState, action) => {
-  if (action.type === actions.FETCH_USER_SUCCESS){
-    return {...state,
-      name: action.name,
-      error: null,
-    }
-  }
-  if (action.type === actions.FETCH_LISTINGS_SUCCESS) {
-    return {...state,
-      listings: action.listings 
-    }
-  }
-  return state;
-}
+export default rootReducer;

@@ -1,21 +1,18 @@
-import React from 'react'
-import {withGoogleMap, GoogleMap, Marker,InfoWindow} from 'react-google-maps'
-import Items from './items'
+import React, { Component } from 'react';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
-
-
-class Map extends React.Component {
+class Map extends Component {
 
   constructor() {
-    super()
+    super();
     this.state={
       showInfo: false
-    }
+    };
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
 
   toggleInfoWindow() {
-    this.setState({showInfo:!this.state.showInfo})
+    this.setState({showInfo:!this.state.showInfo});
   }
 
   render() {
@@ -24,13 +21,13 @@ class Map extends React.Component {
 
       const marker = {
         position: {
-          lat: item.location.lat,
-          lng: item.location.lng
+          lat: item.position.lat,
+          lng: item.position.lon
         },
-          title: 'Lawn Mower',
-          price: "$10/day",
-          images: './lawn_mower.jpg',
-      }
+          title: item.title,
+          price: `${item.price}/day`,
+          images: `http://res.cloudinary.com/letitmow/image/upload/w_40,h_40/${item.images[0]}.jpg`,
+      };
       return <Marker
       key={i}
       onClick={this.toggleInfoWindow}
@@ -47,7 +44,7 @@ class Map extends React.Component {
       </InfoWindow>
     )}
       </Marker>
-    })
+    });
 
     return (
       <div className='main-map'>
@@ -57,12 +54,10 @@ class Map extends React.Component {
         >
         {markers}
       </GoogleMap>
-      <Items
-       markers={this.props.markers}
-       />
       </div>
-    )
+    );
   }
 }
 
-export default withGoogleMap(Map)
+
+export default withGoogleMap(Map);

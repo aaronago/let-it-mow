@@ -12,7 +12,6 @@ class App extends Component {
         <div>
           <Header />
           <Home />
-          <LoginPage />
           <ImgUpload />
         </div>
     );

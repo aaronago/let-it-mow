@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Map from './map';
-import Items from './items';
+
 
 class GeoMap extends React.Component {
   render() {

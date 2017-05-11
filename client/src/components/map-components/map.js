@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
-import Items from './items';
 
 class Map extends Component {
 
@@ -55,9 +54,6 @@ class Map extends Component {
         >
         {markers}
       </GoogleMap>
-      <Items
-       markers={this.props.markers}
-       />
       </div>
     );
   }

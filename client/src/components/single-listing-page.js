@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class ListItem extends Component {
+class SingleListingPage extends Component {
   constructor(props){
     super(props);
   }
 
 
   render() {
-
+    
     return (
       <div className="list-item">
         <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${this.props.images[0]}.jpg`}/>
@@ -18,4 +18,4 @@ class ListItem extends Component {
   }
 }
 
-export default ListItem;
+export default SingleListingPage;

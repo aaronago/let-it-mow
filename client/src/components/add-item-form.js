@@ -1,53 +1,84 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createListing } from '../actions/index';
 
-const AddItemForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-  return (
-    <form onSubmit={handleSubmit}>
+class AddItemForm extends Component {
+
+  renderField({input, label, type, placeholder, meta: { touched, error } }) {
+    return (
       <div>
-        <label>Item Category</label>
+        <label>{label}</label>
         <div>
-          <Field name="itemCategory" component="select">
-            <option />
-            <option value="">Mowers</option>
-            <option value="">Tillers</option>
-            <option value="">Hoes</option>
-          </Field>
+          <input {...input} placeholder={placeholder} type={type} />
+          {touched ? error : ''}
         </div>
       </div>
-      <div>
-        <label>Price per Day</label>
+    )
+  }
+
+  onSubmit(values) {
+    this.props.createListing(values)
+  }
+
+  render() {
+    const { handleSubmit, pristine, reset, submitting } = this.props
+
+    return (
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+
+        <Field
+          name="itemCategory"
+          type="text"
+          component={this.renderField}
+          label="Item"
+          placeholder="Mower"
+        />
+
+        <Field
+          name="pricePerDay"
+          type="number"
+          component={this.renderField}
+          label="Price Per Day"
+          placeholder="10"
+        />
+
+        <Field
+          name="productDescriptionLink"
+          type="text"
+          component={this.renderField}
+          label="Production Description Link"
+          placeholder="http://www.awesome.product"
+        />
+
         <div>
-          <Field
-            name="pricePerDay"
-            component="input"
-            type="text"
-            placeholder="Last Name"
-          />
+          <button type="submit" disabled={submitting}>Submit</button>
+          <button type="button" disabled={pristine || submitting} onClick={reset}>
+            Clear Values
+          </button>
         </div>
-      </div>
-      <div>
-        <label>Product Description Link</label>
-        <div>
-          <Field
-            name="productDescriptionLink"
-            component="input"
-            type="email"
-            placeholder="Product Description Link"
-          />
-        </div>
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-      </div>
-    </form>
-  );
-};
+      </form>
+    )
+  }
+}
+
+function validate(values) {
+  const errors = {}
+  if (!values.itemCategory) {
+    errors.itemCategory = 'Required'
+  }
+  if (!values.pricePerDay) {
+    errors.pricePerDay = 'Required'
+  }
+  if (!values.productDescriptionLink) {
+    errors.productDescriptionLink = 'Required'
+  }
+  return errors
+}
 
 export default reduxForm({
   form: 'addItem', // a unique identifier for this form
-})(AddItemForm);
+  validate
+})(
+  connect(null,{ createListing })(AddItemForm)
+)

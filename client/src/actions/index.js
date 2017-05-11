@@ -24,6 +24,17 @@ export const fetchListingsFailure = (error) => ({
     type: FETCH_LISTINGS_FAILURE,
     error,
 });
+
+export const FETCH_LISTING_SUCCESS = 'FETCH_LISTING_SUCCESS';
+export const fetchListingSuccess = (listing) => ({
+    type: FETCH_LISTING_SUCCESS,
+    listing
+});
+export const FETCH_LISTING_FAILURE = 'FETCH_LISTING_FAILURE';
+export const fetchListingFailure = (error) => ({
+    type: FETCH_LISTING_FAILURE,
+    error,
+});
 //--------------------USERS REQUEST -----------------------------------------//
 export const fetchUser = () => dispatch => {
     const accessToken = Cookies.get('accessToken');
@@ -41,7 +52,6 @@ export const fetchUser = () => dispatch => {
         return response.json();
     })
     .then(user => {
-        console.log(user)
         dispatch(fetchUserSuccess(user));
     })
     .catch(error => {
@@ -49,16 +59,28 @@ export const fetchUser = () => dispatch => {
     });
 };
 
-//--------------------LISTINGS ASYNC REQUEST---------------------------------//
+//-------------------- FETCH LISTINGS ASYNC REQUEST---------------------------------//
 
 export const fetchListings = () => dispatch => {
   return fetch('/api/listings')
   .then(response => response.json())
   .then(json => {
-    console.log(json);
     dispatch(fetchListingsSuccess(json));
   })
   .catch(error => {
     dispatch(fetchListingsFailure());
   });
+};
+
+//-------------------------FETCH SINGLE LISTING REQUEST-------------------------//
+
+export const fetchListing = id => dispatch => {
+  return fetch(`/api/listing/${id}`)
+    .then(response => response.json())
+    .then(listing => {
+      dispatch(fetchListingSuccess(listing[0]));
+    })
+    .catch(error => {
+      dispatch(fetchListingFailure);
+    });
 };

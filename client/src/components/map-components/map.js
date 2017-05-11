@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { Link } from 'react-router-dom';
 
 class Map extends Component {
 
@@ -36,11 +37,15 @@ class Map extends Component {
       <InfoWindow
        onCloseClick={this.state.toggleInfoWindow}
        >
-        <div>
-          <h2>{marker.title}</h2>
-          <img src={marker.images} />
-          <h3>{marker.price}</h3>
-        </div>
+        <Link to={`/listings/${item._id}`}>
+          <div>
+            <h2>{marker.title}</h2>
+            <img src={marker.images} />
+            <h3>{marker.price}</h3>
+          </div>
+
+        </Link>
+
       </InfoWindow>
     )}
       </Marker>

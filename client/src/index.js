@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
 import * as Cookies from 'js-cookie';
 import LoginPage from './components/login-page';
-import Home from './components/home';
 import './index.css';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import { Route, IndexRoute, browserHistory, BrowserRouter, Switch } from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import rootReducer from './reducers';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
+
+import App from './components/app';
+import SingleListingPage from './components/single-listing-page';
+import Map from './components/map-components/map'
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 
@@ -22,7 +24,14 @@ function checkAuth() {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <div>
+        <Switch>
+          <Route path="/listings/:id" component={SingleListingPage} />
+          <Route path="/" component={App} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

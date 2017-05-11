@@ -11,7 +11,7 @@ class HomepageListings extends Component {
     const cards = this.props.listings.map (card => {
       return (
         <div key={card._id}>
-          <ListItem images={card.images} title={card.title} price={card.price}/>
+          <ListItem images={card.images} title={card.title} price={card.price} id={card._id}/>
         </div>
       );
     });

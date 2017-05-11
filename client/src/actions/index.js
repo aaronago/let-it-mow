@@ -54,12 +54,13 @@ export const fetchUser = () => dispatch => {
 export const createListing = (values) => dispatch => {
   console.log('values: ', values)
   const accessToken = Cookies.get('accessToken');
-  return fetch('api/listing',
+  return fetch('/api/listing',
     {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
       },
-      method: 'PUT',
+      method: 'POST',
       body: JSON.stringify(values)
     })
     .then(listing => {

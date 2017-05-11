@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createListing } from '../actions/index';
+import ImgUpload from './image-uploader';
 
 class AddItemForm extends Component {
 
@@ -17,8 +18,8 @@ class AddItemForm extends Component {
     )
   }
 
-  onSubmit(values) {
-    this.props.createListing(values)
+  onSubmit(values, ) {
+    this.props.createListing(values, )
   }
 
   render() {
@@ -28,10 +29,10 @@ class AddItemForm extends Component {
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
         <Field
-          name="itemCategory"
+          name="itemName"
           type="text"
           component={this.renderField}
-          label="Item"
+          label="Item for Rent"
           placeholder="Mower"
         />
 
@@ -44,11 +45,11 @@ class AddItemForm extends Component {
         />
 
         <Field
-          name="productDescriptionLink"
-          type="text"
+          name="product_url"
+          type="url"
           component={this.renderField}
-          label="Production Description Link"
-          placeholder="http://www.awesome.product"
+          label="Product URL"
+          placeholder="http://www.mower.com"
         />
 
         <div>
@@ -57,6 +58,9 @@ class AddItemForm extends Component {
             Clear Values
           </button>
         </div>
+        <div>
+          <ImgUpload />
+        </div>
       </form>
     )
   }
@@ -64,14 +68,14 @@ class AddItemForm extends Component {
 
 function validate(values) {
   const errors = {}
-  if (!values.itemCategory) {
-    errors.itemCategory = 'Required'
+  if (!values.itemName) {
+    errors.itemName = 'Required'
   }
   if (!values.pricePerDay) {
     errors.pricePerDay = 'Required'
   }
-  if (!values.productDescriptionLink) {
-    errors.productDescriptionLink = 'Required'
+  if (!values.product_url) {
+    errors.product_url = 'Required'
   }
   return errors
 }

@@ -30,6 +30,11 @@ const app = express();
 const database = {
     DATABASE_URL: process.env.DATABASE_URL
 };
+
+const testdatabase = {
+    TEST_DATABASE_URL: process.env.TEST_DATABASE_URL
+};
+
 app.use(bodyParser.json());
 
 app.use(busboyBodyParser({ limit: '10mb'}));
@@ -82,5 +87,5 @@ if (require.main === module) {
 }
 
 module.exports = {
-    app, runServer, closeServer, secret
+    app, runServer, closeServer, secret, testdatabase
 };

@@ -8,7 +8,7 @@ const Listing = require ('../models/listing');
 mongoose.Promise = global.Promise;
 
 
-//change this back to req.user.googleID and protect path
+
 router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
   const listingDetails = {
     createdBy: req.user.googleID,
@@ -27,6 +27,22 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
     .catch(err => {
       res.status(500).json({err: err});
     });
+});
+
+router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
+  const query = {
+    "createdBy": {$eq: 112304191861480960000}
+  };
+
+  Listing.find(query)
+    .exec()
+    .then(listings => {
+      listings.length > 0 ? res.status(200).json(listings) : res.json({message: `You Haven't Created Any Listings Yet`});
+    })
+    .catch(err => {
+      res.status(500).json({error: 'something went wrong'});
+    });
+
 });
 
 router.get('/listings', (req, res) => {

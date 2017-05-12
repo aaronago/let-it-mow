@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as Cookies from 'js-cookie';
-import Home from './home';
-import LoginPage from './login-page';
-import ImgUpload from './image-uploader';
+import AddItemForm from './add-item-form';
+// import Home from './home';
+// import LoginPage from './login-page';
+// import ImgUpload from './image-uploader';
 
-class App extends Component {
+class App extends React.Component {
+
 
     render() {
         return(
         <div>
-          <Home />
+          <AddItemForm />
+          {/* <Home />
           <LoginPage />
-          <ImgUpload />
+          <ImgUpload /> */}
         </div>
     );
     }
 }
-
 export default App;

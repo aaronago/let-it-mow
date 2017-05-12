@@ -72,8 +72,16 @@ class AddItemForm extends Component {
           name="pricePerDay"
           type="number"
           component={this.renderField}
-          label="Price Per Day"
-          placeholder="10"
+          label="Price per Day"
+          placeholder="20"
+        />
+
+        <Field
+          name="itemDesc"
+          type="text"
+          component={this.renderField}
+          label="Item Description"
+          placeholder="5 hp, 21 in mower"
         />
 
         <Field
@@ -85,13 +93,14 @@ class AddItemForm extends Component {
         />
 
         <div>
+          <ImgUpload handleImageUpload={this.handleImageUpload}/>
+        </div>
+
+        <div>
           <button type="submit" disabled={submitting}>Submit</button>
           <button type="button" disabled={pristine || submitting} onClick={reset}>
             Clear Values
           </button>
-        </div>
-        <div>
-          <ImgUpload handleImageUpload={this.handleImageUpload}/>
         </div>
       </form>
     );
@@ -106,9 +115,6 @@ function validate(values) {
   if (!values.pricePerDay) {
     errors.pricePerDay = 'Required';
   }
-  // if (!values.product_url) {
-  //   errors.product_url = 'Required';
-  // }
   return errors;
 }
 

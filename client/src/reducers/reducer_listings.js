@@ -2,9 +2,11 @@ import * as actions from '../actions/index';
 
 const initialState = {
   name: '',
+  userId: '',
   error: '',
   listings: [],
   singleListing: [],
+  userListings: []
 };
 
 export default (state=initialState, action) => {
@@ -13,6 +15,7 @@ export default (state=initialState, action) => {
         console.log('action name', action.name);
         return { ...state,
                  name: action.name,
+                 userId: action.userId,
                  error: null,
                };
       case actions.LOGOUT:
@@ -26,6 +29,11 @@ export default (state=initialState, action) => {
       case actions.FETCH_LISTING_SUCCESS:
         return { ...state,
           [action.listing._id]: action.listing};
+
+      case actions.FETCH_USER_LISTINGS_SUCCESS:
+        return {...state,
+          userListings: action.userListings
+        };
   }
   return state;
 };

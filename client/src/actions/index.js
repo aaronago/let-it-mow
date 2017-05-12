@@ -5,6 +5,7 @@ export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const fetchUserSuccess = (user) => ({
     type: FETCH_USER_SUCCESS,
     name: user.name,
+    userId: user.googleID,
     picture: user.profilePicUrl,
 });
 
@@ -35,7 +36,19 @@ export const fetchListingFailure = (error) => ({
     type: FETCH_LISTING_FAILURE,
     error,
 });
-//--------------------USERS REQUEST -----------------------------------------//
+
+export const FETCH_USER_LISTINGS_SUCCESS = 'FETCH_USER_LISTINGS_SUCCESS';
+export const fetchUserListingsSuccess = (userListings) => ({
+    type: FETCH_USER_LISTINGS_SUCCESS,
+    userListings
+  });
+export const FETCH_USER_LISTINGS_FAILURE= 'FETCH_USER_LISTINGS_FAILURE';
+export const fetchUserListingsFailure = (error) => ({
+      type: FETCH_USER_LISTINGS_FAILURE,
+      error
+    });
+
+//-------------------USERS REQUEST -----------------------------------------//
 export const fetchUser = () => dispatch => {
     const accessToken = Cookies.get('accessToken');
     return fetch(`/api/auth/me`, {
@@ -52,6 +65,7 @@ export const fetchUser = () => dispatch => {
         return response.json();
     })
     .then(user => {
+        console.log(user)
         dispatch(fetchUserSuccess(user));
     })
     .catch(error => {
@@ -65,7 +79,7 @@ export const logout = () => ({
 });
 //--------------------LISTINGS ASYNC REQUEST---------------------------------//
 
-//-------------------- FETCH LISTINGS ASYNC REQUEST---------------------------------//
+//-------------------- FETCH LISTINGS ASYNC REQUEST---------------------------//
 
 
 export const createListing = (values) => dispatch => {
@@ -109,4 +123,35 @@ export const fetchListing = id => dispatch => {
     .catch(error => {
       dispatch(fetchListingFailure);
     });
+};
+//----------------------FETCH MYLISTINGS ------------------------------------//
+export const fetchUserListings = () => (dispatch) => {
+  const accessToken = Cookies.get('accessToken')
+  return fetch('/api/mylistings', {
+    headers: {
+      authorization: `bearer ${accessToken}`
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+    console.log(json)
+    dispatch(fetchUserListingsSuccess(json))
+  })
+  .catch(error => {
+    dispatch(fetchUserListingsFailure());
+  })
+}
+//--------------------DELETE LISTING -----------------------------------------//
+export const deleteListing = (userId,id) => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+  return fetch(`/api/listing/${userId}/${id}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE',
+    })
+    .then(() => dispatch(fetchUserListingsSuccess()))
+    .catch(() =>dispatch(fetchUserListingsFailure()))
 };

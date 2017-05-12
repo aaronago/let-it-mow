@@ -104,15 +104,6 @@ router.put('listing/:createBy/:id', passportGoogle.authenticate('bearer', {sessi
       .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
-// router.get('/populate', (req, res) => {
-//   Listing.findOne({ price: 102 })
-//     .populate({path:'createdBy'})
-//     .exec((err, listing) => {
-//       console.log(listing);
-//       res.json(listing);
-//     });
-// });
-//
 
 
 

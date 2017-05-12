@@ -51,7 +51,6 @@ class AddItemForm extends Component {
     values.images = this.state.public_ids;
     this.props.createListing(values);
     this.props.onClick();
-
   }
 
   render() {

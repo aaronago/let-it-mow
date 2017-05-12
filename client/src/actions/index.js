@@ -41,7 +41,6 @@ export const fetchUser = () => dispatch => {
         return response.json();
     })
     .then(user => {
-        console.log('USER ===>', user);
         dispatch(fetchUserSuccess(user));
     })
     .catch(error => {
@@ -54,6 +53,25 @@ export const logout = () => ({
   type: LOGOUT
 });
 //--------------------LISTINGS ASYNC REQUEST---------------------------------//
+
+export const createListing = (values) => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+  return fetch('/api/listing',
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(values)
+    })
+    .then(listing => {
+      console.log(listing);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
 
 export const fetchListings = () => dispatch => {
   return fetch('/api/listings')

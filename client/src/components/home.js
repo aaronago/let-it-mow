@@ -23,7 +23,7 @@ export class Home extends Component {
         return (
             <div>
               <HomepageListings />
-              <GeoMap/>
+              <GeoMap />
             </div>
         );
     }

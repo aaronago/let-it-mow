@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ListItem from './list-item';
+import GalleryListing from './gallery-listing';
 
 class HomepageListings extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class HomepageListings extends Component {
     const cards = this.props.listings.map (card => {
       return (
         <div key={card._id}>
-          <ListItem images={card.images} title={card.title} price={card.price}/>
+          <GalleryListing images={card.images} title={card.title} price={card.price} id={card._id}/>
         </div>
       );
     });

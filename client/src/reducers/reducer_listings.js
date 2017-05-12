@@ -23,6 +23,9 @@ export default (state=initialState, action) => {
         return { ...state,
                  listings: action.listings
                };
+      case actions.FETCH_LISTING_SUCCESS:
+        return { ...state,
+          [action.listing._id]: action.listing};
   }
   return state;
 };

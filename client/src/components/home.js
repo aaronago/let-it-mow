@@ -25,7 +25,6 @@ export class Home extends Component {
             <div>
               <HomepageListings />
               <GeoMap />
-              <UserListings />
             </div>
         );
     }

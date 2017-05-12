@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {browswerHistory} from 'react-router';
 import GeoMap from './map-components/geolocation';
 import HomepageListings from './homepage-listings';
+import UserListings from './user-listings';
 
 
 
@@ -24,6 +25,7 @@ export class Home extends Component {
             <div>
               <HomepageListings />
               <GeoMap />
+              <UserListings />
             </div>
         );
     }

@@ -11,7 +11,7 @@ import {Provider} from 'react-redux';
 
 import App from './components/app';
 import SingleListingPage from './components/single-listing-page';
-import Map from './components/map-components/map'
+import Map from './components/map-components/map';
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 

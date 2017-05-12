@@ -16,7 +16,7 @@ class AddItemForm extends Component {
     this.state = {
       public_ids: []
     };
-    this.handleImageUpload = this.handleImageUpload.bind(this)
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   renderField({input, label, type, placeholder, meta: { touched, error } }) {
@@ -39,7 +39,6 @@ class AddItemForm extends Component {
     upload.end((err, res) => {
       if (err) console.error(err);
       if (res.body.secure_url !== '') {
-        //console.log('res.body:', res.body);
         this.setState({
           public_ids: [...this.state.public_ids, res.body.public_id]
         });
@@ -49,8 +48,7 @@ class AddItemForm extends Component {
   }
 
   onSubmit(values) {
-    values.images = this.state.public_ids
-    //console.log(values)
+    values.images = this.state.public_ids;
     this.props.createListing(values);
 
   }

@@ -10,7 +10,6 @@ mongoose.Promise = global.Promise;
 
 //change this back to req.user.googleID and protect path
 router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
-  console.log(req.body)
   const listingDetails = {
     createdBy: req.user.googleID,
     title: req.body.itemName,

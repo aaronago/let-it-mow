@@ -41,7 +41,7 @@ export const fetchUser = () => dispatch => {
         return response.json();
     })
     .then(user => {
-        console.log(user)
+        console.log(user);
         dispatch(fetchUserSuccess(user));
     })
     .catch(error => {

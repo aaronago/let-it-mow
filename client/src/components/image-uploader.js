@@ -24,24 +24,6 @@ export default class ImgUpload extends Component {
     this.props.handleImageUpload(files[0]);
   }
 
-  // handleImageUpload(file) {
-  //   let upload = request.post(CLOUDINARY_UPLOAD_URL)
-  //                       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-  //                       .field('file', file);
-  //
-  //   upload.end((err, res) => {
-  //     if (err) console.error(err);
-  //     if (res.body.secure_url !== '') {
-  //       console.log(res.body);
-  //       this.setState({
-  //         uploadedFileCloudinaryUrl: res.body.secure_url,
-  //         public_ids: [...this.state.public_ids, res.body.public_id]
-  //       });
-  //     }
-  //   });
-  // }
-
-
   render() {
     return (
       <div>

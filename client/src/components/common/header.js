@@ -1,34 +1,31 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-//import {logout, login} from '../actions/index';
+import {logout} from '../../actions/index';
 
 export class Header extends Component {
   constructor(props) {
     super(props);
-    // this.logOut = this.logOut.bind(this);
-    // this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
-  // logOut(e) {
-    //this.props.dispatch(logout());
-  // }
-
-  // logIn(e) {
-    //this.props.dispatch(login());
-  // }
+  logOut(e) {
+    this.props.dispatch(logout());
+  }
 
   render() {
-    // let isLoggedIn;
-    //
-    //   if(!this.props.name) {
-    //     isLoggedIn = (
-    //       <a href={'/api/auth/google'}>Login with Google</a>
-    //     );
-    //   } else {
-    //     isLoggedIn = (
-    //       <a onClick={this.logOut}>Log Out</a>
-    //     );
-    //   }
+      console.log('props', this.props.name);
+
+    let isLoggedIn;
+
+    if(!this.props.name) {
+      isLoggedIn = (
+        <a href={'/api/auth/google'}>Login with Google</a>
+      );
+    } else {
+      isLoggedIn = (
+        <a onClick={this.logOut} href='#'>Log Out</a>
+      );
+    }
 
     return (
       <div>
@@ -52,7 +49,7 @@ export class Header extends Component {
               </td>
               <td>
               <div>
-                <a href={'/api/auth/google'}>Login with Google</a>
+                {isLoggedIn}
               </div>
               <div>
                 <a href="#">Rent your equipment</a>
@@ -66,8 +63,8 @@ export class Header extends Component {
   }
 };
 
-const mapStateToProps = (state,props) => ({
-      name: state.name
+const mapStateToProps = (state, props) => ({
+  name: state.name
 });
 
 export default connect(mapStateToProps)(Header);

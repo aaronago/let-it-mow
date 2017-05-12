@@ -29,6 +29,12 @@ router.get('/me',
     (req, res) => res.json(req.user)
 );
 
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.clearCookie('accessToken');
+    res.redirect('/');
+});
+
 
 
 module.exports = router;

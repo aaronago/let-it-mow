@@ -41,7 +41,7 @@ export const fetchUser = () => dispatch => {
         return response.json();
     })
     .then(user => {
-        console.log(user);
+        console.log('USER ===>', user);
         dispatch(fetchUserSuccess(user));
     })
     .catch(error => {
@@ -49,10 +49,10 @@ export const fetchUser = () => dispatch => {
     });
 };
 
-// export const LOGOUT = 'LOGOUT';
-// export const logout = () => ({
-//   type: LOGOUT
-// });
+export const LOGOUT = 'LOGOUT';
+export const logout = () => ({
+  type: LOGOUT
+});
 //--------------------LISTINGS ASYNC REQUEST---------------------------------//
 
 export const fetchListings = () => dispatch => {

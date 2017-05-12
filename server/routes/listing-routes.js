@@ -31,7 +31,7 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 
 router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
   const query = {
-    "createdBy": {$eq: 112304191861480960000}
+    "createdBy": {$eq: req.user.googleID}
   };
 
   Listing.find(query)

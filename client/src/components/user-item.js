@@ -14,7 +14,7 @@ class UserItem extends Component {
   render() {
     return (
 
-      <div className="user-item">
+      <div className="user-item single-list-item">
         <Link to={`/listings/${this.props.id}`}>
           <div>
             <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${this.props.images[0]}.jpg`}/>

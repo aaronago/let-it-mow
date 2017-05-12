@@ -12,7 +12,8 @@ import {Provider} from 'react-redux';
 import App from './components/app';
 import SingleListingPage from './components/single-listing-page';
 import Map from './components/map-components/map';
-import UserListings from'./components/user-listings';
+import UserListings from './components/user-listings';
+import Header from './components/common/header';
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 
@@ -27,6 +28,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
+        <Header />
         <Switch>
           <Route path="/listings/:id" component={SingleListingPage} />
           <Route path="/mylistings/" component={UserListings} />

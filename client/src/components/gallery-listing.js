@@ -9,7 +9,7 @@ class GalleryListing extends Component {
   render() {
 
     return (
-      <div className="gallery-listing">
+      <div className="gallery-listing single-list-item">
         <Link to={`/listings/${this.props.id}`}>
           <div>
             <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${this.props.images[0]}.jpg`}/>

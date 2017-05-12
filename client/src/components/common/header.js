@@ -33,7 +33,7 @@ export class Header extends Component {
           <div>
             <tr>
               <td>
-                <a href="#"><h1>Let it mow</h1></a>
+              <Link to='/'><h1>Let it mow</h1></Link>
               </td>
               <td>
                 <form>

@@ -6,4 +6,13 @@
 .listings-gallery {
   display: flex;
   flex-wrap: wrap;
+  margin: 10px;
+}
+
+.single-list-item {
+  margin-left: 15px;
+}
+
+.hidden {
+  display: none;
 }

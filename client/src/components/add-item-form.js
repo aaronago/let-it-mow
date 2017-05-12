@@ -50,6 +50,7 @@ class AddItemForm extends Component {
   onSubmit(values) {
     values.images = this.state.public_ids;
     this.props.createListing(values);
+    this.props.onClick();
 
   }
 

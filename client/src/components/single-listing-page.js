@@ -20,7 +20,7 @@ class SingleListingPage extends Component {
     }
 
     return (
-      <div className="list-item">
+      <div>
         <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${listing.images[0]}.jpg`}/>
         <p>{listing.title}</p>
         <p>Only ${listing.price} to rent</p>

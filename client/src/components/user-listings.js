@@ -2,21 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import UserItem from './user-item';
-import Header from './common/header'
+import Header from './common/header';
+import AddItemForm from './add-item-form'
 
 
 class UserListings extends Component {
   constructor(props){
     super(props);
-
+    this.state = {
+      hidden: true
+    };
+    this.onClick = this.onClick.bind(this);
   }
 
  componentDidMount() {
     this.props.dispatch(actions.fetchUserListings());
   }
 
+  onClick() {
+    this.setState({hidden: !this.state.hidden});
+  }
+
 
   render() {
+    const hidden = this.state.hidden ? 'hidden' : '';
 
     const listItem = this.props.userListings.map (listItem => {
       return (
@@ -28,9 +37,14 @@ class UserListings extends Component {
     });
     return (
       <div className="user-listings">
-      <Header />
-      <h2>Personal User Items</h2>
-        {listItem}
+        <h2>Your Listings</h2>
+        <button onClick={this.onClick}>Add A New Listing!</button>
+          <div className="listings-gallery">
+            {listItem}
+          </div>
+          <div className={hidden}>
+            <AddItemForm onClick={this.onClick}/>
+          </div>
       </div>
     );
   }

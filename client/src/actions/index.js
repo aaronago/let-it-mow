@@ -93,9 +93,8 @@ export const createListing = (values) => dispatch => {
       method: 'POST',
       body: JSON.stringify(values)
     })
-    .then(listing => {
-      console.log(listing);
-    })
+    .then(() => dispatch(fetchUserListings()))
+
     .catch(error => {
       console.error(error);
     });
@@ -126,7 +125,7 @@ export const fetchListing = id => dispatch => {
 };
 //----------------------FETCH MYLISTINGS ------------------------------------//
 export const fetchUserListings = () => (dispatch) => {
-  const accessToken = Cookies.get('accessToken')
+  const accessToken = Cookies.get('accessToken');
   return fetch('/api/mylistings', {
     headers: {
       authorization: `bearer ${accessToken}`
@@ -134,13 +133,12 @@ export const fetchUserListings = () => (dispatch) => {
   })
   .then(response => response.json())
   .then(json => {
-    console.log(json)
-    dispatch(fetchUserListingsSuccess(json))
+    dispatch(fetchUserListingsSuccess(json));
   })
   .catch(error => {
     dispatch(fetchUserListingsFailure());
-  })
-}
+  });
+};
 //--------------------DELETE LISTING -----------------------------------------//
 export const deleteListing = (userId,id) => dispatch => {
   const accessToken = Cookies.get('accessToken');
@@ -152,6 +150,6 @@ export const deleteListing = (userId,id) => dispatch => {
       },
       method: 'DELETE',
     })
-    .then(() => dispatch(fetchUserListingsSuccess()))
-    .catch(() =>dispatch(fetchUserListingsFailure()))
+    .then(() => dispatch(fetchUserListings()))
+    .catch((err) =>dispatch(fetchUserListingsFailure(err)));
 };

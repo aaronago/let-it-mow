@@ -13,7 +13,7 @@ export class Header extends Component {
   }
 
   render() {
-      console.log('props', this.props.name);
+      console.log('props', this.props);
 
     let isLoggedIn;
 
@@ -64,7 +64,7 @@ export class Header extends Component {
 };
 
 const mapStateToProps = (state, props) => ({
-  name: state.name
+  name: state.listings.name
 });
 
 export default connect(mapStateToProps)(Header);

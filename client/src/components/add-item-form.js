@@ -3,8 +3,21 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createListing } from '../actions/index';
 import ImgUpload from './image-uploader';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'e6ai6rw0';
+
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/letitmow/upload';
 
 class AddItemForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      public_ids: []
+    };
+    this.handleImageUpload = this.handleImageUpload.bind(this)
+  }
 
   renderField({input, label, type, placeholder, meta: { touched, error } }) {
     return (
@@ -15,15 +28,36 @@ class AddItemForm extends Component {
           {touched ? error : ''}
         </div>
       </div>
-    )
+    );
   }
 
-  onSubmit(values, ) {
-    this.props.createListing(values, )
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, res) => {
+      if (err) console.error(err);
+      if (res.body.secure_url !== '') {
+        //console.log('res.body:', res.body);
+        this.setState({
+          public_ids: [...this.state.public_ids, res.body.public_id]
+        });
+      }
+    });
+
+  }
+
+  onSubmit(values) {
+    values.images = this.state.public_ids
+    //console.log(values)
+    this.props.createListing(values);
+
   }
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props
+
+    const { handleSubmit, pristine, reset, submitting } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -59,25 +93,25 @@ class AddItemForm extends Component {
           </button>
         </div>
         <div>
-          <ImgUpload />
+          <ImgUpload handleImageUpload={this.handleImageUpload}/>
         </div>
       </form>
-    )
+    );
   }
 }
 
 function validate(values) {
-  const errors = {}
+  const errors = {};
   if (!values.itemName) {
-    errors.itemName = 'Required'
+    errors.itemName = 'Required';
   }
   if (!values.pricePerDay) {
-    errors.pricePerDay = 'Required'
+    errors.pricePerDay = 'Required';
   }
-  if (!values.product_url) {
-    errors.product_url = 'Required'
-  }
-  return errors
+  // if (!values.product_url) {
+  //   errors.product_url = 'Required';
+  // }
+  return errors;
 }
 
 export default reduxForm({
@@ -85,4 +119,4 @@ export default reduxForm({
   validate
 })(
   connect(null,{ createListing })(AddItemForm)
-)
+);

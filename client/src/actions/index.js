@@ -52,7 +52,6 @@ export const fetchUser = () => dispatch => {
 //--------------------LISTINGS ASYNC REQUEST---------------------------------//
 
 export const createListing = (values) => dispatch => {
-  console.log('values: ', values)
   const accessToken = Cookies.get('accessToken');
   return fetch('/api/listing',
     {
@@ -64,12 +63,12 @@ export const createListing = (values) => dispatch => {
       body: JSON.stringify(values)
     })
     .then(listing => {
-      console.log(listing)
+      console.log(listing);
     })
     .catch(error => {
-      console.error(error)
-    })
-}
+      console.error(error);
+    });
+};
 
 export const fetchListings = () => dispatch => {
   return fetch('/api/listings')

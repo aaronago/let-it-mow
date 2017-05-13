@@ -19,6 +19,7 @@
 
 .form {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .preview-gallery {

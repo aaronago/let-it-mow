@@ -1,6 +1,12 @@
 import * as Cookies from 'js-cookie';
 import {browserHistory} from 'react-router';
 
+//----------- Reducer Actions -------------//
+export const LOGOUT = 'LOGOUT';
+export const logout = () => ({
+  type: LOGOUT
+});
+
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const fetchUserSuccess = (user) => ({
     type: FETCH_USER_SUCCESS,
@@ -14,6 +20,7 @@ export const fetchUserFailure = (error) => ({
     type: FETCH_USER_FAILURE,
     error,
 });
+
 export const FETCH_LISTINGS_SUCCESS = 'FETCH_LISTINGS_SUCCESS';
 export const fetchListingsSuccess = (listings) => ({
     type: FETCH_LISTINGS_SUCCESS,
@@ -31,6 +38,7 @@ export const fetchListingSuccess = (listing) => ({
     type: FETCH_LISTING_SUCCESS,
     listing
 });
+
 export const FETCH_LISTING_FAILURE = 'FETCH_LISTING_FAILURE';
 export const fetchListingFailure = (error) => ({
     type: FETCH_LISTING_FAILURE,
@@ -42,13 +50,15 @@ export const fetchUserListingsSuccess = (userListings) => ({
     type: FETCH_USER_LISTINGS_SUCCESS,
     userListings
   });
+
 export const FETCH_USER_LISTINGS_FAILURE= 'FETCH_USER_LISTINGS_FAILURE';
 export const fetchUserListingsFailure = (error) => ({
       type: FETCH_USER_LISTINGS_FAILURE,
       error
     });
 
-//-------------------USERS REQUEST -----------------------------------------//
+//-----------User/Auth Async Actions-------------//
+
 export const fetchUser = () => dispatch => {
     const accessToken = Cookies.get('accessToken');
     return fetch(`/api/auth/me`, {
@@ -65,7 +75,6 @@ export const fetchUser = () => dispatch => {
         return response.json();
     })
     .then(user => {
-        console.log(user)
         dispatch(fetchUserSuccess(user));
     })
     .catch(error => {
@@ -73,14 +82,7 @@ export const fetchUser = () => dispatch => {
     });
 };
 
-export const LOGOUT = 'LOGOUT';
-export const logout = () => ({
-  type: LOGOUT
-});
-//--------------------LISTINGS ASYNC REQUEST---------------------------------//
-
-//-------------------- FETCH LISTINGS ASYNC REQUEST---------------------------//
-
+//----Create Listing Async Action----------//
 
 export const createListing = (values) => dispatch => {
   const accessToken = Cookies.get('accessToken');
@@ -100,6 +102,8 @@ export const createListing = (values) => dispatch => {
     });
 };
 
+//-----------FetchAllListing Async Action-------------//
+
 export const fetchListings = () => dispatch => {
   return fetch('/api/listings')
   .then(response => response.json())
@@ -111,7 +115,7 @@ export const fetchListings = () => dispatch => {
   });
 };
 
-//-------------------------FETCH SINGLE LISTING REQUEST-------------------------//
+//-----------Fetch Single Listing Async Action-------------//
 
 export const fetchListing = id => dispatch => {
   return fetch(`/api/listing/${id}`)
@@ -123,7 +127,9 @@ export const fetchListing = id => dispatch => {
       dispatch(fetchListingFailure);
     });
 };
-//----------------------FETCH MYLISTINGS ------------------------------------//
+
+//----------- FetchAllListings For A User Async Action-------------//
+
 export const fetchUserListings = () => (dispatch) => {
   const accessToken = Cookies.get('accessToken');
   return fetch('/api/mylistings', {
@@ -139,8 +145,10 @@ export const fetchUserListings = () => (dispatch) => {
     dispatch(fetchUserListingsFailure());
   });
 };
-//--------------------DELETE LISTING -----------------------------------------//
-export const deleteListing = (userId,id) => dispatch => {
+
+//-----------Delete Listing Async Action-------------//
+
+export const deleteListing = (userId, id) => dispatch => {
   const accessToken = Cookies.get('accessToken');
   return fetch(`/api/listing/${userId}/${id}`,
     {

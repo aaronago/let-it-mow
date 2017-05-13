@@ -16,3 +16,15 @@
 .hidden {
   display: none;
 }
+
+.form {
+  display: flex;
+}
+
+.preview-gallery {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}

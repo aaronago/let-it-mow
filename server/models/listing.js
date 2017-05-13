@@ -15,6 +15,7 @@ const ListingSchema = mongoose.Schema({
     required: true
   },
   position: {type: Object, required: false},
+  name: {type: String, required: false}
 
 });
 

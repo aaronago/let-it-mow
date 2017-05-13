@@ -37,14 +37,15 @@ class UserListings extends Component {
     });
     return (
       <div className="user-listings">
+        <div className={hidden}>
+          <AddItemForm onClick={this.onClick}/>
+        </div>
         <h2>Your Listings</h2>
         <button onClick={this.onClick}>Add A New Listing!</button>
           <div className="listings-gallery">
             {listItem}
           </div>
-          <div className={hidden}>
-            <AddItemForm onClick={this.onClick}/>
-          </div>
+
       </div>
     );
   }

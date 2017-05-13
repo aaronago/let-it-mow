@@ -20,9 +20,10 @@ function seedListingData() {
   console.info('seeding listing data');
   const seedData = [];
   for (let i=1; i<10; i++) {
+    console.log(generateListingData());
     seedData.push(generateListingData());
   }
-  console.log(Listing);
+  console.log('Seed data', seedData);
   return Listing.insertMany(seedData);
 }
 
@@ -31,14 +32,14 @@ function generateTitles() {
     'Riding Lawn Mower', 'Gas Push Mower', 'Reel Lawn Mower',
     'Commercial Pressure Washer', 'Cordless Hedge Trimmer', 'Power Lawn Edger'
   ];
-  return titles[Math.floor(Math.random() * titles.lenght)];
+  return titles[Math.floor(Math.random() * titles.length)];
 }
 
 function generatePrices() {
   const prices = [
     10, 15, 20, 25, 8, 13
   ];
-  return prices[Math.floor(Math.random() * prices.lenght)];
+  return prices[Math.floor(Math.random() * prices.length)];
 }
 
 function generateUsers() {
@@ -46,7 +47,7 @@ function generateUsers() {
                   8943759834759832475, 1938593798374648704,
                   9032846838746785467, 8734762346234998489
   ];
-  return users[Math.floor(Math.random() * users.lenght)];
+  return users[Math.floor(Math.random() * users.length)];
 }
 
 function generateListingData() {
@@ -65,7 +66,6 @@ function teardownDb() {
 describe('Listing', () => {
 
   before(() => {
-    console.log('TEST DATABASE', testDatabase);
     return runServer(testDatabase);
   });
 

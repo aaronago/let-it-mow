@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createListing } from '../actions/index';
-import ImgUpload from './image-uploader';
 import request from 'superagent';
+
+import ImgUpload from './image-uploader';
+import PreviewImage from './preview-image';
+
 
 const CLOUDINARY_UPLOAD_PRESET = 'e6ai6rw0';
 
@@ -49,67 +52,67 @@ class AddItemForm extends Component {
 
   onSubmit(values) {
     values.images = this.state.public_ids;
-    this.props.createListing(values, (success) => {
-      if (success) {
-        alert('Listing was added successfully');
-      }
-      else {
-        alert('There was a problem adding your listing');
-      }
-    });
+    this.props.createListing(values);
+    this.props.onClick();
   }
 
   render() {
+    const gallery = this.state.public_ids.map(id => {
+      return <PreviewImage key={id} id={id} />;
+    });
 
     const { handleSubmit, pristine, reset, submitting } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+      <div className="form">
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
-        <Field
-          name="title"
-          type="text"
-          component={this.renderField}
-          label="Item for Rent"
-          placeholder="Mower"
-        />
+          <Field
+            name="itemName"
+            type="text"
+            component={this.renderField}
+            label="Item for Rent"
+            placeholder="Mower"
+          />
 
-        <Field
-          name="price"
-          type="number"
-          component={this.renderField}
-          label="Price per Day"
-          placeholder="20"
-        />
+          <Field
+            name="pricePerDay"
+            type="number"
+            component={this.renderField}
+            label="Price per Day"
+            placeholder="20"
+          />
 
-        <Field
-          name="itemDesc"
-          type="text"
-          component={this.renderField}
-          label="Item Description"
-          placeholder="5 hp, 21 in mower"
-        />
+          <Field
+            name="itemDesc"
+            type="text"
+            component={this.renderField}
+            label="Item Description"
+            placeholder="5 hp, 21 in mower"
+          />
 
-        <Field
-          name="product_url"
-          type="url"
-          component={this.renderField}
-          label="Product URL"
-          placeholder="http://www.mower.com"
-        />
+          <Field
+            name="product_url"
+            type="url"
+            component={this.renderField}
+            label="Product URL"
+            placeholder="http://www.mower.com"
+          />
 
-        <div>
-          <ImgUpload handleImageUpload={this.handleImageUpload}/>
+          <div>
+            <ImgUpload handleImageUpload={this.handleImageUpload}/>
+          </div>
+          <div>
+            <button type="submit" disabled={submitting}>Submit</button>
+            <button type="button" disabled={pristine || submitting} onClick={reset}>
+              Clear Values
+            </button>
+          </div>
+        </form>
+        <div className="preview-gallery">
+          {gallery}
         </div>
-
-        <div>
-          <button type="submit" disabled={submitting}>Submit</button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
-            Clear Values
-          </button>
-        </div>
-
-      </form>
+    </div>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/index';
+import { Link } from 'react-router-dom';
 
 export class Header extends Component {
   constructor(props) {
@@ -13,7 +14,6 @@ export class Header extends Component {
   }
 
   render() {
-      console.log('props', this.props);
 
     let isLoggedIn;
 
@@ -33,17 +33,17 @@ export class Header extends Component {
           <div>
             <tr>
               <td>
-                <a href="#"><h1>Let it mow</h1></a>
+              <Link to='/'><h1>Let it mow</h1></Link>
               </td>
               <td>
                 <form>
                   <div>
                     <input type="text" name="renting" placeholder="What are you renting?" />
-                    <span class="search-icon"></span>
+                    <span className="search-icon"></span>
                   </div>
                   <div>
                     <input type="text" placeholder="Enter a zip code" />
-                    <span class="location-icon"></span>
+                    <span className="location-icon"></span>
                   </div>
                 </form>
               </td>
@@ -51,9 +51,11 @@ export class Header extends Component {
               <div>
                 {isLoggedIn}
               </div>
+              <Link to={`/mylistings/`}>
               <div>
-                <a href="#">Rent your equipment</a>
+                <h3>Rent your equipment</h3>
               </div>
+              </Link>
               </td>
             </tr>
           </div>

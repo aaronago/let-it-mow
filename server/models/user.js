@@ -6,7 +6,8 @@ const UserSchema = mongoose.Schema({
   name: {type: String, required: true},
   accessToken: {type: String, required: true},
   listings: [],
-  ratings: [{type: Schema.Types.ObjectId, ref: 'Rating'}]
+  ratings: [{type: Schema.Types.ObjectId, ref: 'Rating'}],
+  zipcode: {type: Number, required: false}
 
 });
 

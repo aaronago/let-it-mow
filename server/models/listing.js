@@ -14,7 +14,9 @@ const ListingSchema = mongoose.Schema({
     ref: 'User',
     required: true
   },
-  position: {type: Object, required: false}
+  position: {type: Object, required: false},
+  name: {type: String, required: false}
+
 });
 
 const Listing = mongoose.model('Listing', ListingSchema);

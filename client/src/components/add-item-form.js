@@ -49,8 +49,14 @@ class AddItemForm extends Component {
 
   onSubmit(values) {
     values.images = this.state.public_ids;
-    this.props.createListing(values);
-
+    this.props.createListing(values, (success) => {
+      if (success) {
+        alert('Listing was added successfully');
+      }
+      else {
+        alert('There was a problem adding your listing');
+      }
+    });
   }
 
   render() {
@@ -61,7 +67,7 @@ class AddItemForm extends Component {
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
         <Field
-          name="itemName"
+          name="title"
           type="text"
           component={this.renderField}
           label="Item for Rent"
@@ -69,7 +75,7 @@ class AddItemForm extends Component {
         />
 
         <Field
-          name="pricePerDay"
+          name="price"
           type="number"
           component={this.renderField}
           label="Price per Day"
@@ -102,6 +108,7 @@ class AddItemForm extends Component {
             Clear Values
           </button>
         </div>
+
       </form>
     );
   }

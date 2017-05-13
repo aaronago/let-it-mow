@@ -27,9 +27,6 @@ const User = require('./models/user');
 
 const app = express();
 
-const database = {
-    DATABASE_URL: process.env.DATABASE_URL
-};
 app.use(bodyParser.json());
 
 app.use(busboyBodyParser({ limit: '10mb'}));
@@ -50,9 +47,9 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(port=3001) {
+function runServer(db=secret.DATABASE_URL, port=3001) {
     return new Promise((resolve, reject) => {
-      mongoose.connect(secret.DATABASE_URL, err => {
+      mongoose.connect(db, err => {
         if(err) {
           return reject(err);
         }
@@ -65,9 +62,9 @@ function runServer(port=3001) {
     });
 }
 
-function closeServer() {
+function closeServer(db=secret.DATABASE_URL) {
     return new Promise((resolve, reject) => {
-        mongoose.connect(DATABASE_URL, err => {});
+        mongoose.connect(db, err => {});
         server.close(err => {
             if (err) {
                 return reject(err);

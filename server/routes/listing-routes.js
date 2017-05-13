@@ -53,7 +53,7 @@ router.get('/listing/:id', (req, res) => {
     });
 });
 
-router.delete('listing/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+router.delete('/listing/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
   (req, res) => {
     Listing
       .findByIdAndRemove(req.params.id)
@@ -66,7 +66,7 @@ router.delete('listing/:createBy/:id', passportGoogle.authenticate('bearer', {se
     });
 });
 
-router.put('listing/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+router.put('/listing/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
   (req, res) => {
     if(!(req.params.id && req.body._id && req.params.id === req.body._id)) {
       res.status(400).json({

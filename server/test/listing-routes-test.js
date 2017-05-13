@@ -3,14 +3,15 @@ const expect = require('chai').expect;
 const chaiHttp = require('chai-http');
 const mongoose =  require('mongoose');
 
-const {app, runServer, closeServer, testdatabase} = require('../index');
-const {Listing} =  require('../models/listing');
+const {app, runServer, closeServer} = require('../index');
+const Listing =  require('../models/listing');
+
+const testDatabase = global.secret.TEST_DATABASE_URL;
 
 chai.use(chaiHttp);
 
 describe('Listing model', () => {
   it('should exist', () => {
-    const Listing = require('../models/listing');
     expect(Listing).to.not.be.undefined;
   });
 });
@@ -21,6 +22,7 @@ function seedListingData() {
   for (let i=1; i<10; i++) {
     seedData.push(generateListingData());
   }
+  console.log(Listing);
   return Listing.insertMany(seedData);
 }
 
@@ -62,8 +64,9 @@ function teardownDb() {
 
 describe('Listing', () => {
 
-  before((testdatabase) => {
-    return runServer();
+  before(() => {
+    console.log('TEST DATABASE', testDatabase);
+    return runServer(testDatabase);
   });
 
   beforeEach(() => {
@@ -75,7 +78,7 @@ describe('Listing', () => {
   });
 
   after(() => {
-    return closeServer();
+    return closeServer(testDatabase);
   });
 
   describe('listing Get endpoint', () => {

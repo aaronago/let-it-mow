@@ -6,9 +6,7 @@ import Map from './map';
 class GeoMap extends React.Component {
   render() {
 
-    const markers = this.props.listings.filter(item => {
-      return item.position !== undefined;
-    });
+    const markers = this.props.listings
     return (
           <div className="listings-map">
            <Map

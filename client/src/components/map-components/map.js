@@ -18,17 +18,18 @@ class Map extends Component {
 
   render() {
 
-    const markers = this.props.markers.map((item, i) => {
 
+    const markers = this.props.markers.map((item, i) => {
       const marker = {
         position: {
-          lat: item.position.lat,
-          lng: item.position.lon
+          lat: item.geometry.coordinates[1],
+          lng: item.geometry.coordinates[0]
         },
           title: item.title,
           price: `${item.price}/day`,
           images: `http://res.cloudinary.com/letitmow/image/upload/w_40,h_40/${item.images[0]}.jpg`,
       };
+
       return <Marker
       key={i}
       onClick={this.toggleInfoWindow}
@@ -39,9 +40,9 @@ class Map extends Component {
        >
         <Link to={`/listings/${item._id}`}>
           <div>
-            <h2>{marker.title}</h2>
+            <h5>{marker.title}</h5>
             <img src={marker.images} />
-            <h3>{marker.price}</h3>
+            <h5>{marker.price}</h5>
           </div>
 
         </Link>

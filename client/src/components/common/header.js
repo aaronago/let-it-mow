@@ -30,35 +30,29 @@ export class Header extends Component {
     return (
       <div>
         <nav>
-          <div>
-            <tr>
-              <td>
-              <Link to='/'><h1>Let it mow</h1></Link>
-              </td>
-              <td>
-                <form>
-                  <div>
-                    <input type="text" name="renting" placeholder="What are you renting?" />
-                    <span className="search-icon"></span>
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Enter a zip code" />
-                    <span className="location-icon"></span>
-                  </div>
-                </form>
-              </td>
-              <td>
-              <div>
-                {isLoggedIn}
-              </div>
+          <ul>
+            <li><Link to='/'><h1>Let it mow</h1></Link></li>
+            <li>
+              <form>
+                  <input type="text" name="renting" placeholder="What are you renting?" />
+                  <span className="search-icon"></span>
+              </form>
+            </li>
+            <li>
+              <form>
+                <input type="text" placeholder="Enter a zip code" />
+                <span className="location-icon"></span>
+              </form>
+            </li>
+            <li>{isLoggedIn}</li>
+            <li>
               <Link to={`/mylistings/`}>
               <div>
-                <h3>Rent your equipment</h3>
+                <a>Rent your equipment</a>
               </div>
               </Link>
-              </td>
-            </tr>
-          </div>
+            </li>
+          </ul>
         </nav>
       </div>
     );

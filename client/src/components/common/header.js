@@ -29,28 +29,12 @@ export class Header extends Component {
 
     return (
       <div>
-        <nav>
+        <nav className="flex-nav">
           <ul>
             <li><Link to='/'><h1>Let it mow</h1></Link></li>
-            <li>
-              <form>
-                  <input type="text" name="renting" placeholder="What are you renting?" />
-                  <span className="search-icon"></span>
-              </form>
-            </li>
-            <li>
-              <form>
-                <input type="text" placeholder="Enter a zip code" />
-                <span className="location-icon"></span>
-              </form>
-            </li>
-            <li>{isLoggedIn}</li>
-            <li>
-              <Link to={`/mylistings/`}>
-              <div>
-                <a>Rent your equipment</a>
-              </div>
-              </Link>
+            <li className="right">{isLoggedIn}</li>
+            <li className="right">
+              <Link to={`/mylistings/`}>Rent your equipment</Link>
             </li>
           </ul>
         </nav>

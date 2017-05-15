@@ -26,7 +26,7 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 
   const options = {
     uri: `https://www.zipcodeapi.com/rest/${global.secret.ZIPCODE_API_KEY}/info.json/${req.body.zipcode}/degrees`,
-    json:true
+    json: true
   };
 
   rp(options)

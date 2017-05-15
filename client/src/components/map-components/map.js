@@ -7,7 +7,7 @@ class Map extends Component {
   constructor() {
     super();
     this.state={
-      showInfo: false
+      showInfo: true,
     };
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
@@ -19,16 +19,16 @@ class Map extends Component {
   render() {
 
     const markers = this.props.markers.map((item, i) => {
-
       const marker = {
         position: {
-          lat: item.position.lat,
-          lng: item.position.lon
+          lat: item.geometry.coordinates[1],
+          lng: item.geometry.coordinates[0]
         },
           title: item.title,
           price: `${item.price}/day`,
           images: `http://res.cloudinary.com/letitmow/image/upload/w_40,h_40/${item.images[0]}.jpg`,
       };
+
       return <Marker
       key={i}
       onClick={this.toggleInfoWindow}

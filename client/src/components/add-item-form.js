@@ -84,7 +84,7 @@ class AddItemForm extends Component {
           />
 
           <Field
-            name="itemDesc"
+            name="description"
             type="text"
             component={this.renderField}
             label="Item Description"
@@ -97,6 +97,13 @@ class AddItemForm extends Component {
             component={this.renderField}
             label="Product URL"
             placeholder="http://www.mower.com"
+          />
+          <Field
+            name="zipcode"
+            type="text"
+            component={this.renderField}
+            label="Your Zip"
+            placeholder="Enter Your Zip"
           />
 
           <div>
@@ -124,6 +131,9 @@ function validate(values) {
   }
   if (!values.pricePerDay) {
     errors.pricePerDay = 'Required';
+  }
+  if(!values.zipcode) {
+    errors.zipcode = "Please Enter a Valid Zip";
   }
   return errors;
 }

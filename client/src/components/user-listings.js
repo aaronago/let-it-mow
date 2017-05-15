@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import UserItem from './user-item';
 import Header from './common/header';
-import AddItemForm from './add-item-form'
+import AddItemForm from './add-item-form';
 
 
 class UserListings extends Component {
@@ -25,6 +25,7 @@ class UserListings extends Component {
 
 
   render() {
+    console.log('user listings', this.props.userListings);
     const hidden = this.state.hidden ? 'hidden' : '';
 
     const listItem = this.props.userListings.map (listItem => {

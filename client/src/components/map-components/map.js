@@ -7,7 +7,7 @@ class Map extends Component {
   constructor() {
     super();
     this.state={
-      showInfo: false
+      showInfo: true,
     };
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }
@@ -17,7 +17,6 @@ class Map extends Component {
   }
 
   render() {
-
 
     const markers = this.props.markers.map((item, i) => {
       const marker = {
@@ -40,9 +39,9 @@ class Map extends Component {
        >
         <Link to={`/listings/${item._id}`}>
           <div>
-            <h5>{marker.title}</h5>
+            <h2>{marker.title}</h2>
             <img src={marker.images} />
-            <h5>{marker.price}</h5>
+            <h3>{marker.price}</h3>
           </div>
 
         </Link>

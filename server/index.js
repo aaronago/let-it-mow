@@ -23,6 +23,8 @@ const routes = require('./routes/user-routes');
 
 const listRoutes = require('./routes/listing-routes');
 
+const messageRoutes = require('./routes/message-routes');
+
 const User = require('./models/user');
 
 const app = express();
@@ -34,6 +36,8 @@ app.use(busboyBodyParser({ limit: '10mb'}));
 app.use(passport.initialize());
 
 app.use('/api/auth', routes);
+
+app.use('/api', messageRoutes);
 
 app.use('/api', listRoutes);
 // Serve the built client

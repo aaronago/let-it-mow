@@ -12,6 +12,7 @@ mongoose.Promise = global.Promise;
 
 
 router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
+  console.log(req.user)
 
   const listingDetails = {
     createdBy: req.user.googleID,
@@ -31,12 +32,10 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 
   rp(options)
     .then(response => {
-      console.log(response);
       listingDetails.geometry = {coordinates: [response.lng, response.lat]};
       return Listing.create(listingDetails);
     })
     .then(listing => {
-      console.log(listing);
       res.status(200).json({listing});
     })
     .catch(err => {
@@ -123,10 +122,6 @@ router.put('/listing/:createBy/:id', passportGoogle.authenticate('bearer', {sess
       .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
-router.get('/populate', (req, res) => {
-  Listing.findOne({price: 12})
-    .then(listing => console.log(listing));
-});
 
 
 

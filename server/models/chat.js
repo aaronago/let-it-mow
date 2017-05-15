@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ChatSchema = mongoose.Schema({
+const ChatSchema = new Schema({
   listingId: {type: Schema.Types.ObjectId, ref: 'Listing', required: true},
-  renter: {
-    id: {type: Number, required: true},
-    name: {type: String, required: true}
-  },
-  rentee: {
-    id: {type: Number, required: true},
-    name: {type: String, required: true}
-  },
-  chat: {type: Array, required: true}
+  renterId: {type: Number, required: true},
+  renterName: {type: String, required: true},
+  renteeId: {type: Number, required: true},
+  renteeName: {type: String, required: true},
+
+  chat: [{
+    sentBy: {type: String, required: true},
+    date: {type: Date, required: true},
+    message: {type: String, required: true}
+  }]
 });
 
 const Chat = mongoose.model('Chat', ChatSchema);

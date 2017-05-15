@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createListing } from '../actions/index';
 import request from 'superagent';
-
 import ImgUpload from './image-uploader';
 import PreviewImage from './preview-image';
 

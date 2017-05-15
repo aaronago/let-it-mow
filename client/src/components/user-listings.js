@@ -25,7 +25,6 @@ class UserListings extends Component {
 
 
   render() {
-    console.log('user listings', this.props.userListings);
     const hidden = this.state.hidden ? 'hidden' : '';
 
     const listItem = this.props.userListings.map (listItem => {

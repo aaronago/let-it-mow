@@ -46,14 +46,17 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 });
 
 router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
+
   const query = {
-    "createdBy": {$eq: req.user.googleID}
+    createdBy: {$eq: req.user.googleID}
   };
 
-  Listing.find(query)
+  Listing
+    .find(query)
     .exec()
     .then(listings => {
-      listings.length > 0 ? res.status(200).json(listings) : res.json({message: `You Haven't Created Any Listings Yet`});
+      console.log(listings);
+      listings.length > 0 ? res.json(listings) : res.json({message: `You Haven't Created Any Listings Yet`});
     })
     .catch(err => {
       res.status(500).json({error: 'something went wrong'});

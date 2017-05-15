@@ -26,15 +26,16 @@ class UserListings extends Component {
 
   render() {
     const hidden = this.state.hidden ? 'hidden' : '';
+    const listings = this.props.userListings;
 
-    const listItem = this.props.userListings.map (listItem => {
+    const listItem = listings.length > 0 ? listings.map (listItem => {
       return (
         <div key={listItem._id}>
           <UserItem userId={listItem.createdBy} images={listItem.images} title={listItem.title}
            price={listItem.price} id={listItem._id} />
         </div>
       );
-    });
+    }) :  <div>You don't have any listings yet</div>;
     return (
       <div className="user-listings">
         <div className={hidden}>

@@ -94,14 +94,6 @@ class AddItemForm extends Component {
             </div>
           </div>
 
-          {/* <Field
-            name="description"
-            type="text"
-            component={this.renderField}
-            label="Item Description"
-            placeholder="5 hp, 21 in mower"
-          /> */}
-
           <Field
             name="product_url"
             type="url"
@@ -109,6 +101,7 @@ class AddItemForm extends Component {
             label="Product URL"
             placeholder="http://www.mower.com"
           />
+          
           <Field
             name="zipcode"
             type="text"

@@ -1,22 +1,53 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const GeoSchema = new Schema ({
+  type: {
+    type: String,
+    default: 'Point'
+  },
+  coordinates: {
+    type: [Number],
+    index: '2dsphere'
+  }
+});
 
-const ListingSchema = mongoose.Schema({
-  title: {type: String, required: true},
-  categories: {type: Array, required: false},
-  price: {type: Number, required: true},
-  product_url: {type: String, required: false},
-  images: {type: Array, required: false},
-  zipcode: {type: Number, required: false},
+
+const ListingSchema = new Schema ({
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  categories: {
+    type: Array,
+    required: false
+  },
+  price: {
+    type: Number,
+    required: true
+   },
+  product_url: {
+    type: String,
+    required: false
+  },
+  images: {
+    type: Array,
+    required: true
+  },
+  zipcode: {
+    type: Number,
+    required: true
+  },
   createdBy: {
     type: Number,
     ref: 'User',
     required: true
   },
-  position: {type: Object, required: false},
-  name: {type: String, required: false}
-
+  geometry: GeoSchema
 });
 
 const Listing = mongoose.model('Listing', ListingSchema);

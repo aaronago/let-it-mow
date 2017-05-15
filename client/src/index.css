@@ -1,8 +1,30 @@
+/**********************************
+  main
+**********************************/
 * {
   box-sizing: border-box;
 }
+/**********************************
+  nav
+**********************************/
+.flex-nav ul {
+  display: flex;
+  list-style: none;
+  align-items: baseline;
+  align-self: flex-start;
+}
 
+.flex-nav li {
+  padding: 5px;
+  margin: 5px;
+}
 
+.flex-nav h1 {
+  flex-grow: 10;
+}
+/**********************************
+  gallary
+**********************************/
 .listings-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +38,9 @@
 .hidden {
   display: none;
 }
-
+/**********************************
+  listing form
+**********************************/
 .form {
   display: flex;
   flex-wrap: wrap;
@@ -27,5 +51,4 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }

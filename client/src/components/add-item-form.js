@@ -82,13 +82,25 @@ class AddItemForm extends Component {
             placeholder="20"
           />
 
-          <Field
+          <div>
+            <label>Description</label>
+            <div>
+              <Field
+                name="description"
+                component="textarea"
+                type="text"
+                placeholder="5 hp, 21 in mower"
+              />
+            </div>
+          </div>
+
+          {/* <Field
             name="description"
             type="text"
             component={this.renderField}
             label="Item Description"
             placeholder="5 hp, 21 in mower"
-          />
+          /> */}
 
           <Field
             name="product_url"
@@ -133,6 +145,9 @@ function validate(values) {
   }
   if(!values.zipcode) {
     errors.zipcode = "Please Enter a Valid Zip";
+  }
+  if (!values.description) {
+    errors.description = 'Required';
   }
   return errors;
 }

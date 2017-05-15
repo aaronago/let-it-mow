@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import UserItem from './user-item';
 import Header from './common/header';
-import AddItemForm from './add-item-form'
+import AddItemForm from './add-item-form';
 
 
 class UserListings extends Component {

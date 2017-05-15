@@ -23,6 +23,8 @@
     "mongoose": "^4.9.8",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
-    "passport-http-bearer": "^1.0.1"
+    "passport-http-bearer": "^1.0.1",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4"
   }
 }

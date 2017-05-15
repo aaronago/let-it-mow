@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const rp = require('request-promise-native');
 const bearer = require('../auth/bearer');
 const passportGoogle = require('../auth/google');
 const Listing = require ('../models/listing');
+
 
 mongoose.Promise = global.Promise;
 
@@ -13,34 +15,48 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 
   const listingDetails = {
     createdBy: req.user.googleID,
-    title: req.body.title,
+    title: req.body.itemName,
     categories: req.body.categories,
-    price: req.body.price,
+    price: req.body.pricePerDay,
     product_url: req.body.product_url,
     images: req.body.images,
-    position: req.body.position
+    description: req.body.description,
+    zipcode: req.body.zipcode
   };
-  // this might be the way to populate listings, leaving it here for now
-  // let listing = new Listing(listingDetails);
 
-  Listing.create(listingDetails)
+  const options = {
+    uri: `https://www.zipcodeapi.com/rest/${global.secret.ZIPCODE_API_KEY}/info.json/${req.body.zipcode}/degrees`,
+    json:true
+  };
+
+  rp(options)
+    .then(response => {
+      console.log(response);
+      listingDetails.geometry = {coordinates: [response.lng, response.lat]};
+      return Listing.create(listingDetails);
+    })
     .then(listing => {
+      console.log(listing);
       res.status(200).json({listing});
     })
     .catch(err => {
+      // console.log(err)
       res.status(500).json({err: err});
     });
 });
 
 router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
+
   const query = {
-    "createdBy": {$eq: req.user.googleID}
+    createdBy: {$eq: req.user.googleID}
   };
 
-  Listing.find(query)
+  Listing
+    .find(query)
     .exec()
     .then(listings => {
-      listings.length > 0 ? res.status(200).json(listings) : res.json({message: `You Haven't Created Any Listings Yet`});
+      console.log(listings);
+      listings.length > 0 ? res.json(listings) : res.json({message: `You Haven't Created Any Listings Yet`});
     })
     .catch(err => {
       res.status(500).json({error: 'something went wrong'});

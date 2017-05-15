@@ -12,7 +12,6 @@ const initialState = {
 export default (state=initialState, action) => {
   switch (action.type) {
       case actions.FETCH_USER_SUCCESS:
-        console.log('action name', action.name);
         return { ...state,
                  name: action.name,
                  userId: action.userId,

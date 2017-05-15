@@ -82,7 +82,7 @@ describe('Listing', () => {
   });
 
   describe('listing Get endpoint', () => {
-    it('should return all listings', (done)=> {
+    it('should return all listings', () => {
         return chai.request(app)
         .get('/api/listings')
         .then((res) => {
@@ -93,6 +93,11 @@ describe('Listing', () => {
           res.body.forEach(item => {
             expect(item).to.be.an('object');
             expect(item).to.have.keys(['title', 'price', 'createdBy']);
+
+            return Listing.count();
+          })
+          .then(count => {
+            res.body.should.have.length.of(count);
           });
         });
     });

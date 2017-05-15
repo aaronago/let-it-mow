@@ -31,9 +31,9 @@ export class Header extends Component {
       <div>
         <nav className="flex-nav">
           <ul>
-            <li><Link to='/'><h1>Let it mow</h1></Link></li>
-            <li className="right">{isLoggedIn}</li>
-            <li className="right">
+            <li className="one"><Link to='/'><h1>Let it mow</h1></Link></li>
+            <li className="two">{isLoggedIn}</li>
+            <li className="three">
               <Link to={`/mylistings/`}>Rent your equipment</Link>
             </li>
           </ul>

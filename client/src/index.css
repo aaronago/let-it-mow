@@ -7,6 +7,9 @@
 /**********************************
   nav
 **********************************/
+.flex-nav {
+  margin-right: 35px;
+}
 .flex-nav ul {
   display: flex;
   list-style: none;
@@ -19,8 +22,8 @@
   margin: 5px;
 }
 
-.flex-nav h1 {
-  flex-grow: 10;
+.one {
+  flex-grow: 1;
 }
 /**********************************
   gallary

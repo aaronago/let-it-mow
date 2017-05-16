@@ -7,7 +7,7 @@ class Map extends Component {
   constructor() {
     super();
     this.state={
-      showInfo: true,
+      showInfo: false,
     };
     this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
   }

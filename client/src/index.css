@@ -40,6 +40,16 @@
 .hidden {
   display: none;
 }
+.range-slider {
+  max-width: 180px;
+  padding-left: 10px;
+
+}
+.price-filter {
+  border: 1px solid black;
+  max-width: 210px;
+}
+
 /**********************************
   listing form
 **********************************/

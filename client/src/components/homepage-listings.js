@@ -13,7 +13,7 @@ class HomepageListings extends Component {
     super(props);
     this.state = {
       searchString: '',
-      value: [5,100]
+      value: [0,50]
     }
     this.handleChange = this.handleChange.bind(this)
     this.onSliderChange = this.onSliderChange.bind(this)
@@ -34,6 +34,13 @@ class HomepageListings extends Component {
     let searchString = this.state.searchString.trim().toLowerCase();
     let lowPrice = this.state.value[0]
     let highPrice = this.state.value[1]
+    let marks = {
+      10: '$10',
+      20: '$20',
+      30: '$30',
+      40: '$40',
+      50: '$50'
+    }
 
     if(searchString.length > 0){
         listings = listings.filter(function(l){
@@ -45,15 +52,24 @@ class HomepageListings extends Component {
            return l.price < 15
          })
     }
+    if(lowPrice > 0 && highPrice < 30) {
+         listings = listings.filter(function(l) {
+           return l.price < 30
+         })
+    }
+
 
 
     return (
       <div>
       <input type="text" value={this.state.searchString}
       onChange={this.handleChange} placeholder="Search Equipment"/>
-      <div>
-      <Range min={5}
-             max={100}
+      <div className='price-filter'>
+      <h4>Filter Price</h4>
+      <Range className='range-slider'
+             marks={marks}
+             min={5}
+             max={50}
              defaultValue={[10,50]}
              allowCross={false}
              value={this.state.value}

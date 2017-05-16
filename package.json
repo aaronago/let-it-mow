@@ -30,6 +30,7 @@
     "npm-run-all": "^4.0.1",
     "raf": "^3.3.2",
     "rc-slider": "^7.0.8",
+    "rc-tooltip": "^3.4.3",
     "react-geolocated": "^1.0.3",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",

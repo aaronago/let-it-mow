@@ -17,10 +17,6 @@ export default (state=initialState, action) => {
                  userId: action.userId,
                  error: null,
                };
-      case actions.LOGOUT:
-        return { ...state,
-                 name: ''
-               };
       case actions.FETCH_LISTINGS_SUCCESS:
         return { ...state,
                  listings: action.listings

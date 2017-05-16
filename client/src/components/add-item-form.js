@@ -67,7 +67,7 @@ class AddItemForm extends Component {
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
           <Field
-            name="itemName"
+            name="title"
             type="text"
             component={this.renderField}
             label="Item for Rent"
@@ -75,7 +75,7 @@ class AddItemForm extends Component {
           />
 
           <Field
-            name="pricePerDay"
+            name="price"
             type="number"
             component={this.renderField}
             label="Price per Day"
@@ -101,7 +101,7 @@ class AddItemForm extends Component {
             label="Product URL"
             placeholder="http://www.mower.com"
           />
-          
+
           <Field
             name="zipcode"
             type="text"

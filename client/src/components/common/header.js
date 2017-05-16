@@ -2,28 +2,24 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/index';
 import { Link } from 'react-router-dom';
+import * as Cookies from 'js-cookie';
 
 export class Header extends Component {
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
-  }
-
-  logOut(e) {
-    this.props.dispatch(logout());
   }
 
   render() {
 
     let isLoggedIn;
 
-    if(!this.props.name) {
+    if(!Cookies.get('accessToken')) {
       isLoggedIn = (
         <a href={'/api/auth/google'}>Login with Google</a>
       );
     } else {
       isLoggedIn = (
-        <a onClick={this.logOut} href='#'>Log Out</a>
+        <a href={'/api/auth/logout'}>Log Out</a>
       );
     }
 

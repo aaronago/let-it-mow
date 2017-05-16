@@ -15,9 +15,9 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 
   const listingDetails = {
     createdBy: req.user.googleID,
-    title: req.body.itemName,
+    title: req.body.title,
     categories: req.body.categories,
-    price: req.body.pricePerDay,
+    price: req.body.price,
     product_url: req.body.product_url,
     images: req.body.images,
     description: req.body.description,

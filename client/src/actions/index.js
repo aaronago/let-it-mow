@@ -2,10 +2,6 @@ import * as Cookies from 'js-cookie';
 import {browserHistory} from 'react-router';
 
 //----------- Reducer Actions -------------//
-export const LOGOUT = 'LOGOUT';
-export const logout = () => ({
-  type: LOGOUT
-});
 
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const fetchUserSuccess = (user) => ({

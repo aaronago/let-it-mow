@@ -130,17 +130,14 @@ class AddItemForm extends Component {
 
 function validate(values) {
   const errors = {};
-  if (!values.itemName) {
-    errors.itemName = 'Required';
+  if (!values.title) {
+    errors.title = 'Please Enter an Item Name';
   }
-  if (!values.pricePerDay) {
-    errors.pricePerDay = 'Required';
+  if (!values.price) {
+    errors.price = 'Please Enter a Price';
   }
   if(!values.zipcode) {
-    errors.zipcode = "Please Enter a Valid Zip";
-  }
-  if (!values.description) {
-    errors.description = 'Required';
+    errors.zipcode = 'Please Enter a Valid Zip';
   }
   return errors;
 }

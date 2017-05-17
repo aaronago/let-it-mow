@@ -6,7 +6,9 @@ const initialState = {
   error: '',
   listings: [],
   singleListing: [],
-  userListings: []
+  userListings: [],
+  createdBy: '',
+  allFromSameUser: []
 };
 
 export default (state=initialState, action) => {
@@ -27,12 +29,17 @@ export default (state=initialState, action) => {
                };
       case actions.FETCH_LISTING_SUCCESS:
         return { ...state,
-          [action.listing._id]: action.listing};
-
+                [action.listing._id]: action.listing,
+                createdBy: action.createdBy
+               };
       case actions.FETCH_USER_LISTINGS_SUCCESS:
-        return {...state,
-          userListings: action.userListings
-        };
+        return { ...state,
+                 userListings: action.userListings
+               };
+      case actions.FETCH_MORE_FROM_USER_LISTINGS_SUCCESS:
+        return { ...state,
+                 allFromSameUser: action.allUserListings
+               };
   }
   return state;
 };

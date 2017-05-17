@@ -75,6 +75,18 @@ router.get('/listings', (req, res) => {
     });
 });
 
+router.get('/listings/:createdBy', (req, res) => {
+  Listing
+    .find({createdBy: req.params.createdBy})
+    .exec()
+    .then(listing => {
+      res.json(listing);
+    })
+    .catch(err => {
+      res.status(500).json({error: 'something went wrong'});
+    });
+});
+
 router.get('/listing/:id', (req, res) => {
   Listing
     .find({_id: req.params.id})

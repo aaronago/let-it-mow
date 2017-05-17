@@ -5,6 +5,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const busboyBodyParser = require('busboy-body-parser');
+const http = require('http');
 mongoose.Promise = global.Promise;
 
 let secret = {
@@ -23,9 +24,19 @@ const routes = require('./routes/user-routes');
 
 const listRoutes = require('./routes/listing-routes');
 
-const User = require('./models/user');
+const chatRoutes = require('./routes/chat-routes');
+
+const socketEvents = require('./socketEvents');
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin',  '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 app.use(bodyParser.json());
 
@@ -33,7 +44,11 @@ app.use(busboyBodyParser({ limit: '10mb'}));
 
 app.use(passport.initialize());
 
+
+
 app.use('/api/auth', routes);
+
+app.use('/api/chat', chatRoutes);
 
 app.use('/api', listRoutes);
 // Serve the built client
@@ -58,6 +73,13 @@ function runServer(db=secret.DATABASE_URL, port=3001) {
         server = app.listen(port, () => {
             resolve();
         }).on('error', reject);
+      })
+      .then(() => {
+        const ioServer = http.createServer();
+        const io = require('socket.io')(ioServer);
+        io.set('origins', 'http://localhost:8080');
+        ioServer.listen(4000);
+        socketEvents(io);
       });
     });
 }
@@ -73,10 +95,18 @@ function closeServer(db=secret.DATABASE_URL) {
         });
     });
 }
+//
+// const ioServer = http.createServer();
+// const io = require('socket.io')(ioServer);
+// io.set('origins', 'http://localhost:8080');
+// ioServer.listen(4000);
+// socketEvents(io);
 
 if (require.main === module) {
     runServer();
 }
+
+
 
 module.exports = {
     app, runServer, closeServer, secret

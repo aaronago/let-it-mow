@@ -31,12 +31,10 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 
   rp(options)
     .then(response => {
-      console.log(response);
       listingDetails.geometry = {coordinates: [response.lng, response.lat]};
       return Listing.create(listingDetails);
     })
     .then(listing => {
-      console.log(listing);
       res.status(200).json({listing});
     })
     .catch(err => {
@@ -55,7 +53,6 @@ router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}
     .find(query)
     .exec()
     .then(listings => {
-      console.log(listings);
       listings.length > 0 ? res.json(listings) : res.json({message: `You Haven't Created Any Listings Yet`});
     })
     .catch(err => {
@@ -70,6 +67,18 @@ router.get('/listings', (req, res) => {
     .exec()
     .then(listings => {
       res.json(listings);
+    })
+    .catch(err => {
+      res.status(500).json({error: 'something went wrong'});
+    });
+});
+
+router.get('/listings/:createdBy', (req, res) => {
+  Listing
+    .find({createdBy: req.params.createdBy})
+    .exec()
+    .then(listing => {
+      res.json(listing);
     })
     .catch(err => {
       res.status(500).json({error: 'something went wrong'});
@@ -123,10 +132,6 @@ router.put('/listing/:createBy/:id', passportGoogle.authenticate('bearer', {sess
       .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
-router.get('/populate', (req, res) => {
-  Listing.findOne({price: 12})
-    .then(listing => console.log(listing));
-});
 
 
 

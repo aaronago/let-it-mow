@@ -7,11 +7,13 @@
 /**********************************
   nav
 **********************************/
+.flex-nav {
+  margin-right: 35px;
+}
 .flex-nav ul {
   display: flex;
   list-style: none;
   align-items: baseline;
-  align-self: flex-start;
 }
 
 .flex-nav li {
@@ -19,14 +21,14 @@
   margin: 5px;
 }
 
-.flex-nav h1 {
-  flex-grow: 10;
+.one {
+  flex-grow: 1;
 }
 .disable-link {
   pointer-events: none;
 }
 /**********************************
-  gallary
+  gallery
 **********************************/
 .listings-gallery {
   display: flex;
@@ -41,6 +43,16 @@
 .hidden {
   display: none;
 }
+.range-slider {
+  max-width: 180px;
+  padding-left: 10px;
+
+}
+.price-filter {
+  border: 1px solid black;
+  max-width: 210px;
+}
+
 /**********************************
   listing form
 **********************************/

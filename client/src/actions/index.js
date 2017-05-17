@@ -53,6 +53,35 @@ export const fetchUserListingsFailure = (error) => ({
       error
     });
 
+
+export const FETCH_CONVERSATIONS_SUCCESS = 'FETCH_CONVERSATIONS_SUCCESS';
+export const fetchConversationSuccess = (conversations) => ({
+  type: FETCH_CONVERSATIONS_SUCCESS,
+  conversations
+});
+
+export const FETCH_CONVERSATIONS_FAILURE = 'FETCH_CONVERSATIONS_FAILURE';
+export const fetchConversationFalure = (err) => ({
+  type: FETCH_CONVERSATIONS_FAILURE,
+  err
+});
+
+
+
+export const FETCH_MORE_FROM_USER_LISTINGS_SUCCESS = 'FETCH_MORE_FROM_USER_LISTINGS_SUCCESS';
+export const fetchMoreFromUserListingsSuccess = (allUserListings) => ({
+    type: FETCH_MORE_FROM_USER_LISTINGS_SUCCESS,
+    allUserListings
+  });
+
+export const FETCH_MORE_FROM_USER_LISTINGS_FAILURE= 'FETCH_MORE_FROM_USER_LISTINGS_FAILURE';
+export const fetchMoreFromUserListingsFailure = (error) => ({
+      type: FETCH_MORE_FROM_USER_LISTINGS_FAILURE,
+      error
+    });
+
+
+
 //-----------User/Auth Async Actions-------------//
 
 export const fetchUser = () => dispatch => {
@@ -142,6 +171,23 @@ export const fetchUserListings = () => (dispatch) => {
   });
 };
 
+//----------- FetchAllListings From the same User Async Action-------------//
+
+export const fetchMoreFromUser = (createdBy) => (dispatch) => {
+  const accessToken = Cookies.get('accessToken');
+  return fetch(`/api/listings/${createdBy}`, {
+    headers: {
+      authorization: `bearer ${accessToken}`
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+    dispatch(fetchMoreFromUserListingsSuccess(json));
+  })
+  .catch(error => {
+    dispatch(fetchUserListingsFailure());
+  });
+};
 //-----------Delete Listing Async Action-------------//
 
 export const deleteListing = (userId, id) => dispatch => {
@@ -156,4 +202,23 @@ export const deleteListing = (userId, id) => dispatch => {
     })
     .then(() => dispatch(fetchUserListings()))
     .catch((err) =>dispatch(fetchUserListingsFailure(err)));
+};
+
+
+//-----------Fetch Conversations Async Action-------------//
+
+export const fetchConversations = () => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+  return fetch(`/api/chat`, {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+
+    dispatch(fetchConversationSuccess(json.conversations));
+  })
+  .catch(err => dispatch(fetchConversationFalure(err)));
 };

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/index';
 import { Link } from 'react-router-dom';
+import img from './let-it-mow-logo.png';
 
 export class Header extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export class Header extends Component {
       <div>
         <nav className="flex-nav">
           <ul>
-            <li className="one"><Link to='/'><h1>Let it mow</h1></Link></li>
+            <li className="one"><Link to='/'><img src={img} /></Link></li>
             <li className="two">{isLoggedIn}</li>
             <li className="three">
               <Link to={`/mylistings/`}>Rent your equipment</Link>

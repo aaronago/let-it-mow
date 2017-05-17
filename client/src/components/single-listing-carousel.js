@@ -11,7 +11,7 @@ class Carousel extends Component {
       slidesToShow: 1,
       speed: 500,
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 3000,
       cssEase: 'linear'
       }
   console.log(this.props.images)

@@ -9,6 +9,8 @@ class Carousel extends Component {
     const settings = {
       dots: true,
       slidesToShow: 1,
+      speed: 500,
+      cssEase: 'linear'
       }
   console.log(this.props.images)
   const image = this.props.images.map((item,i) => {

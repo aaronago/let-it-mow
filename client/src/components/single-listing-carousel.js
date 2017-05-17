@@ -10,6 +10,8 @@ class Carousel extends Component {
       dots: true,
       slidesToShow: 1,
       speed: 500,
+      autoplay: true,
+      autoplaySpeed: 2000,
       cssEase: 'linear'
       }
   console.log(this.props.images)
@@ -23,9 +25,9 @@ class Carousel extends Component {
   })
    return (
      <div className='carousel-container'>
-     <Slider {...settings}>
-     {image}
-     </Slider>
+      <Slider {...settings}>
+        {image}
+      </Slider>
      </div>
 
    )
@@ -33,7 +35,5 @@ class Carousel extends Component {
 }
 
 // `http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${listing.images[0]}.jpg`
-
-
 
 export default(Carousel);

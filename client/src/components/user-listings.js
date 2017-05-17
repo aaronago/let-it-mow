@@ -35,7 +35,9 @@ class UserListings extends Component {
            price={listItem.price} id={listItem._id} />
         </div>
       );
-    }) :  <div>'You dont have any listings yet'</div>;
+    }) :  <div>`You don't have any listings yet`</div>;
+
+
     return (
       <div className="user-listings">
         <div className={hidden}>

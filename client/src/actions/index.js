@@ -57,6 +57,7 @@ export const fetchUserListingsFailure = (error) => ({
       error
     });
 
+
 export const FETCH_CONVERSATIONS_SUCCESS = 'FETCH_CONVERSATIONS_SUCCESS';
 export const fetchConversationSuccess = (conversations) => ({
   type: FETCH_CONVERSATIONS_SUCCESS,
@@ -69,6 +70,19 @@ export const fetchConversationFalure = (err) => ({
   err
 });
 
+
+
+export const FETCH_MORE_FROM_USER_LISTINGS_SUCCESS = 'FETCH_MORE_FROM_USER_LISTINGS_SUCCESS';
+export const fetchMoreFromUserListingsSuccess = (allUserListings) => ({
+    type: FETCH_MORE_FROM_USER_LISTINGS_SUCCESS,
+    allUserListings
+  });
+
+export const FETCH_MORE_FROM_USER_LISTINGS_FAILURE= 'FETCH_MORE_FROM_USER_LISTINGS_FAILURE';
+export const fetchMoreFromUserListingsFailure = (error) => ({
+      type: FETCH_MORE_FROM_USER_LISTINGS_FAILURE,
+      error
+    });
 
 
 
@@ -161,6 +175,23 @@ export const fetchUserListings = () => (dispatch) => {
   });
 };
 
+//----------- FetchAllListings From the same User Async Action-------------//
+
+export const fetchMoreFromUser = (createdBy) => (dispatch) => {
+  const accessToken = Cookies.get('accessToken');
+  return fetch(`/api/listings/${createdBy}`, {
+    headers: {
+      authorization: `bearer ${accessToken}`
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+    dispatch(fetchMoreFromUserListingsSuccess(json));
+  })
+  .catch(error => {
+    dispatch(fetchUserListingsFailure());
+  });
+};
 //-----------Delete Listing Async Action-------------//
 
 export const deleteListing = (userId, id) => dispatch => {

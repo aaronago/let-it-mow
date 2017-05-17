@@ -12,7 +12,6 @@ mongoose.Promise = global.Promise;
 
 
 router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
-  console.log(req.user)
 
   const listingDetails = {
     createdBy: req.user.googleID,
@@ -54,7 +53,6 @@ router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}
     .find(query)
     .exec()
     .then(listings => {
-      console.log(listings);
       listings.length > 0 ? res.json(listings) : res.json({message: `You Haven't Created Any Listings Yet`});
     })
     .catch(err => {

@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 else {
     const app = express();
     // Proxy everything through to Create React App
+
     app.use(proxy('http://localhost:3000/', {
         logLevel: 'warn', // Keep the logs clean
         ws: true, // Proxy websockets too

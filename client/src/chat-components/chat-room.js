@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:3000');
+
 
 class ChatRoom extends Component {
   constructor(props) {
@@ -11,8 +11,13 @@ class ChatRoom extends Component {
 
   componentDidMount() {
     if(this.props.conversationId) {
-        socket.emit('enter conversation', this.props.match.params.conversationId);
+        this.socket.emit('enter conversation', this.props.match.params.conversationId);
+
     }
+  }
+
+  componentWillMount() {
+      this.socket = io('http://localhost:4000');
   }
 
   render() {
@@ -25,7 +30,7 @@ class ChatRoom extends Component {
   }
 
   componentWillUnmount() {
-    socket.emit('leave conversation', this.props.match.params.conversationId);
+    this.socket.emit('leave conversation', this.props.match.params.conversationId);
   }
 }
 

@@ -8,7 +8,6 @@ class Carousel extends Component {
   render() {
     const settings = {
       dots: true,
-      centerMode: true,
       slidesToShow: 1,
       }
   console.log(this.props.images)

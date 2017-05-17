@@ -70,7 +70,7 @@ class HomepageListings extends Component {
     }
 
     return (
-      <div>
+    <div>
       <input type="text" value={this.state.searchString}
       onChange={this.handleChange} placeholder="Search Equipment"/>
       <div className='price-filter'>
@@ -96,7 +96,7 @@ class HomepageListings extends Component {
        </div>)}
      )}
       </div>
-      </div>
+    </div>
    )
   }
 }

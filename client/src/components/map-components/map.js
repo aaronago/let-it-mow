@@ -16,6 +16,7 @@ class Map extends Component {
     this.setState({showInfo:!this.state.showInfo});
   }
 
+
   render() {
 
     const markers = this.props.markers.map((item, i) => {

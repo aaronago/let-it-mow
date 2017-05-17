@@ -73,6 +73,13 @@ function runServer(db=secret.DATABASE_URL, port=3001) {
         server = app.listen(port, () => {
             resolve();
         }).on('error', reject);
+      })
+      .then(() => {
+        const ioServer = http.createServer();
+        const io = require('socket.io')(ioServer);
+        io.set('origins', 'http://localhost:8080');
+        ioServer.listen(4000);
+        socketEvents(io);
       });
     });
 }
@@ -88,12 +95,12 @@ function closeServer(db=secret.DATABASE_URL) {
         });
     });
 }
-
-const ioServer = http.createServer();
-const io = require('socket.io')(ioServer);
-io.set('origins', 'http://localhost:8080');
-ioServer.listen(4000);
-socketEvents(io);
+//
+// const ioServer = http.createServer();
+// const io = require('socket.io')(ioServer);
+// io.set('origins', 'http://localhost:8080');
+// ioServer.listen(4000);
+// socketEvents(io);
 
 if (require.main === module) {
     runServer();

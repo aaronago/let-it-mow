@@ -24,10 +24,16 @@ class UserListings extends Component {
     this.setState({hidden: !this.state.hidden});
   }
 
+  redirect() {
+    location.replace('/');
+    }
+    
   render() {
 
-    const disableLink = Cookies.get('accessToken') ? '' : 'disable-link';
-    const show = Cookies.get('accessToken') ? 'hidden' : '';
+    if(!Cookies.get('accessToken')) {
+      this.redirect();
+      return null;
+    }
 
     const hidden = this.state.hidden ? 'hidden' : '';
     const listings = this.props.userListings;
@@ -46,9 +52,8 @@ class UserListings extends Component {
         <div className={hidden}>
           <AddItemForm onClick={this.onClick}/>
         </div>
-        <span className={show}>You are not currently logged in</span>
         <h2>Your Listings</h2>
-        <button className={disableLink} onClick={this.onClick}>Add A New Listing!</button>
+        <button onClick={this.onClick}>Add A New Listing!</button>
           <div className="listings-gallery">
             {listItem}
           </div>

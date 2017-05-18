@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class MoreFromUser extends Component {
+class MoreFromSeller extends Component {
   constructor(props){
     super(props);
 
   }
 
  componentDidMount() {
-    this.props.dispatch(actions.fetchMoreFromUser(this.props.userId));
+    this.props.dispatch(actions.fetchMoreFromSeller(this.props.userId));
   }
 
   render() {
-    console.log('Props', this.props.allFromSameUser);
-    let listItems = this.props.allFromSameUser;
+    console.log('Props', this.props.allFromSeller);
+    let listItems = this.props.allFromSeller;
 
-    listItems = this.props.allFromSameUser.map (listItem => {
+    listItems = this.props.allFromSeller.map (listItem => {
       console.log('listItem', listItem);
       return (
         <div key={listItem._id}>
@@ -38,8 +38,8 @@ class MoreFromUser extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  allFromSameUser: state.listings.allFromSameUser
+  allFromSeller: state.listings.allFromSeller
 });
 
 
-export default connect(mapStateToProps)(MoreFromUser);
+export default connect(mapStateToProps)(MoreFromSeller);

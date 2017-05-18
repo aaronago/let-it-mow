@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchListing, fetchMoreFromUser } from '../actions';
+import { fetchListing } from '../actions';
 import * as actions from '../actions';
-import MoreFromUser from './more-from-same-user';
+import MoreFromSeller from './more-from-seller';
 
 class SingleListingPage extends Component {
   constructor(props){
@@ -29,7 +29,7 @@ class SingleListingPage extends Component {
           <p>Only ${listing.price} to rent</p>
         </div>
         <div>
-          <MoreFromUser userId={listing.createdBy} />
+          <MoreFromSeller userId={listing.createdBy} />
         </div>
       </div>
     );

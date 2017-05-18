@@ -30,6 +30,8 @@ const socketEvents = require('./socketEvents');
 
 const app = express();
 
+app.use(bodyParser.json());
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin',  '*');
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
@@ -38,7 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.json());
+
 
 app.use(busboyBodyParser({ limit: '10mb'}));
 

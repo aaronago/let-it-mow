@@ -70,13 +70,14 @@ exports.newConversation = (req, res, next) => {
 
 exports.sendReply = (req, res, next) => {
   const reply = new Message({
-    conversationId: req.body.conversationId,
+    conversationId: req.params.conversationId,
     body: req.body.message,
     author: req.user._id
   });
 
   reply.save()
     .then(message => {
-      res.status(200).json({message: message});
-    });
+      res.status(200).json({ message: message });
+    })
+    .catch(err => res.send({ error: err }));
 };

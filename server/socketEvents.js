@@ -10,12 +10,12 @@ exports = module.exports = (io) => {
     });
 
     socket.on('new message', conversation => {
-      io.sockets.in(conversation).emit('refresh messages', conversation);
+      console.log("new message sent through socket")
+      socket.broadcast.to(conversation).emit('refresh messages', conversation);
     });
 
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
-
   });
 };

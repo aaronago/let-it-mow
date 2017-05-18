@@ -265,7 +265,6 @@ export const fetchConversation = (id) => dispatch => {
 };
 
 export const sendReply = (data) => dispatch => {
-  console.log(`reply data${data.body}`);
 
   const accessToken = Cookies.get('accessToken');
 
@@ -280,7 +279,6 @@ export const sendReply = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => {
-      console.log('message received')
     })
     .catch(error => {
       console.error(error);

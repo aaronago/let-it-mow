@@ -14,7 +14,6 @@ class ChatRoom extends Component {
   }
 
   componentWillMount() {
-      // const port2 = process.env.NODE_ENV === 'production' ? '': 4000;
       this.socket = io();
   }
 
@@ -43,7 +42,7 @@ class ChatRoom extends Component {
       margin: "50px"
     };
     this.socket.on('refresh messages', () => {
-    console.log("refresh sent through server")
+    console.log("refresh sent through server");
     this.props.fetchConversation(this.props.match.params.conversationId);
     });
     const messages = this.props.messages.map(message => {

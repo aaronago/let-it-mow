@@ -28,7 +28,7 @@ class SingleListingPage extends Component {
           <p>Only ${listing.price} to rent</p>
         </div>
         <div>
-          <MoreFromSeller userId={listing.createdBy} />
+          <MoreFromSeller userId={listing.createdBy} picId={this.props.match.params}/>
         </div>
       </div>
     );

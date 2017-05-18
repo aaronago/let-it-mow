@@ -19,20 +19,22 @@ class MoreFromSeller extends Component {
 }
 
   render() {
-    console.log('Props', this.props.allFromSeller);
     let listItems = this.props.allFromSeller;
 
     listItems = this.props.allFromSeller.map (listItem => {
-      console.log('listItem ID', listItem._id);
-      return (
-        <div key={listItem._id}>
-          <Link to={`/listings/${listItem._id}`} onClick={this.handleClick}>
-            <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${listItem.images[0]}.jpg`}/>
-            <p>{listItem.title}</p>
-            <p>Only ${listItem.price} to rent</p>
-          </Link>
-        </div>
-      );
+      if (listItem._id !==  this.props.picId.id) {
+        return (
+          <div key={listItem._id}>
+            <Link to={`/listings/${listItem._id}`} onClick={this.handleClick}>
+              <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${listItem.images[0]}.jpg`}/>
+              <p>{listItem.title}</p>
+              <p>Only ${listItem.price} to rent</p>
+            </Link>
+          </div>
+        );
+      } else {
+        return;
+      }
     });
 
     console.log('listItems', listItems);

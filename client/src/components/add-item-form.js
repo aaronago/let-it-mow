@@ -50,9 +50,15 @@ class AddItemForm extends Component {
   }
 
   onSubmit(values) {
+    const {createListing, onClick, reset} = this.props;
     values.images = this.state.public_ids;
-    this.props.createListing(values);
-    this.props.onClick();
+    return createListing(values).then(() => {
+      onClick();
+      reset();
+      this.setState({
+        public_ids: []
+      });
+    });
   }
 
   render() {

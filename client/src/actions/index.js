@@ -1,5 +1,8 @@
 import * as Cookies from 'js-cookie';
 import {browserHistory} from 'react-router';
+import io from 'socket.io-client';
+
+export const socket = io.connect('http://localhost:4000');
 
 //----------- Reducer Actions -------------//
 export const LOGOUT = 'LOGOUT';
@@ -260,31 +263,10 @@ export const fetchConversation = (id) => dispatch => {
   })
   .then(response => response.json())
   .then(json => {
-    console.log(json);
     dispatch(fetchConversationSuccess(json.messages));
   })
   .catch(err => dispatch(fetchConversationFailure(err)));
 };
-
-// export const sendReply = (data) => dispatch => {
-//   const accessToken = Cookies.get('accessToken');
-//
-//   return fetch(`/api/chat`, {
-//     headers: {
-//       'Authorization': `Bearer ${accessToken}`,
-//       'Content-Type': 'application/json'
-//     }
-//
-//   })
-//   .then(response => {
-//     response.json();
-//   })
-//   .then(json => {
-//     console.log(json);
-//   })
-//   .catch(err => console.log(err));
-//
-// };
 
 export const sendReply = (data) => dispatch => {
   console.log(`reply data${data.body}`);
@@ -302,9 +284,10 @@ export const sendReply = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => {
-      console.log(json);
+      socket.emit('new message', data.conversationId);
     })
     .catch(error => {
       console.error(error);
     });
+
 };

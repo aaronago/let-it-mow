@@ -69,7 +69,6 @@ exports.newConversation = (req, res, next) => {
 };
 
 exports.sendReply = (req, res, next) => {
-  console.log(req.body);
   const reply = new Message({
     conversationId: req.params.conversationId,
     body: req.body.message,

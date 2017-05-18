@@ -41,8 +41,11 @@ class ChatRoom extends Component {
     const divStyle = {
       margin: "50px"
     };
-    this.socket.on('refresh messages', data => {
+    this.socket.on('refresh messages', () => {
     this.props.fetchConversation(this.props.match.params.conversationId);
+    });
+    const messages = this.props.messages.map(message => {
+      return <li key={message._id}>{message.body}</li>;
     });
 
     return (
@@ -51,7 +54,9 @@ class ChatRoom extends Component {
             <input type="text" onChange={this.handleChange.bind(this)}/>
             <input type="submit" value="Send Message"/>
           </form>
-          <p>{this.state.message}</p>
+          <ul>
+            {messages}
+          </ul>
       </div>
     );
   }

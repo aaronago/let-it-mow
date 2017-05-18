@@ -14,7 +14,8 @@ class ChatRoom extends Component {
   }
 
   componentWillMount() {
-      this.socket = io('http://localhost:4000');
+      // const port2 = process.env.NODE_ENV === 'production' ? '': 4000;
+      this.socket = io();
   }
 
   componentDidMount() {

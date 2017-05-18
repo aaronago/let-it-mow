@@ -4,11 +4,17 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+  background-color: #fafbfa
+}
 /**********************************
   nav
 **********************************/
 .flex-nav {
   margin-right: 35px;
+  background-color: #cdd9d3;
+  width: 100%;
 }
 .flex-nav ul {
   display: flex;
@@ -18,7 +24,16 @@
 
 .flex-nav li {
   padding: 5px;
-  margin: 5px;
+  margin: auto 50px auto 0;
+}
+
+.flex-nav a {
+  color: #094426;
+  text-decoration: none;
+}
+
+.flex-nav a:hover {
+  color: #84a192;
 }
 
 .one {
@@ -53,6 +68,12 @@
   max-width: 210px;
 }
 
+/**********************************
+  map
+**********************************/
+.listings-map {
+  margin-left: 150px;
+}
 /**********************************
   listing form
 **********************************/

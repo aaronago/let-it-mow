@@ -14,7 +14,6 @@ class SingleListingPage extends Component {
     this.props.fetchListing(id);
   }
 
-
   render() {
     const { listing } = this.props;
     if(!listing) {

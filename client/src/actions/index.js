@@ -57,21 +57,6 @@ export const fetchUserListingsFailure = (error) => ({
       error
     });
 
-
-export const FETCH_CONVERSATIONS_SUCCESS = 'FETCH_CONVERSATIONS_SUCCESS';
-export const fetchConversationSuccess = (conversations) => ({
-  type: FETCH_CONVERSATIONS_SUCCESS,
-  conversations
-});
-
-export const FETCH_CONVERSATIONS_FAILURE = 'FETCH_CONVERSATIONS_FAILURE';
-export const fetchConversationFalure = (err) => ({
-  type: FETCH_CONVERSATIONS_FAILURE,
-  err
-});
-
-
-
 export const FETCH_MORE_FROM_USER_LISTINGS_SUCCESS = 'FETCH_MORE_FROM_USER_LISTINGS_SUCCESS';
 export const fetchMoreFromUserListingsSuccess = (allUserListings) => ({
     type: FETCH_MORE_FROM_USER_LISTINGS_SUCCESS,
@@ -83,6 +68,43 @@ export const fetchMoreFromUserListingsFailure = (error) => ({
       type: FETCH_MORE_FROM_USER_LISTINGS_FAILURE,
       error
     });
+//-----------Conversation Action Types-------------//
+
+export const FETCH_CONVERSATIONS_SUCCESS = 'FETCH_CONVERSATIONS_SUCCESS';
+export const fetchConversationsSuccess = (conversations) => ({
+  type: FETCH_CONVERSATIONS_SUCCESS,
+  conversations
+});
+
+export const FETCH_CONVERSATIONS_FAILURE = 'FETCH_CONVERSATIONS_FAILURE';
+export const fetchConversationsFailure = (err) => ({
+  type: FETCH_CONVERSATIONS_FAILURE,
+  err
+});
+
+export const FETCH_CONVERSATION_SUCCESS = 'FETCH_CONVERSATION_SUCCESS';
+export const fetchConversationSuccess = (messages) => ({
+  type: FETCH_CONVERSATION_SUCCESS,
+  messages
+});
+
+export const FETCH_CONVERSATION_FAILURE = 'FETCH_CONVERSATION_FAILURE';
+export const fetchConversationFailure = (err) => ({
+  type: FETCH_CONVERSATION_FAILURE,
+  err
+});
+
+// export const SEND_REPLY_SUCCESS = 'SEND_REPLY_SUCCESS';
+// export const fetchConversationSuccess = (data) => ({
+//   type: SEND_REPLY_SUCCESS,
+//   data
+// });
+//
+// export const SEND_REPLY_FAILURE = 'SEND_REPLY_FAILURE';
+// export const fetchConversationFailure = (err) => ({
+//   type: SEND_REPLY_FAILURE,
+//   err
+// });
 
 
 
@@ -209,7 +231,7 @@ export const deleteListing = (userId, id) => dispatch => {
 };
 
 
-//-----------Fetch Conversations Async Action-------------//
+//----------- Messaging Actions -------------//
 
 export const fetchConversations = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
@@ -222,7 +244,67 @@ export const fetchConversations = () => dispatch => {
   .then(response => response.json())
   .then(json => {
 
-    dispatch(fetchConversationSuccess(json.conversations));
+    dispatch(fetchConversationsSuccess(json.conversations));
   })
-  .catch(err => dispatch(fetchConversationFalure(err)));
+  .catch(err => dispatch(fetchConversationsFailure(err)));
+};
+
+export const fetchConversation = (id) => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+    console.log(json);
+    dispatch(fetchConversationSuccess(json.messages));
+  })
+  .catch(err => dispatch(fetchConversationFailure(err)));
+};
+
+// export const sendReply = (data) => dispatch => {
+//   const accessToken = Cookies.get('accessToken');
+//
+//   return fetch(`/api/chat`, {
+//     headers: {
+//       'Authorization': `Bearer ${accessToken}`,
+//       'Content-Type': 'application/json'
+//     }
+//
+//   })
+//   .then(response => {
+//     response.json();
+//   })
+//   .then(json => {
+//     console.log(json);
+//   })
+//   .catch(err => console.log(err));
+//
+// };
+
+export const sendReply = (data) => dispatch => {
+  console.log(`reply data${data.body}`);
+
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/${data.conversationId}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({message: data.body})
+    })
+    .then((response) => response.json())
+    .then(json => {
+      console.log(json);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 };

@@ -4,7 +4,6 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const busboyBodyParser = require('busboy-body-parser');
 const http = require('http');
 
 mongoose.Promise = global.Promise;
@@ -38,8 +37,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
-
-app.use(busboyBodyParser({ limit: '10mb'}));
 
 app.use(passport.initialize());
 

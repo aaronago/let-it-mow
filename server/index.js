@@ -66,7 +66,7 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(db=secret.DATABASE_URL, port=3001) {
+function runServer(DATABASE_URL, port=3001) {
     return new Promise((resolve, reject) => {
       mongoose.connect(db, err => {
         if(err) {
@@ -92,7 +92,7 @@ function runServer(db=secret.DATABASE_URL, port=3001) {
     });
 }
 
-function closeServer(db=secret.DATABASE_URL) {
+function closeServer(DATABASE_URL) {
     return new Promise((resolve, reject) => {
         mongoose.connect(db, err => {});
         server.close(err => {

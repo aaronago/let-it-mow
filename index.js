@@ -7,10 +7,10 @@ const app = express();
 const runServer = require('./server').runServer;
 
 if (process.env.NODE_ENV === 'production') {
-    let server;
+    // let server;
     runServer(process.env.PORT || 8080);
-    let io = socketIo(server);
-    socketEvents(io);
+    // let io = socketIo(server);
+    // socketEvents(io);
 }
 else {
     const app = express();

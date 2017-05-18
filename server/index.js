@@ -5,6 +5,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const http = require('http');
+const socketIo = require('socket.io');
+const socketEvents = require('./socketEvents');
 
 mongoose.Promise = global.Promise;
 
@@ -65,9 +67,15 @@ function runServer(port=3001) {
         }
         console.log('Successfully Connected to DB');
 
-        server = app.listen(port, () => {
-          resolve();
-        }).on('error', reject);
+        var httpServer = require('http').Server(app);
+        var io = require('socket.io')(httpServer);
+
+        server = httpServer.listen(port);
+          socketEvents(io);
+
+        // server = app.listen(port, () => {
+        //   resolve();
+        // }).on('error', reject);
       });
     });
 }

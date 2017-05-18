@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const busboyBodyParser = require('busboy-body-parser');
 const http = require('http');
+const socketIo = require('socket.io');
+
 mongoose.Promise = global.Promise;
 
 let secret = {
@@ -73,15 +75,19 @@ function runServer(db=secret.DATABASE_URL, port=3001) {
         console.log('Successfully Connected to DB');
 
         server = app.listen(port, () => {
-            resolve();
+          const io = socketIo(server);
+          io.set('origins', '*:*');
+          socketEvents(io);
+          resolve();
+
         }).on('error', reject);
       })
       .then(() => {
-        const ioServer = http.createServer();
-        const io = require('socket.io')(ioServer);
-        io.set('origins', 'http://localhost:8080');
-        ioServer.listen(4000);
-        socketEvents(io);
+        // const ioServer = http.createServer();
+        // const io = socketIo(server);
+        // io.set('origins', '*:*');
+        // ioServer.listen(port2);
+        // socketEvents(io);
       });
     });
 }

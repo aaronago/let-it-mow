@@ -21,12 +21,14 @@ class AddItemForm extends Component {
     this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
-  renderField({input, label, type, placeholder, meta: { touched, error } }) {
+  renderField({input, label, type, textarea, placeholder, meta: { touched, error } }) {
+    const textareaType = <textarea {...input} placeholder={placeholder} type={type} />;
+    const inputType = <input {...input} placeholder={placeholder} type={type} />;
     return (
       <div>
         <label>{label}</label>
         <div>
-          <input {...input} placeholder={placeholder} type={type} />
+          {textarea ? textareaType : inputType}
           {touched ? error : ''}
         </div>
       </div>
@@ -88,29 +90,18 @@ class AddItemForm extends Component {
             placeholder="20"
           />
 
-          <div>
-            <label>Description</label>
-            <div>
-              <Field
-                name="description"
-                component="textarea"
-                type="text"
-                placeholder="5 hp, 21 in mower"
-              />
-            </div>
-          </div>
-
           <Field
-            name="product_url"
-            type="url"
+            name="description"
+            type="text"
+            textarea={true}
             component={this.renderField}
-            label="Product URL"
-            placeholder="http://www.mower.com"
+            label="Description"
+            placeholder="5 hp, 21 in mower"
           />
 
           <Field
             name="zipcode"
-            type="text"
+            type="number"
             component={this.renderField}
             label="Your Zip"
             placeholder="Enter Your Zip"
@@ -137,13 +128,16 @@ class AddItemForm extends Component {
 function validate(values) {
   const errors = {};
   if (!values.title) {
-    errors.title = 'Please Enter an Item Name';
+    errors.title = 'Please enter an Item Name';
   }
   if (!values.price) {
-    errors.price = 'Please Enter a Price';
+    errors.price = 'Please enter a Price';
   }
-  if(!values.zipcode) {
-    errors.zipcode = 'Please Enter a Valid Zip';
+  if (!values.description) {
+    errors.description = 'Please enter a Description';
+  }
+  if(!values.zipcode || values.zipcode.length < 5) {
+    errors.zipcode = 'Please enter a valid 5 digit Zip';
   }
   return errors;
 }

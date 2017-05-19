@@ -80,6 +80,10 @@ router.get('/listings', (req, res) => {
 router.get('/listings/:createdBy', (req, res) => {
   Listing
     .find({createdBy: req.params.createdBy})
+    .populate({
+      path: 'createdBy',
+      select: 'name profilePic'
+    })
     .exec()
     .then(listing => {
       res.json(listing);
@@ -92,6 +96,10 @@ router.get('/listings/:createdBy', (req, res) => {
 router.get('/listing/:id', (req, res) => {
   Listing
     .find({_id: req.params.id})
+    .populate({
+      path: 'createdBy',
+      select: 'name profilePic'
+    })
     .exec()
     .then(listing => {
       res.json(listing);

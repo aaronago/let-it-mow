@@ -19,7 +19,6 @@ class MoreFromSeller extends Component {
   }
 
   render() {
-    console.log(this.props);
     let listItems = this.props.allFromSeller;
 
     listItems = this.props.allFromSeller.map (listItem => {
@@ -38,7 +37,6 @@ class MoreFromSeller extends Component {
       }
     });
 
-    console.log('listItems', listItems);
     return (
       <div className="all-listings-from-user">
         <h2>All listings from this seller</h2>

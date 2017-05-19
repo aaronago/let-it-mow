@@ -56,15 +56,15 @@ export const fetchUserListingsFailure = (error) => ({
       error
     });
 
-export const FETCH_MORE_FROM_USER_LISTINGS_SUCCESS = 'FETCH_MORE_FROM_USER_LISTINGS_SUCCESS';
-export const fetchMoreFromUserListingsSuccess = (allUserListings) => ({
-    type: FETCH_MORE_FROM_USER_LISTINGS_SUCCESS,
+export const FETCH_MORE_FROM_SELLER_SUCCESS = 'FETCH_MORE_FROM_SELLER_SUCCESS';
+export const fetchMoreFromSellerSuccess = (allUserListings) => ({
+    type: FETCH_MORE_FROM_SELLER_SUCCESS,
     allUserListings
   });
 
-export const FETCH_MORE_FROM_USER_LISTINGS_FAILURE= 'FETCH_MORE_FROM_USER_LISTINGS_FAILURE';
-export const fetchMoreFromUserListingsFailure = (error) => ({
-      type: FETCH_MORE_FROM_USER_LISTINGS_FAILURE,
+export const FETCH_MORE_FROM_SELLER_FAILURE= 'FETCH_MORE_FROM_SELLER_FAILURE';
+export const fetchMoreFromSellerFailure = (error) => ({
+      type: FETCH_MORE_FROM_SELLER_FAILURE,
       error
     });
 //-----------Conversation Action Types-------------//
@@ -198,7 +198,7 @@ export const fetchUserListings = () => (dispatch) => {
 
 //----------- FetchAllListings From the same User Async Action-------------//
 
-export const fetchMoreFromUser = (createdBy) => (dispatch) => {
+export const fetchMoreFromSeller = (createdBy) => (dispatch) => {
   const accessToken = Cookies.get('accessToken');
   return fetch(`/api/listings/${createdBy}`, {
     headers: {
@@ -207,7 +207,7 @@ export const fetchMoreFromUser = (createdBy) => (dispatch) => {
   })
   .then(response => response.json())
   .then(json => {
-    dispatch(fetchMoreFromUserListingsSuccess(json));
+    dispatch(fetchMoreFromSellerSuccess(json));
   })
   .catch(error => {
     dispatch(fetchUserListingsFailure());

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchListing, fetchMoreFromUser } from '../actions';
+import { fetchListing } from '../actions';
 import * as actions from '../actions';
-import MoreFromUser from './more-from-same-user';
 import Carousel from './single-listing-carousel';
+import MoreFromSeller from './more-from-seller';
+
+
 
 class SingleListingPage extends Component {
   constructor(props){
@@ -14,7 +16,6 @@ class SingleListingPage extends Component {
     const { id } = this.props.match.params;
     this.props.fetchListing(id);
   }
-
 
   render() {
     const { listing } = this.props;
@@ -31,7 +32,7 @@ class SingleListingPage extends Component {
           <p>Only ${listing.price} to rent</p>
         </div>
         <div>
-          <MoreFromUser userId={listing.createdBy} />
+          <MoreFromSeller userId={listing.createdBy} picId={this.props.match.params}/>
         </div>
       </div>
     );

@@ -8,7 +8,7 @@ const initialState = {
   singleListing: [],
   userListings: [],
   createdBy: '',
-  allFromSameUser: []
+  allFromSeller: []
 };
 
 export default (state=initialState, action) => {
@@ -32,9 +32,9 @@ export default (state=initialState, action) => {
         return { ...state,
                  userListings: action.userListings
                };
-      case actions.FETCH_MORE_FROM_USER_LISTINGS_SUCCESS:
+      case actions.FETCH_MORE_FROM_SELLER_SUCCESS:
         return { ...state,
-                 allFromSameUser: action.allUserListings
+                 allFromSeller: action.allUserListings
                };
   }
   return state;

@@ -1,36 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {logout} from '../../actions/index';
 import { Link } from 'react-router-dom';
 import * as Cookies from 'js-cookie';
 import img from './let-it-mow-logo.png';
 export class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hidden: true
-    };
-    this.authCheck = this.authCheck.bind(this);
-  }
-
-  authCheck(e) {
-    if(!Cookies.get('accessToken')) {
-      this.setState({hidden: false});
-    }
-  }
 
   render() {
-    const hidden = this.state.hidden ? 'hidden' : '';
-    let disableLink;
+
     let isLoggedIn;
+    let rentLink;
+    let loginMsg;
 
     if(!Cookies.get('accessToken')) {
-      disableLink = 'disable-link';
+      rentLink = 'hidden';
+      loginMsg = '';
       isLoggedIn = (
         <a href={'/api/auth/google'}>Login with Google</a>
       );
     } else {
-      disableLink = '';
+      rentLink = '';
+      loginMsg = 'hidden';
       isLoggedIn = (
         <a href={'/api/auth/logout'}>Log Out</a>
       );
@@ -43,12 +32,12 @@ export class Header extends Component {
             <li className="one right"><Link to='/'><img src={img} /></Link></li>
             <li className="two right">{isLoggedIn}</li>
             <li className="three">
-              <div className={disableLink} >
+              <div className={rentLink} >
                 <Link to={`/mylistings/`}>Rent your equipment</Link>
               </div>
             </li>
           </ul>
-          <span className={hidden}>You must login to manage your rentals</span>
+          <span className={loginMsg}>Please login to list and manage your rentals</span>
         </nav>
       </div>
     );

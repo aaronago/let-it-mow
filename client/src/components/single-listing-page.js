@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchListing } from '../actions';
 import * as actions from '../actions';
 import MoreFromSeller from './more-from-seller';
+import Carousel from'./single-listing-carousel';
 
 class SingleListingPage extends Component {
   constructor(props){
@@ -20,10 +21,11 @@ class SingleListingPage extends Component {
       return <div>...Loading</div>;
     }
 
+
     return (
       <div>
         <div>
-          <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${listing.images[0]}.jpg`}/>
+          <Carousel images={listing.images}/>
           <p>{listing.title}</p>
           <p>Only ${listing.price} to rent</p>
         </div>

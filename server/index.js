@@ -4,8 +4,10 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const busboyBodyParser = require('busboy-body-parser');
 const http = require('http');
+const socketIo = require('socket.io');
+const socketEvents = require('./socketEvents');
+
 mongoose.Promise = global.Promise;
 
 let secret = {
@@ -26,8 +28,6 @@ const listRoutes = require('./routes/listing-routes');
 
 const chatRoutes = require('./routes/chat-routes');
 
-const socketEvents = require('./socketEvents');
-
 const app = express();
 
 app.use(bodyParser.json());
@@ -40,13 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-app.use(busboyBodyParser({ limit: '10mb'}));
-
 app.use(passport.initialize());
-
-
 
 app.use('/api/auth', routes);
 
@@ -64,31 +58,31 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(db=secret.DATABASE_URL, port=3001) {
+
+function runServer(port=3001) {
     return new Promise((resolve, reject) => {
-      mongoose.connect(db, err => {
+      mongoose.connect(secret.DATABASE_URL || process.env.DATABASE_URL, err => {
         if(err) {
           return reject(err);
         }
         console.log('Successfully Connected to DB');
 
-        server = app.listen(port, () => {
-            resolve();
-        }).on('error', reject);
-      })
-      .then(() => {
-        const ioServer = http.createServer();
-        const io = require('socket.io')(ioServer);
-        io.set('origins', 'http://localhost:8080');
-        ioServer.listen(4000);
-        socketEvents(io);
+        var httpServer = require('http').Server(app);
+        var io = require('socket.io')(httpServer);
+
+        server = httpServer.listen(port);
+          socketEvents(io);
+
+        // server = app.listen(port, () => {
+        //   resolve();
+        // }).on('error', reject);
       });
     });
 }
 
-function closeServer(db=secret.DATABASE_URL) {
+function closeServer() {
     return new Promise((resolve, reject) => {
-        mongoose.connect(db, err => {});
+        mongoose.connect(secret.DATABASE_URL || process.env.DATABASE_URL, err => {});
         server.close(err => {
             if (err) {
                 return reject(err);
@@ -97,12 +91,6 @@ function closeServer(db=secret.DATABASE_URL) {
         });
     });
 }
-//
-// const ioServer = http.createServer();
-// const io = require('socket.io')(ioServer);
-// io.set('origins', 'http://localhost:8080');
-// ioServer.listen(4000);
-// socketEvents(io);
 
 if (require.main === module) {
     runServer();

@@ -2,7 +2,7 @@ import * as Cookies from 'js-cookie';
 import {browserHistory} from 'react-router';
 import io from 'socket.io-client';
 
-export const socket = io.connect('http://localhost:4000');
+export const socket = io.connect();
 
 //----------- Reducer Actions -------------//
 
@@ -265,7 +265,6 @@ export const fetchConversation = (id) => dispatch => {
 };
 
 export const sendReply = (data) => dispatch => {
-  console.log(`reply data${data.body}`);
 
   const accessToken = Cookies.get('accessToken');
 
@@ -280,7 +279,6 @@ export const sendReply = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => {
-      socket.emit('new message', data.conversationId);
     })
     .catch(error => {
       console.error(error);

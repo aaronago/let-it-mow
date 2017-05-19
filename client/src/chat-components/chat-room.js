@@ -14,7 +14,7 @@ class ChatRoom extends Component {
   }
 
   componentWillMount() {
-      this.socket = io('http://localhost:4000');
+      this.socket = io();
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class ChatRoom extends Component {
       margin: "50px"
     };
     this.socket.on('refresh messages', () => {
-    console.log("refresh sent through server")
+    console.log("refresh sent through server");
     this.props.fetchConversation(this.props.match.params.conversationId);
     });
     const messages = this.props.messages.map(message => {

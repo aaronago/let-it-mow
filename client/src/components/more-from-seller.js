@@ -16,9 +16,10 @@ class MoreFromSeller extends Component {
   handleClick() {
     const { id } = this.props.match.params;
     this.props.fetchListing(id);
-}
+  }
 
   render() {
+    console.log(this.props);
     let listItems = this.props.allFromSeller;
 
     listItems = this.props.allFromSeller.map (listItem => {

@@ -72,10 +72,6 @@ function runServer(port=3001) {
 
         server = httpServer.listen(port);
           socketEvents(io);
-
-        // server = app.listen(port, () => {
-        //   resolve();
-        // }).on('error', reject);
       });
     });
 }

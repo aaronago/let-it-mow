@@ -59,9 +59,9 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 
 let server;
 
-function runServer(port=3001) {
+function runServer(db=secret.DATABASE_URL, port=3001) {
     return new Promise((resolve, reject) => {
-      mongoose.connect(secret.DATABASE_URL || process.env.DATABASE_URL, err => {
+      mongoose.connect(db || process.env.DATABASE_URL, err => {
         if(err) {
           return reject(err);
         }
@@ -73,16 +73,16 @@ function runServer(port=3001) {
         server = httpServer.listen(port);
           socketEvents(io);
 
-        // server = app.listen(port, () => {
-        //   resolve();
-        // }).on('error', reject);
+        resolve();  
+
       });
-    });
+    })
+    .catch((err) => console.log(err));
 }
 
-function closeServer() {
+function closeServer(db=secret.DATABASE_URL) {
     return new Promise((resolve, reject) => {
-        mongoose.connect(secret.DATABASE_URL || process.env.DATABASE_URL, err => {});
+        mongoose.connect(db || process.env.DATABASE_URL, err => {});
         server.close(err => {
             if (err) {
                 return reject(err);

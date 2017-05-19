@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchListing, fetchMoreFromUser } from '../actions';
 import * as actions from '../actions';
 import MoreFromUser from './more-from-same-user';
-import Carousel from'./single-listing-carousel';
+import Carousel from './single-listing-carousel';
 
 class SingleListingPage extends Component {
   constructor(props){

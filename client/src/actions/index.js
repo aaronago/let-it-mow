@@ -272,3 +272,26 @@ export const sendReply = (data) => dispatch => {
     });
 
 };
+
+export const startConversation = (data) => dispatch => {
+
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/new`,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then(json => {
+      console.log(json);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+};

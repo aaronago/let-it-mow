@@ -32,4 +32,4 @@ class UserItem extends Component {
 }
 
 
-export default connect(null,{deleteListing})(UserItem)
+export default connect(null,{deleteListing})(UserItem);

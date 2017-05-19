@@ -1,11 +1,10 @@
 import * as Cookies from 'js-cookie';
 import {browserHistory} from 'react-router';
+import io from 'socket.io-client';
+
+export const socket = io.connect();
 
 //----------- Reducer Actions -------------//
-export const LOGOUT = 'LOGOUT';
-export const logout = () => ({
-  type: LOGOUT
-});
 
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const fetchUserSuccess = (user) => ({
@@ -56,6 +55,57 @@ export const fetchUserListingsFailure = (error) => ({
       type: FETCH_USER_LISTINGS_FAILURE,
       error
     });
+
+export const FETCH_MORE_FROM_SELLER_SUCCESS = 'FETCH_MORE_FROM_SELLER_SUCCESS';
+export const fetchMoreFromSellerSuccess = (allUserListings) => ({
+    type: FETCH_MORE_FROM_SELLER_SUCCESS,
+    allUserListings
+  });
+
+export const FETCH_MORE_FROM_SELLER_FAILURE= 'FETCH_MORE_FROM_SELLER_FAILURE';
+export const fetchMoreFromSellerFailure = (error) => ({
+      type: FETCH_MORE_FROM_SELLER_FAILURE,
+      error
+    });
+//-----------Conversation Action Types-------------//
+
+export const FETCH_CONVERSATIONS_SUCCESS = 'FETCH_CONVERSATIONS_SUCCESS';
+export const fetchConversationsSuccess = (conversations) => ({
+  type: FETCH_CONVERSATIONS_SUCCESS,
+  conversations
+});
+
+export const FETCH_CONVERSATIONS_FAILURE = 'FETCH_CONVERSATIONS_FAILURE';
+export const fetchConversationsFailure = (err) => ({
+  type: FETCH_CONVERSATIONS_FAILURE,
+  err
+});
+
+export const FETCH_CONVERSATION_SUCCESS = 'FETCH_CONVERSATION_SUCCESS';
+export const fetchConversationSuccess = (messages) => ({
+  type: FETCH_CONVERSATION_SUCCESS,
+  messages
+});
+
+export const FETCH_CONVERSATION_FAILURE = 'FETCH_CONVERSATION_FAILURE';
+export const fetchConversationFailure = (err) => ({
+  type: FETCH_CONVERSATION_FAILURE,
+  err
+});
+
+// export const SEND_REPLY_SUCCESS = 'SEND_REPLY_SUCCESS';
+// export const fetchConversationSuccess = (data) => ({
+//   type: SEND_REPLY_SUCCESS,
+//   data
+// });
+//
+// export const SEND_REPLY_FAILURE = 'SEND_REPLY_FAILURE';
+// export const fetchConversationFailure = (err) => ({
+//   type: SEND_REPLY_FAILURE,
+//   err
+// });
+
+
 
 //-----------User/Auth Async Actions-------------//
 
@@ -146,6 +196,23 @@ export const fetchUserListings = () => (dispatch) => {
   });
 };
 
+//----------- FetchAllListings From the same User Async Action-------------//
+
+export const fetchMoreFromSeller = (createdBy) => (dispatch) => {
+  const accessToken = Cookies.get('accessToken');
+  return fetch(`/api/listings/${createdBy}`, {
+    headers: {
+      authorization: `bearer ${accessToken}`
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+    dispatch(fetchMoreFromSellerSuccess(json));
+  })
+  .catch(error => {
+    dispatch(fetchUserListingsFailure());
+  });
+};
 //-----------Delete Listing Async Action-------------//
 
 export const deleteListing = (userId, id) => dispatch => {
@@ -160,4 +227,61 @@ export const deleteListing = (userId, id) => dispatch => {
     })
     .then(() => dispatch(fetchUserListings()))
     .catch((err) =>dispatch(fetchUserListingsFailure(err)));
+};
+
+
+//----------- Messaging Actions -------------//
+
+export const fetchConversations = () => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+  return fetch(`/api/chat`, {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+
+    dispatch(fetchConversationsSuccess(json.conversations));
+  })
+  .catch(err => dispatch(fetchConversationsFailure(err)));
+};
+
+export const fetchConversation = (id) => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(json => {
+    dispatch(fetchConversationSuccess(json.messages));
+  })
+  .catch(err => dispatch(fetchConversationFailure(err)));
+};
+
+export const sendReply = (data) => dispatch => {
+
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/${data.conversationId}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({message: data.body})
+    })
+    .then((response) => response.json())
+    .then(json => {
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
 };

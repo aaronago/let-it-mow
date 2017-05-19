@@ -1,8 +1,51 @@
+/**********************************
+  main
+**********************************/
 * {
   box-sizing: border-box;
 }
 
+body {
+  background-color: #fafbfa;
+  margin: 0;
+}
+/**********************************
+  nav
+**********************************/
+.flex-nav {
+  margin-right: 35px;
+  background-color: #cdd9d3;
+  width: 100%;
+}
+.flex-nav ul {
+  display: flex;
+  list-style: none;
+  align-items: baseline;
+}
 
+.flex-nav li {
+  padding: 5px;
+  margin: auto 50px auto 0;
+}
+
+.flex-nav a {
+  color: #094426;
+  text-decoration: none;
+}
+
+.flex-nav a:hover {
+  color: #84a192;
+}
+
+.one {
+  flex-grow: 1;
+}
+.disable-link {
+  pointer-events: none;
+}
+/**********************************
+  gallery
+**********************************/
 .listings-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +59,25 @@
 .hidden {
   display: none;
 }
+.range-slider {
+  max-width: 180px;
+  padding-left: 10px;
 
+}
+.price-filter {
+  border: 1px solid black;
+  max-width: 210px;
+}
+
+/**********************************
+  map
+**********************************/
+.listings-map {
+  margin-left: 150px;
+}
+/**********************************
+  listing form
+**********************************/
 .form {
   display: flex;
   flex-wrap: wrap;
@@ -27,5 +88,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
+}
+/*********************************
+   carousel
+*********************************/
+.carousel-container {
+  margin: 0 auto;
+  padding: 40px;
+  width: 300px;
+  color: #333;
+  background: lightgrey;
 }

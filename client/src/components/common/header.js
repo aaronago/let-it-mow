@@ -1,64 +1,43 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {logout} from '../../actions/index';
 import { Link } from 'react-router-dom';
-
+import * as Cookies from 'js-cookie';
+import img from './let-it-mow-logo.png';
 export class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.logOut = this.logOut.bind(this);
-  }
-
-  logOut(e) {
-    this.props.dispatch(logout());
-  }
 
   render() {
 
     let isLoggedIn;
+    let rentLink;
+    let loginMsg;
 
-    if(!this.props.name) {
+    if(!Cookies.get('accessToken')) {
+      rentLink = 'hidden';
+      loginMsg = '';
       isLoggedIn = (
         <a href={'/api/auth/google'}>Login with Google</a>
       );
     } else {
+      rentLink = '';
+      loginMsg = 'hidden';
       isLoggedIn = (
-        <a onClick={this.logOut} href='#'>Log Out</a>
+        <a href={'/api/auth/logout'}>Log Out</a>
       );
     }
 
     return (
       <div>
-        <nav>
-          <div>
-            <tr>
-              <td>
-              <Link to='/'><h1>Let it mow</h1></Link>
-              </td>
-              <td>
-                <form>
-                  <div>
-                    <input type="text" name="renting" placeholder="What are you renting?" />
-                    <span className="search-icon"></span>
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Enter a zip code" />
-                    <span className="location-icon"></span>
-                  </div>
-                </form>
-              </td>
-              <td>
-              <div>
-                {isLoggedIn}
+        <nav className="flex-nav">
+          <ul>
+            <li className="one right"><Link to='/'><img src={img} /></Link></li>
+            <li className="two right">{isLoggedIn}</li>
+            <li className="three">
+              <div className={rentLink} >
+                <Link to={`/mylistings/`}>Rent your equipment</Link>
               </div>
-              <Link to={`/mylistings/`}>
-              <div>
-                <h3>Rent your equipment</h3>
-              </div>
-              </Link>
-              </td>
-            </tr>
-          </div>
+            </li>
+          </ul>
+          <span className={loginMsg}>Please login to list and manage your rentals</span>
         </nav>
       </div>
     );

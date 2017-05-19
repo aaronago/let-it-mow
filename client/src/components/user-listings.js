@@ -4,6 +4,8 @@ import * as actions from '../actions';
 import UserItem from './user-item';
 import Header from './common/header';
 import AddItemForm from './add-item-form';
+import * as Cookies from 'js-cookie';
+
 
 
 class UserListings extends Component {
@@ -23,11 +25,19 @@ class UserListings extends Component {
     this.setState({hidden: !this.state.hidden});
   }
 
-
+  redirect() {
+    location.replace('/');
+    }
+    
   render() {
+
+    if(!Cookies.get('accessToken')) {
+      this.redirect();
+      return null;
+    }
+
     const hidden = this.state.hidden ? 'hidden' : '';
     const listings = this.props.userListings;
-
     const listItem = listings.length > 0 ? listings.map (listItem => {
       return (
         <div key={listItem._id}>
@@ -35,7 +45,9 @@ class UserListings extends Component {
            price={listItem.price} id={listItem._id} />
         </div>
       );
-    }) :  <div>You don't have any listings yet</div>;
+    }) :  <div>`You don't have any listings yet`</div>;
+
+
     return (
       <div className="user-listings">
         <div className={hidden}>

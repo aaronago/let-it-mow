@@ -6,7 +6,9 @@ const initialState = {
   error: '',
   listings: [],
   singleListing: [],
-  userListings: []
+  userListings: [],
+  createdBy: '',
+  allFromSeller: []
 };
 
 export default (state=initialState, action) => {
@@ -17,22 +19,23 @@ export default (state=initialState, action) => {
                  userId: action.userId,
                  error: null,
                };
-      case actions.LOGOUT:
-        return { ...state,
-                 name: ''
-               };
       case actions.FETCH_LISTINGS_SUCCESS:
         return { ...state,
                  listings: action.listings
                };
       case actions.FETCH_LISTING_SUCCESS:
         return { ...state,
-          [action.listing._id]: action.listing};
-
+                [action.listing._id]: action.listing,
+                createdBy: action.createdBy
+               };
       case actions.FETCH_USER_LISTINGS_SUCCESS:
-        return {...state,
-          userListings: action.userListings
-        };
+        return { ...state,
+                 userListings: action.userListings
+               };
+      case actions.FETCH_MORE_FROM_SELLER_SUCCESS:
+        return { ...state,
+                 allFromSeller: action.allUserListings
+               };
   }
   return state;
 };

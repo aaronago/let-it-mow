@@ -50,9 +50,15 @@ class AddItemForm extends Component {
   }
 
   onSubmit(values) {
+    const {createListing, onClick, reset} = this.props;
     values.images = this.state.public_ids;
-    this.props.createListing(values);
-    this.props.onClick();
+    return createListing(values).then(() => {
+      onClick();
+      reset();
+      this.setState({
+        public_ids: []
+      });
+    });
   }
 
   render() {
@@ -67,7 +73,7 @@ class AddItemForm extends Component {
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
           <Field
-            name="itemName"
+            name="title"
             type="text"
             component={this.renderField}
             label="Item for Rent"
@@ -75,20 +81,24 @@ class AddItemForm extends Component {
           />
 
           <Field
-            name="pricePerDay"
+            name="price"
             type="number"
             component={this.renderField}
             label="Price per Day"
             placeholder="20"
           />
 
-          <Field
-            name="description"
-            type="text"
-            component={this.renderField}
-            label="Item Description"
-            placeholder="5 hp, 21 in mower"
-          />
+          <div>
+            <label>Description</label>
+            <div>
+              <Field
+                name="description"
+                component="textarea"
+                type="text"
+                placeholder="5 hp, 21 in mower"
+              />
+            </div>
+          </div>
 
           <Field
             name="product_url"
@@ -97,6 +107,7 @@ class AddItemForm extends Component {
             label="Product URL"
             placeholder="http://www.mower.com"
           />
+
           <Field
             name="zipcode"
             type="text"
@@ -125,14 +136,14 @@ class AddItemForm extends Component {
 
 function validate(values) {
   const errors = {};
-  if (!values.itemName) {
-    errors.itemName = 'Required';
+  if (!values.title) {
+    errors.title = 'Please Enter an Item Name';
   }
-  if (!values.pricePerDay) {
-    errors.pricePerDay = 'Required';
+  if (!values.price) {
+    errors.price = 'Please Enter a Price';
   }
   if(!values.zipcode) {
-    errors.zipcode = "Please Enter a Valid Zip";
+    errors.zipcode = 'Please Enter a Valid Zip';
   }
   return errors;
 }

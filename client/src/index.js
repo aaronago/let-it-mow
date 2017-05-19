@@ -14,15 +14,10 @@ import SingleListingPage from './components/single-listing-page';
 import Map from './components/map-components/map';
 import UserListings from './components/user-listings';
 import Header from './components/common/header';
+import ChatContainer from './chat-components/chat-container';
+import ChatRoom from './chat-components/chat-room';
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
-
-function checkAuth() {
-  const accessToken = Cookies.get('accessToken');
-  if (!accessToken){
-    browserHistory.replace('/login');
-  }
-}
 
 ReactDOM.render(
   <Provider store={store}>
@@ -30,6 +25,8 @@ ReactDOM.render(
       <div>
         <Header />
         <Switch>
+          <Route path="/chat/:conversationId" component={ChatRoom} />
+          <Route path="/chat" component={ChatContainer} />
           <Route path="/listings/:id" component={SingleListingPage} />
           <Route path="/mylistings/" component={UserListings} />
           <Route path="/" component={App} />

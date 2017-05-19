@@ -4,7 +4,10 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const busboyBodyParser = require('busboy-body-parser');
+const http = require('http');
+const socketIo = require('socket.io');
+const socketEvents = require('./socketEvents');
+
 mongoose.Promise = global.Promise;
 
 let secret = {
@@ -23,17 +26,25 @@ const routes = require('./routes/user-routes');
 
 const listRoutes = require('./routes/listing-routes');
 
-const User = require('./models/user');
+const chatRoutes = require('./routes/chat-routes');
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.use(busboyBodyParser({ limit: '10mb'}));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin',  '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 app.use(passport.initialize());
 
 app.use('/api/auth', routes);
+
+app.use('/api/chat', chatRoutes);
 
 app.use('/api', listRoutes);
 // Serve the built client
@@ -47,24 +58,31 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(db=secret.DATABASE_URL, port=3001) {
+
+function runServer(port=3001) {
     return new Promise((resolve, reject) => {
-      mongoose.connect(db, err => {
+      mongoose.connect(secret.DATABASE_URL || process.env.DATABASE_URL, err => {
         if(err) {
           return reject(err);
         }
         console.log('Successfully Connected to DB');
 
-        server = app.listen(port, () => {
-            resolve();
-        }).on('error', reject);
+        var httpServer = require('http').Server(app);
+        var io = require('socket.io')(httpServer);
+
+        server = httpServer.listen(port);
+          socketEvents(io);
+
+        // server = app.listen(port, () => {
+        //   resolve();
+        // }).on('error', reject);
       });
     });
 }
 
-function closeServer(db=secret.DATABASE_URL) {
+function closeServer() {
     return new Promise((resolve, reject) => {
-        mongoose.connect(db, err => {});
+        mongoose.connect(secret.DATABASE_URL || process.env.DATABASE_URL, err => {});
         server.close(err => {
             if (err) {
                 return reject(err);
@@ -77,6 +95,8 @@ function closeServer(db=secret.DATABASE_URL) {
 if (require.main === module) {
     runServer();
 }
+
+
 
 module.exports = {
     app, runServer, closeServer, secret

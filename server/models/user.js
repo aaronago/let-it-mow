@@ -8,7 +8,6 @@ const UserSchema = mongoose.Schema({
   listings: [],
   ratings: [{type: Schema.Types.ObjectId, ref: 'Rating'}],
   zipcode: {type: Number, required: false}
-
 });
 
 const User = mongoose.model('User', UserSchema);

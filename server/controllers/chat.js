@@ -11,7 +11,7 @@ exports.getConversations = (req, res, next) => {
     .find({ participants: req.user._id })
     .populate({
       path: 'listing',
-      select: 'title'
+      select: 'title images price'
     })
     .exec()
     .then(conversations => {
@@ -21,7 +21,7 @@ exports.getConversations = (req, res, next) => {
           .limit(1)
           .populate({
             path: 'author',
-            select: 'name'
+            select: 'name profilePic'
           })
           .exec()
           .then( messages => ({listing: conversation.listing, message: messages}));
@@ -29,6 +29,7 @@ exports.getConversations = (req, res, next) => {
       return Promise.all(fullConversations);
     })
     .then(allConversations => {
+      console.log(allConversations[0]);
       return res.status(200).json({ conversations: allConversations });
     })
     .catch(err => res.send(err));
@@ -40,7 +41,7 @@ exports.getConversation = (req, res, next) => {
     .sort('-createdAt')
     .populate({
       path: 'author',
-      select: 'name'
+      select: 'name profilePic'
     })
     .exec()
     .then(messages => {

@@ -29,7 +29,6 @@ exports.getConversations = (req, res, next) => {
       return Promise.all(fullConversations);
     })
     .then(allConversations => {
-      console.log(allConversations[0]);
       return res.status(200).json({ conversations: allConversations });
     })
     .catch(err => res.send(err));
@@ -59,7 +58,6 @@ exports.newConversation = (req, res, next) => {
 
   conversation.save()
     .then(newConvo => {
-      console.log("convo started: ", newConvo._id);
       const message = new Message({
         conversationId: newConvo._id,
         author: req.user._id,
@@ -68,7 +66,6 @@ exports.newConversation = (req, res, next) => {
       return message.save();
     })
     .then(newMessage => {
-      console.log("convo id of first message", newMessage.conversationId._id);
       res.status(200).json({ message: 'Conversation started!', conversationId: conversation._id, newMessage: newMessage });
     })
     .catch(err => res.send({ error: err}));

@@ -14,8 +14,8 @@ import SingleListingPage from './components/single-listing-page';
 import Map from './components/map-components/map';
 import UserListings from './components/user-listings';
 import Header from './components/common/header';
-import ChatContainer from './chat-components/chat-container';
-import ChatRoom from './chat-components/chat-room';
+import ChatContainer from './components/chat-components/chat-container';
+import ChatRoom from './components/chat-components/chat-room';
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 

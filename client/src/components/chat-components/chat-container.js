@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchConversations } from '../actions';
+import { fetchConversations } from '../../actions';
 import { Link } from 'react-router-dom';
 
 
@@ -29,14 +29,16 @@ class ChatContainer extends Component {
 
     return (
       <div>
+
         {rooms}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  conversations: state.chat.conversations
+const mapStateToProps = (state) => ({
+  conversations: state.chat.conversations,
+  name: state.listings.name
 });
 
 export default connect(mapStateToProps, { fetchConversations })(ChatContainer);

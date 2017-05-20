@@ -38,7 +38,7 @@ exports.getConversations = (req, res, next) => {
 exports.getConversation = (req, res, next) => {
   Message.find({ conversationId: req.params.conversationId })
     .select('createdAt body author')
-    .sort('-createdAt')
+    .sort('createdAt')
     .populate({
       path: 'author',
       select: 'name profilePic'

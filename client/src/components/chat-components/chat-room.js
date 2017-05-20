@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchConversation, sendReply, fetchUser } from '../../actions';
 import io from 'socket.io-client';
-import '../../styles/chat.css';
+
 
 class ChatRoom extends Component {
   constructor(props) {

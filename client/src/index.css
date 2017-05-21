@@ -130,11 +130,11 @@ body {
   overflow-y: scroll;
 }
 
-.chatlogs:: -webkit-scrollbar {
+.chatlogs::-webkit-scrollbar {
   width: 10px;
 }
 
-.chatlogs:: -webkit-scrollbar-thumb {
+.chatlogs::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.1);
 }
@@ -204,11 +204,11 @@ body {
 .chat-form textarea:focus {
   background: #fff;
 }
-.chat-form textarea:: -webkit-scrollbar {
+.chat-form textarea::-webkit-scrollbar {
   width: 10px;
 }
 
-.chat-form textarea:: -webkit-scrollbar-thumb {
+.chat-form textarea::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.1);
 }

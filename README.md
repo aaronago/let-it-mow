@@ -1,7 +1,7 @@
 # Let It Mow
-This application builds upon [sharing economy](http://people.uta.fi/~kljuham/2015-hamari_at_al-the_sharing_economy.pdf)  by offering a fully featured marketplace where users can find equipment that they need for yardwork and rent it out for the day (or the week) instead buying something that they may only use once or twice a year. Users can also post listings for equipment that they own and make a few extra dollars by renting it out to their neighbors.
+This application builds upon the [sharing economy](http://people.uta.fi/~kljuham/2015-hamari_at_al-the_sharing_economy.pdf)  by offering a fully featured marketplace where users can find equipment that they need for yard work and rent it out for the day (or the week) instead buying something that they may only use once or twice a year. Users can also post listings for equipment that they own and make a few extra dollars by renting it out to their neighbors.
 
-The live app can be viewed here: [Let It Mow](http://let-it-mow.herokuapp.com/). It is currently centered around the Denver, Colorado area but is easily scalable to include any city or locale. 
+The live app can be viewed here: [Let It Mow](http://let-it-mow.herokuapp.com/). It is currently centered around the Denver, Colorado area but is easily scalable to include any city or locale.
 
 
 

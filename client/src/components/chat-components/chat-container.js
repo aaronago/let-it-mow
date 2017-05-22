@@ -22,14 +22,15 @@ class ChatContainer extends Component {
     }
 
     const rooms = conversations.map(room => {
-      const pic = `http://res.cloudinary.com/letitmow/image/upload/w_250,h_200/${room.listing.images[0]}.jpg`;
+      const pic = `http://res.cloudinary.com/letitmow/image/upload/w_80,h_80/${room.listing.images[0]}.jpg`;
       if (room.message[0].body != undefined) {
         return (
-            <div className="col-8">
+            <div className="col-8 convo-container">
               <Link to={`/chat/${room.message[0].conversationId}`}>
                 <div className="convo-box" key={room.message[0].conversationId}>
                     <div>
-                      Chat with {room.message[0].author.name} about {room.listing.title}</div>
+                      Chat with {room.message[0].author.name} about {room.listing.title}
+                    </div>
                     <div className="user-photo">
                       <img src={pic} />
                     </div>

@@ -24,10 +24,9 @@
 
 @media all and (min-width: 600px) {
   .wrapper {
+    width: calc(100% - 5rem);
     background: #cdd9d3;
-    width: calc(100% - 10rem);
-    max-width: 50rem;
-    margin: 40px auto;
+    margin: 0 auto;
     border-radius: 4px;
   }
 

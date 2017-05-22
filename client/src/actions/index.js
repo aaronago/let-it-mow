@@ -2,7 +2,7 @@ import * as Cookies from 'js-cookie';
 import {browserHistory} from 'react-router';
 import io from 'socket.io-client';
 
-export const socket = io.connect('http://localhost:4000');
+export const socket = io.connect();
 
 //----------- Reducer Actions -------------//
 
@@ -56,15 +56,15 @@ export const fetchUserListingsFailure = (error) => ({
       error
     });
 
-export const FETCH_MORE_FROM_USER_LISTINGS_SUCCESS = 'FETCH_MORE_FROM_USER_LISTINGS_SUCCESS';
-export const fetchMoreFromUserListingsSuccess = (allUserListings) => ({
-    type: FETCH_MORE_FROM_USER_LISTINGS_SUCCESS,
+export const FETCH_MORE_FROM_SELLER_SUCCESS = 'FETCH_MORE_FROM_SELLER_SUCCESS';
+export const fetchMoreFromSellerSuccess = (allUserListings) => ({
+    type: FETCH_MORE_FROM_SELLER_SUCCESS,
     allUserListings
   });
 
-export const FETCH_MORE_FROM_USER_LISTINGS_FAILURE= 'FETCH_MORE_FROM_USER_LISTINGS_FAILURE';
-export const fetchMoreFromUserListingsFailure = (error) => ({
-      type: FETCH_MORE_FROM_USER_LISTINGS_FAILURE,
+export const FETCH_MORE_FROM_SELLER_FAILURE= 'FETCH_MORE_FROM_SELLER_FAILURE';
+export const fetchMoreFromSellerFailure = (error) => ({
+      type: FETCH_MORE_FROM_SELLER_FAILURE,
       error
     });
 //-----------Conversation Action Types-------------//
@@ -92,20 +92,6 @@ export const fetchConversationFailure = (err) => ({
   type: FETCH_CONVERSATION_FAILURE,
   err
 });
-
-// export const SEND_REPLY_SUCCESS = 'SEND_REPLY_SUCCESS';
-// export const fetchConversationSuccess = (data) => ({
-//   type: SEND_REPLY_SUCCESS,
-//   data
-// });
-//
-// export const SEND_REPLY_FAILURE = 'SEND_REPLY_FAILURE';
-// export const fetchConversationFailure = (err) => ({
-//   type: SEND_REPLY_FAILURE,
-//   err
-// });
-
-
 
 //-----------User/Auth Async Actions-------------//
 
@@ -168,6 +154,7 @@ export const fetchListings = () => dispatch => {
 //-----------Fetch Single Listing Async Action-------------//
 
 export const fetchListing = id => dispatch => {
+
   return fetch(`/api/listing/${id}`)
     .then(response => response.json())
     .then(listing => {
@@ -198,16 +185,16 @@ export const fetchUserListings = () => (dispatch) => {
 
 //----------- FetchAllListings From the same User Async Action-------------//
 
-export const fetchMoreFromUser = (createdBy) => (dispatch) => {
+export const fetchMoreFromSeller = (createdBy) => (dispatch) => {
   const accessToken = Cookies.get('accessToken');
-  return fetch(`/api/listings/${createdBy}`, {
+  return fetch(`/api/listings/${createdBy._id}`, {
     headers: {
       authorization: `bearer ${accessToken}`
     }
   })
   .then(response => response.json())
   .then(json => {
-    dispatch(fetchMoreFromUserListingsSuccess(json));
+    dispatch(fetchMoreFromSellerSuccess(json));
   })
   .catch(error => {
     dispatch(fetchUserListingsFailure());
@@ -265,7 +252,6 @@ export const fetchConversation = (id) => dispatch => {
 };
 
 export const sendReply = (data) => dispatch => {
-  console.log(`reply data${data.body}`);
 
   const accessToken = Cookies.get('accessToken');
 
@@ -280,7 +266,29 @@ export const sendReply = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => {
-      socket.emit('new message', data.conversationId);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+};
+
+export const startConversation = (data) => dispatch => {
+
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/new`,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then(json => {
+      console.log(json);
     })
     .catch(error => {
       console.error(error);

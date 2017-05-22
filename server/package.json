@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Server portion of a full-stack starter template",
   "main": "index.js",
+  "engines": {
+  "node": "6.9.4"
+},
   "scripts": {
     "start": "nodemon index.js",
     "test": "--watch mocha"
@@ -17,7 +20,6 @@
   },
   "dependencies": {
     "body-parser": "^1.17.1",
-    "cloudinary": "^1.9.0",
     "express": "^4.14.1",
     "gridfs-stream": "^1.1.1",
     "mongoose": "^4.9.8",
@@ -25,7 +27,6 @@
     "passport-google-oauth20": "^1.0.0",
     "passport-http-bearer": "^1.0.1",
     "request": "^2.81.0",
-    "request-promise-native": "^1.0.4",
-    "socket.io": "^2.0.1"
+    "request-promise-native": "^1.0.4"
   }
 }

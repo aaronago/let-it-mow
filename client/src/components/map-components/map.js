@@ -49,7 +49,7 @@ class Map extends Component {
 
       </InfoWindow>
     )}
-      </Marker>
+      </Marker>;
     });
 
     return (

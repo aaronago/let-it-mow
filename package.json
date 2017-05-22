@@ -34,14 +34,16 @@
     "react-geolocated": "^1.0.3",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
+    "react-slick": "^0.14.11",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
+    "socket.io": "^2.0.1",
+    "slick-carousel": "^1.6.0",
     "socket-io": "^1.0.0",
     "superagent": "^3.5.2",
     "xp": "^1.0.1"
   },
   "devDependencies": {
-    "busboy-body-parser": "^0.3.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

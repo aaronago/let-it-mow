@@ -6,7 +6,7 @@ import Map from './map';
 class GeoMap extends React.Component {
   render() {
 
-    const markers = this.props.listings
+    const markers = this.props.listings;
     return (
           <div className="listings-map">
            <Map

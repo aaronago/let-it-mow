@@ -9,7 +9,10 @@ mongoose.Promise = global.Promise;
 exports.getConversations = (req, res, next) => {
   Conversation
     .find({ participants: req.user._id })
-    .select('_id listing')
+    .populate({
+      path: 'listing',
+      select: 'title images price'
+    })
     .exec()
     .then(conversations => {
       let fullConversations = conversations.map(conversation => {
@@ -18,7 +21,7 @@ exports.getConversations = (req, res, next) => {
           .limit(1)
           .populate({
             path: 'author',
-            select: 'name'
+            select: 'name profilePic'
           })
           .exec()
           .then( messages => ({listing: conversation.listing, message: messages}));
@@ -34,10 +37,10 @@ exports.getConversations = (req, res, next) => {
 exports.getConversation = (req, res, next) => {
   Message.find({ conversationId: req.params.conversationId })
     .select('createdAt body author')
-    .sort('-createdAt')
+    .sort('createdAt')
     .populate({
       path: 'author',
-      select: 'name'
+      select: 'name profilePic'
     })
     .exec()
     .then(messages => {

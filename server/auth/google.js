@@ -27,7 +27,8 @@ passport.use(
     const updates = {
       name: profile.displayName,
       accessToken: accessToken,
-      googleID: profile.id
+      googleID: profile.id,
+      profilePic: profile.photos[0].value,
     };
 
     const options = {

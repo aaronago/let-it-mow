@@ -98,8 +98,11 @@ html, body {
 .carousel-container {
   margin: 0 auto;
   padding: 40px;
-  width: 300px;
+  width: 40%;
   color: #333;
+  float: left;
+  margin-top: 20px;
+  margin-left: 20px;
   background: lightgrey;
 }
 

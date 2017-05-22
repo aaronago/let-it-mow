@@ -45,14 +45,14 @@ class SingleListingPage extends Component {
       <div>
         <div>
           <Carousel images={listing.images}/>
-          <p>{listing.title}</p>
-          <p>Only ${listing.price} to rent</p>
-        </div>
-        <div>
+        </div >
+        <div className='single-listing-form'>
+        <p>{listing.title}</p>
+        <p>Only ${listing.price} to rent</p>
           <form action="" onSubmit={this.onSubmit}>
             <label htmlFor="Start Chat">Start Chat</label>
             <input type="text" onChange={this.onInputChange}/>
-            <input type="submit" value={`send ${listing.createdBy.name} a message about this item`}/>
+            <input className='btn-square'type="submit" value={`Chat with ${listing.createdBy.name} about renting this`}/>
           </form>
         </div>
         <div>

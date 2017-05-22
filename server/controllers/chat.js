@@ -11,7 +11,7 @@ exports.getConversations = (req, res, next) => {
     .find({ participants: req.user._id })
     .populate({
       path: 'listing',
-      select: 'title'
+      select: 'title images price'
     })
     .exec()
     .then(conversations => {
@@ -21,7 +21,7 @@ exports.getConversations = (req, res, next) => {
           .limit(1)
           .populate({
             path: 'author',
-            select: 'name'
+            select: 'name profilePic'
           })
           .exec()
           .then( messages => ({listing: conversation.listing, message: messages}));
@@ -37,10 +37,10 @@ exports.getConversations = (req, res, next) => {
 exports.getConversation = (req, res, next) => {
   Message.find({ conversationId: req.params.conversationId })
     .select('createdAt body author')
-    .sort('-createdAt')
+    .sort('createdAt')
     .populate({
       path: 'author',
-      select: 'name'
+      select: 'name profilePic'
     })
     .exec()
     .then(messages => {
@@ -58,7 +58,6 @@ exports.newConversation = (req, res, next) => {
 
   conversation.save()
     .then(newConvo => {
-      console.log("convo started: ", newConvo._id);
       const message = new Message({
         conversationId: newConvo._id,
         author: req.user._id,
@@ -67,7 +66,6 @@ exports.newConversation = (req, res, next) => {
       return message.save();
     })
     .then(newMessage => {
-      console.log("convo id of first message", newMessage.conversationId._id);
       res.status(200).json({ message: 'Conversation started!', conversationId: conversation._id, newMessage: newMessage });
     })
     .catch(err => res.send({ error: err}));

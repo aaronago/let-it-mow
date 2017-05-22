@@ -18,33 +18,34 @@ html, body {
   nav
 **********************************/
 .flex-nav {
-  margin-right: 35px;
   background-color: #cdd9d3;
   width: 100%;
+  padding-top: 15px;
+  height: 130px;
 }
+
 .flex-nav ul {
-  display: flex;
   list-style: none;
   align-items: baseline;
 }
 
 .flex-nav li {
   padding: 5px;
-  margin: auto 50px auto 0;
+  margin: auto 5px;
 }
-
-/*.flex-nav a {
-  color: #FFFFFF;
-  text-decoration: none;
-}*/
-
-/*.flex-nav a:hover {
-  color: #84a192;
-}*/
 
 .one {
   flex-grow: 1;
+  float: left;
 }
+
+.two,
+.three {
+  display: block;
+  width: 50%;
+  float: right;
+}
+
 .disable-link {
   pointer-events: none;
 }
@@ -78,7 +79,11 @@ html, body {
   map
 **********************************/
 .listings-map {
-  margin-left: 150px;
+  height: 100%;
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
 }
 /**********************************
   listing form
@@ -108,12 +113,16 @@ html, body {
   box-shadow: 5px 5px 10px #666666;
   font-family: Arial;
   color: #ffffff;
-  font-size: 100%;
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
   background: #3a6951;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   outline-color: #062f1a;
   transition: background .5s;
+  width: 100%;
+
 }
 .btn-square:hover {
   background: #094426;
@@ -153,7 +162,6 @@ html, body {
   background: #094426;
   text-decoration: none;
 }
-
 
 /*********************************
    carousel

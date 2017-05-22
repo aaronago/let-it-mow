@@ -1,11 +1,14 @@
 /*-----------------------
    Chat Container
 -------------------------*/
+.convo-container {
+  border-radius: 5px;
+}
+
 .convo-container a {
   text-decoration: none;
-  display: block;
-
 }
+
 .convo-box {
   border-radius: 5px;
   background-color: #3A6951;

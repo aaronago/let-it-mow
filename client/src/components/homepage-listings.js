@@ -70,30 +70,34 @@ class HomepageListings extends Component {
     }
 
     return (
-    <div>
-      <input type="text" value={this.state.searchString}
-      onChange={this.handleChange} placeholder="Search Equipment"/>
-      <div className='price-filter'>
-      <h4 className='filter-title'>Filter Price</h4>
-      <p className='price-text'>{`$${lowPrice} to $${highPrice} /day`}</p>
-      <Range className='range-slider'
-             marks={marks}
-             min={5}
-             max={50}
-             defaultValue={[10,50]}
-             allowCross={false}
-             value={this.state.value}
-             tipFormatter={value => `${value} $`}
-             onChange={this.onSliderChange}
-       />
+    <div className="wrapper">
+      <div className="row">
+        <div className="col-3">
+          <input type="text" value={this.state.searchString}
+          onChange={this.handleChange} placeholder="Search Equipment"/>
+        </div>
+        <div className="col-4">
+          <h4 className='filter-title'>Filter By Price</h4>
+          <p className='price-text'>{`$${lowPrice} to $${highPrice} /day`}</p>
+          <Range className=''
+                 marks={marks}
+                 min={5}
+                 max={50}
+                 defaultValue={[10,50]}
+                 allowCross={false}
+                 value={this.state.value}
+                 tipFormatter={value => `${value} $`}
+                 onChange={this.onSliderChange}
+           />
+        </div>
       </div>
-      <div className="listings-gallery">
+      <div className="row">
       {listings.map(card => {
         return (
-          <div key={card._id}>
-          <GalleryListing images={card.images} title={card.title}
+
+          <GalleryListing key={card._id} images={card.images} title={card.title}
            price={card.price} id={card._id}/>
-       </div>)}
+       )}
      )}
       </div>
     </div>

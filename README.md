@@ -1,8 +1,9 @@
-# Space Repetition Starter Kit
+# Let It Mow
+This application builds upon [sharing economy](http://people.uta.fi/~kljuham/2015-hamari_at_al-the_sharing_economy.pdf)  by offering a fully featured marketplace where users can find equipment that they need for yardwork and rent it out for the day (or the week) instead buying something that they may only use once or twice a year. Users can also post listings for equipment that they own and make a few extra dollars by renting it out to their neighbors.
 
-This should get you started with your Spaced Repetition app. We're giving you your basic directory structure, and the framework for authentication. However, we aren't persisting any information, and it will be your job to add Mongo/Mongoose. There are helpful comments in `server/index.js`.
+The live app can be viewed here: [Let It Mow](http://let-it-mow.herokuapp.com/). It is currently centered around the Denver, Colorado area but is easily scalable to include any city or locale. 
 
-In development, the starter kit runs two servers. One of which is from `create-react-app`, so you get all the fancy hot reloading, etc, the other is the backend. In production, we generate a static folder with all our React stuff, and serve that with Express.
+
 
 ## Getting started
 
@@ -28,7 +29,7 @@ You can run it locally now with `npm run dev`, but the Google OAuth stuff won't 
 
 Visit https://console.developers.google.com
 
-* Navigate to Library 
+* Navigate to Library
 * Under 'Social APIs', Click 'Google+ API'
 * Click 'Enable' at the top (if it isn't already)
 

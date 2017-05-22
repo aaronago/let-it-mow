@@ -3,11 +3,15 @@
 **********************************/
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  background-color: #fafbfa;
+html, body {
+  height: 100%;
+  background-color: #f2f5f4;
   margin: 0;
+
 }
 /**********************************
   nav
@@ -28,14 +32,14 @@ body {
   margin: auto 50px auto 0;
 }
 
-.flex-nav a {
-  color: #094426;
+/*.flex-nav a {
+  color: #FFFFFF;
   text-decoration: none;
-}
+}*/
 
-.flex-nav a:hover {
+/*.flex-nav a:hover {
   color: #84a192;
-}
+}*/
 
 .one {
   flex-grow: 1;
@@ -89,6 +93,66 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+<<<<<<< HEAD
+/**********************************
+  Buttons
+**********************************/
+.btn-square {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  text-shadow: 1px 1px 5px #000000;
+  -webkit-box-shadow: 5px 5px 10px #666666;
+  -moz-box-shadow: 5px 5px 10px #666666;
+  box-shadow: 5px 5px 10px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 18px;
+  background: #3a6951;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  outline-color: #062f1a;
+}
+.btn-square:hover {
+  background: #094426;
+  text-decoration: none;
+}
+
+.btn-square:focus {
+  outline: none;
+  background: #094426;
+  text-decoration: none;
+}
+
+.btn-round {
+  -webkit-border-radius: 26;
+  -moz-border-radius: 26;
+  border-radius: 26px;
+  text-shadow: 1px 1px 5px #000000;
+  -webkit-box-shadow: 5px 5px 10px #666666;
+  -moz-box-shadow: 5px 5px 10px #666666;
+  box-shadow: 5px 5px 10px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 18px;
+  background: #3a6951;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  outline-color: #062f1a;
+}
+
+.btn-round:hover {
+  background: #094426;
+  text-decoration: none;
+}
+
+.btn-round:focus {
+  outline: none;
+  background: #094426;
+  text-decoration: none;
+}
+||||||| merged common ancestors
+=======
 /*********************************
    carousel
 *********************************/
@@ -229,3 +293,4 @@ body {
 .chat-form input:hover {
   background: #13c8d9;
 }
+>>>>>>> efbb283516303fa6f4956ca3d61859157e4e5150

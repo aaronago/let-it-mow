@@ -13,6 +13,10 @@
     margin: auto 5px;
   }
 
+  .flex-nav img {
+    margin-left: 80px;
+  }
+
   .one {
     flex-grow: 1;
   }
@@ -22,4 +26,10 @@
     display: block;
     max-width: 20%;
   }
+}
+.listings-map {
+  width: calc(100% - 10rem);
+  max-width: 50rem;
+  margin: 40px auto;
+  border-radius: 4px;
 }

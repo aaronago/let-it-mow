@@ -1,7 +1,9 @@
 .wrapper {
+  background: #cdd9d3;
   width: calc(100% - 10rem);
+  width: 95%;
   max-width: 50rem;
-  margin: auto;
+  margin: 40px auto;
   padding: 20px;
 }
 
@@ -79,4 +81,5 @@
   .wrapper {
     max-width: 1400px;
   }
+
 }

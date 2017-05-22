@@ -9,7 +9,10 @@ mongoose.Promise = global.Promise;
 exports.getConversations = (req, res, next) => {
   Conversation
     .find({ participants: req.user._id })
-    .select('_id listing')
+    .populate({
+      path: 'listing',
+      select: 'title'
+    })
     .exec()
     .then(conversations => {
       let fullConversations = conversations.map(conversation => {
@@ -55,6 +58,7 @@ exports.newConversation = (req, res, next) => {
 
   conversation.save()
     .then(newConvo => {
+      console.log("convo started: ", newConvo._id);
       const message = new Message({
         conversationId: newConvo._id,
         author: req.user._id,
@@ -63,6 +67,7 @@ exports.newConversation = (req, res, next) => {
       return message.save();
     })
     .then(newMessage => {
+      console.log("convo id of first message", newMessage.conversationId._id);
       res.status(200).json({ message: 'Conversation started!', conversationId: conversation._id, newMessage: newMessage });
     })
     .catch(err => res.send({ error: err}));

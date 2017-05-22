@@ -93,20 +93,6 @@ export const fetchConversationFailure = (err) => ({
   err
 });
 
-// export const SEND_REPLY_SUCCESS = 'SEND_REPLY_SUCCESS';
-// export const fetchConversationSuccess = (data) => ({
-//   type: SEND_REPLY_SUCCESS,
-//   data
-// });
-//
-// export const SEND_REPLY_FAILURE = 'SEND_REPLY_FAILURE';
-// export const fetchConversationFailure = (err) => ({
-//   type: SEND_REPLY_FAILURE,
-//   err
-// });
-
-
-
 //-----------User/Auth Async Actions-------------//
 
 export const fetchUser = () => dispatch => {
@@ -168,6 +154,7 @@ export const fetchListings = () => dispatch => {
 //-----------Fetch Single Listing Async Action-------------//
 
 export const fetchListing = id => dispatch => {
+
   return fetch(`/api/listing/${id}`)
     .then(response => response.json())
     .then(listing => {
@@ -200,7 +187,7 @@ export const fetchUserListings = () => (dispatch) => {
 
 export const fetchMoreFromSeller = (createdBy) => (dispatch) => {
   const accessToken = Cookies.get('accessToken');
-  return fetch(`/api/listings/${createdBy}`, {
+  return fetch(`/api/listings/${createdBy._id}`, {
     headers: {
       authorization: `bearer ${accessToken}`
     }
@@ -279,6 +266,29 @@ export const sendReply = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => {
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+};
+
+export const startConversation = (data) => dispatch => {
+
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/new`,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then(json => {
+      console.log(json);
     })
     .catch(error => {
       console.error(error);

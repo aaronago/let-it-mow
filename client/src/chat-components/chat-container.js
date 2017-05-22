@@ -15,12 +15,13 @@ class ChatContainer extends Component {
   }
 
   render() {
+    console.log(this.props.conversations);
 
     const rooms = this.props.conversations.map(room => {
       return (
-        <div key={room.listing}>
-          <Link to={`/chat/${room.listing}`}>
-            {room.listing}
+        <div key={room.listing._id}>
+          <Link to={`/chat/${room.message[0].conversationId}`}>
+            <li>Chat with {room.message[0].author.name} about {room.listing.title}</li>
           </Link>
         </div>
       );

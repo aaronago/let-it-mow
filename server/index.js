@@ -73,8 +73,7 @@ function runServer(db=secret.DATABASE_URL, port=3001) {
         server = httpServer.listen(port);
           socketEvents(io);
 
-        resolve();  
-
+        resolve();
       });
     })
     .catch((err) => console.log(err));

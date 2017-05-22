@@ -7,7 +7,11 @@ const UserSchema = mongoose.Schema({
   accessToken: {type: String, required: true},
   listings: [],
   ratings: [{type: Schema.Types.ObjectId, ref: 'Rating'}],
-  zipcode: {type: Number, required: false}
+  zipcode: {type: Number, required: false},
+  profilePic: {type: String, required: true}
+},
+{
+  timestamps: true
 });
 
 const User = mongoose.model('User', UserSchema);

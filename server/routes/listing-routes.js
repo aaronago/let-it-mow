@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 router.post('/listing', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
 
   const listingDetails = {
-    createdBy: req.user.googleID,
+    createdBy: req.user._id,
     title: req.body.title,
     categories: req.body.categories,
     price: req.body.price,
@@ -46,7 +46,7 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
 router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}), (req, res) => {
 
   const query = {
-    createdBy: {$eq: req.user.googleID}
+    createdBy: {$eq: req.user._id}
   };
 
   Listing
@@ -64,6 +64,10 @@ router.get('/mylistings', passportGoogle.authenticate('bearer', {session: false}
 router.get('/listings', (req, res) => {
   Listing
     .find()
+    .populate({
+      path: 'createdBy',
+      select: 'name profilePic'
+    })
     .exec()
     .then(listings => {
       res.json(listings);
@@ -76,6 +80,10 @@ router.get('/listings', (req, res) => {
 router.get('/listings/:createdBy', (req, res) => {
   Listing
     .find({createdBy: req.params.createdBy})
+    .populate({
+      path: 'createdBy',
+      select: 'name profilePic'
+    })
     .exec()
     .then(listing => {
       res.json(listing);
@@ -88,6 +96,10 @@ router.get('/listings/:createdBy', (req, res) => {
 router.get('/listing/:id', (req, res) => {
   Listing
     .find({_id: req.params.id})
+    .populate({
+      path: 'createdBy',
+      select: 'name profilePic'
+    })
     .exec()
     .then(listing => {
       res.json(listing);
@@ -97,7 +109,7 @@ router.get('/listing/:id', (req, res) => {
     });
 });
 
-router.delete('/listing/:createBy/:id', passportGoogle.authenticate('bearer', {session: false}),
+router.delete('/listing/:createdBy/:id', passportGoogle.authenticate('bearer', {session: false}),
   (req, res) => {
     Listing
       .findByIdAndRemove(req.params.id)

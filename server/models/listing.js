@@ -43,11 +43,14 @@ const ListingSchema = new Schema ({
     required: true
   },
   createdBy: {
-    type: Number,
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
   geometry: GeoSchema
+},
+{
+  timestamps: true
 });
 
 const Listing = mongoose.model('Listing', ListingSchema);

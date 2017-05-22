@@ -16,6 +16,7 @@ import UserListings from './components/user-listings';
 import Header from './components/common/header';
 import ChatContainer from './components/chat-components/chat-container';
 import ChatRoom from './components/chat-components/chat-room';
+import './styles/grid.css';
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 

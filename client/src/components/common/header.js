@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Cookies from 'js-cookie';
 import img from './let-it-mow-logo.png';
+
+
 export class Header extends Component {
 
   render() {

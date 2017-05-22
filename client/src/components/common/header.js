@@ -39,7 +39,7 @@ export class Header extends Component {
             <li className="three">
               <div className={rentLink} >
                 <Link className="btn-square"
-                  to={`/mylistings/`}>Rent your equipment</Link>
+                  to={`/mylistings/`}>Dashboard</Link>
               </div>
             </li>
           </ul>

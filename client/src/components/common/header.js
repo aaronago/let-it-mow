@@ -17,7 +17,7 @@ export class Header extends Component {
       rentLink = 'hidden';
       loginMsg = '';
       isLoggedIn = (
-        <a className='btn-square'
+        <a className="btn-square"
           href={'/api/auth/google'}>Login with Google</a>
       );
     } else {
@@ -38,7 +38,7 @@ export class Header extends Component {
             <li className="two right">{isLoggedIn}</li>
             <li className="three">
               <div className={rentLink} >
-                <Link className='btn-square btn-square:hover)'
+                <Link className="btn-square"
                   to={`/mylistings/`}>Rent your equipment</Link>
               </div>
             </li>

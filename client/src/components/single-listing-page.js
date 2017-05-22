@@ -33,6 +33,7 @@ class SingleListingPage extends Component {
       message: this.state.text
     };
     this.props.startConversation(data);
+    this.setState({text: ''});
   }
 
   render() {

@@ -8,6 +8,7 @@
 }
 
 html, body {
+  font-size: 18px;
   height: 100%;
   background-color: #f2f5f4;
   margin: 0;
@@ -107,7 +108,7 @@ html, body {
   box-shadow: 5px 5px 10px #666666;
   font-family: Arial;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 100%;
   background: #3a6951;
   padding: 10px 20px 10px 20px;
   text-decoration: none;

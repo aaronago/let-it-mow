@@ -43,21 +43,20 @@ class SingleListingPage extends Component {
 
     return (
       <div>
-        <div>
           <Carousel images={listing.images}/>
-        </div >
         <div className='single-listing-form'>
         <p>{listing.title}</p>
         <p>Only ${listing.price} to rent</p>
           <form action="" onSubmit={this.onSubmit}>
             <label htmlFor="Start Chat">Start Chat</label>
             <input type="text" onChange={this.onInputChange}/>
-            <input className='btn-square'type="submit" value={`Chat with ${listing.createdBy.name} about renting this`}/>
+            <input className='btn-square'type="submit" value={`Chat with ${listing.createdBy.name}`}/>
           </form>
         </div>
-        <div>
+        <div className='more-from-seller'>
           <MoreFromSeller userId={listing.createdBy} picId={this.props.match.params}/>
         </div>
+
       </div>
     );
   }

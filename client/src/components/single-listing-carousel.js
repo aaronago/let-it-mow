@@ -8,14 +8,13 @@ class Carousel extends Component {
   render() {
     const settings = {
       dots: true,
-      slidesToShow: 1,
       }
   console.log(this.props.images)
   const image = this.props.images.map((item,i) => {
 
      return (
          <div key={i}>
-         <img src={`http://res.cloudinary.com/letitmow/image/upload/w_700,h_700/${item}.jpg`}/>
+         <img src={`http://res.cloudinary.com/letitmow/image/upload/w_700,h_700,c_scale/${item}.jpg`}/>
          </div>
      )
   })

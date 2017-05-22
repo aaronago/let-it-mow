@@ -113,6 +113,7 @@ html, body {
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   outline-color: #062f1a;
+  transition: background .5s;
 }
 .btn-square:hover {
   background: #094426;

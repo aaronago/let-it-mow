@@ -1,11 +1,27 @@
 /*-----------------------
    Chat Container
 -------------------------*/
+.convo-container a {
+  text-decoration: none;
+  display: block;
+
+}
 .convo-box {
+  border-radius: 5px;
+  background-color: #3A6951;
+  color: #eee;
+  padding: 0 10px;
+  min-height: 80px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.5s, color 0.3s;
 }
 
+.convo-box:hover {
+  background-color: #333;
+  color: #3A6951;
+}
 
 
 
@@ -54,7 +70,7 @@
   align-items: flex-start;
   margin-bottom: 10px;
 }
-
+.convo-box .user-photo,
 .chat .user-photo {
   width: 60px;
   height: 60px;

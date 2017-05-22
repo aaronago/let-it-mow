@@ -25,7 +25,7 @@ class ChatContainer extends Component {
       if (room.message[0].body != undefined) {
         return (
 
-          <div key={room.message[0].conversationId}>
+          <div className="col-4" key={room.message[0].conversationId}>
             <Link to={`/chat/${room.message[0].conversationId}`}>
               <li>Chat with {room.message[0].author.name} about {room.listing.title}</li>
             </Link>
@@ -35,8 +35,10 @@ class ChatContainer extends Component {
     });
 
     return (
-      <div>
-        {rooms}
+      <div className="wrapper">
+        <div className="row">
+          {rooms}
+        </div>
       </div>
     );
   }

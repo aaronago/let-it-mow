@@ -1,8 +1,8 @@
 .wrapper {
   width: calc(100% - 10rem);
   max-width: 50rem;
-  margin: 0 auto;
-  padding: 0 20px;
+  margin: auto;
+  padding: 20px;
 }
 
 [class*="col-"] {
@@ -15,10 +15,10 @@
 
 @media all and (min-width: 600px) {
   .wrapper {
-    background: lightblue;
+    background: #cdd9d3;
     width: calc(100% - 10rem);
     max-width: 50rem;
-    margin: 0 auto;
+    margin: 40px auto;
     border-radius: 4px;
   }
 

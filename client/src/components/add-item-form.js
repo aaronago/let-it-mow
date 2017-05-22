@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, getFormValues } from 'redux-form';
 import { connect } from 'react-redux';
 import { createListing } from '../actions/index';
 import request from 'superagent';
 import ImgUpload from './image-uploader';
 import PreviewImage from './preview-image';
+
 
 
 const CLOUDINARY_UPLOAD_PRESET = 'e6ai6rw0';
@@ -39,8 +40,7 @@ class AddItemForm extends Component {
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file);
-
-    upload.end((err, res) => {
+      upload.end((err, res) => {
       if (err) console.error(err);
       if (res.body.secure_url !== '') {
         this.setState({
@@ -65,6 +65,7 @@ class AddItemForm extends Component {
 
   render() {
     const gallery = this.state.public_ids.map(id => {
+      console.log(this.props.formValues)
       return <PreviewImage key={id} id={id} />;
     });
 
@@ -111,8 +112,10 @@ class AddItemForm extends Component {
             <ImgUpload handleImageUpload={this.handleImageUpload}/>
           </div>
           <div>
-            <button type="submit" disabled={submitting}>Submit</button>
-            <button type="button" disabled={pristine || submitting} onClick={reset}>
+            <button className='btn-square'
+              type="submit" disabled={submitting}>Submit</button>
+            <button className='btn-square'
+              type="button" disabled={pristine || submitting} onClick={reset}>
               Clear Values
             </button>
           </div>
@@ -146,5 +149,8 @@ export default reduxForm({
   form: 'addItem', // a unique identifier for this form
   validate
 })(
-  connect(null,{ createListing })(AddItemForm)
+    connect(state => ({
+      formValues: getFormValues('addItem')(state)
+    }), { createListing }
+  )(AddItemForm)
 );

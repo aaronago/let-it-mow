@@ -27,14 +27,14 @@ class UserListings extends Component {
   redirect() {
     location.replace('/');
     }
-    
+
   render() {
 
     if(!Cookies.get('accessToken')) {
       this.redirect();
       return null;
     }
-
+    const formBtn = this.state.hidden ? 'Add a Listing' : 'Close Form';
     const hidden = this.state.hidden ? 'hidden' : '';
     const listings = this.props.userListings;
     const listItem = listings.length > 0 ? listings.map (listItem => {
@@ -52,9 +52,10 @@ class UserListings extends Component {
         <div className={hidden}>
           <AddItemForm onClick={this.onClick}/>
         </div>
+        <button className='btn-round'
+          onClick={this.onClick}>{formBtn}</button>
         <h2>Your Listings</h2>
-        <button onClick={this.onClick}>Add A New Listing!</button>
-          <div className="listings-gallery">
+          <div className='listings-gallery'>
             {listItem}
           </div>
 

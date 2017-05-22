@@ -15,17 +15,20 @@ export class Header extends Component {
       rentLink = 'hidden';
       loginMsg = '';
       isLoggedIn = (
-        <a href={'/api/auth/google'}>Login with Google</a>
+        <a className='btn-square'
+          href={'/api/auth/google'}>Login with Google</a>
       );
     } else {
       rentLink = '';
       loginMsg = 'hidden';
       isLoggedIn = (
-        <a href={'/api/auth/logout'}>Log Out</a>
+        <a className='btn-square'
+          href={'/api/auth/logout'}>Log Out</a>
       );
     }
 
     return (
+
       <div>
         <nav className="flex-nav">
           <ul>
@@ -33,7 +36,8 @@ export class Header extends Component {
             <li className="two right">{isLoggedIn}</li>
             <li className="three">
               <div className={rentLink} >
-                <Link to={`/mylistings/`}>Rent your equipment</Link>
+                <Link className='btn-square btn-square:hover)'
+                  to={`/mylistings/`}>Rent your equipment</Link>
               </div>
             </li>
           </ul>

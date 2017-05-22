@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchListing, startConversation } from '../actions';
-import Carousel from './single-listing-carousel';
 import MoreFromSeller from './more-from-seller';
 
 
@@ -41,23 +40,21 @@ class SingleListingPage extends Component {
     if(!listing) {
       return <div>...Loading</div>;
     }
-
     return (
-      <div>
-          <Carousel images={listing.images}/>
-        <div className='single-listing-form'>
-        <p>{listing.title}</p>
-        <p>Only ${listing.price} to rent</p>
+      <div className='row single-item-listings-container'>
+        <div className='col-6'>
+          <img className='single-item-image' src={`http://res.cloudinary.com/letitmow/image/upload/w_500,h_700,c_scale/${listing.images[0]}.jpg`}/>
+        </div>
+      <div className='col-6 user-listings-container'>
+        <h1>${listing.price} / Day</h1>
+        <h2 className='single-listing-title'>{listing.title}</h2>
           <form action="" onSubmit={this.onSubmit}>
             <label htmlFor="Start Chat">Start Chat</label>
             <input type="text" onChange={this.onInputChange}/>
-            <input className='btn-square'type="submit" value={`Chat with ${listing.createdBy.name}`}/>
+            <input className='btn-square chat-with-button'type="submit" value={`Chat with ${listing.createdBy.name}`}/>
           </form>
+          <MoreFromSeller className='more-seller' userId={listing.createdBy} picId={this.props.match.params}/>
         </div>
-        <div className='more-from-seller'>
-          <MoreFromSeller userId={listing.createdBy} picId={this.props.match.params}/>
-        </div>
-
       </div>
     );
   }

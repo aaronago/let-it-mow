@@ -160,10 +160,59 @@ html, body {
 .carousel-container {
   margin: 0 auto;
   padding: 40px;
-  width: 40%;
-  color: #333;
+  max-width: 40%;
   float: left;
+  color: #333;
   margin-top: 20px;
   margin-left: 20px;
   background: lightgrey;
+}
+.single-list-item-key {
+  display: inline-block;
+  padding-right: 20px;
+
+}
+.single-item-image {
+  width: 100%;
+}
+@media all and (min-width: 593px) and (max-width: 1040px) {
+  .single-item-image {
+    margin-top: 30%;
+  }
+}
+.chat-with-button {
+  margin-bottom: 80px;
+}
+.all-items-seller-heading {
+  color: #696969;
+
+}
+.all-listings-from-user {
+  border-radius: 1%;
+}
+.user-listings-container {
+  background-color: #f2f5f4;
+}
+.all-items-seller-heading:before, .all-items-seller-heading:after {
+  content: "";
+  display: inline-block;
+  width: 9%;
+  margin: 0 .5em 0 -55%;
+  vertical-align: middle;
+  border-bottom: 1px solid;
+}
+.all-items-seller-heading:after {
+  margin: 0 -55% 0 .5em;
+}
+.single-item-listings-container {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.single-listing-title {
+  padding-bottom: 30px;
+}
+.profile-pic-single {
+  border-radius: 50%;
+  height: 85px;
+  width: 85px;
+  margin-top: 10px;
 }

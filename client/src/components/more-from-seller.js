@@ -20,15 +20,15 @@ class MoreFromSeller extends Component {
 
   render() {
     let listItems = this.props.allFromSeller;
-
+    console.log(this.props)
     listItems = this.props.allFromSeller.map (listItem => {
       if (listItem._id !==  this.props.picId.id) {
         return (
-          <div key={listItem._id}>
+          <div className='single-list-item-key' key={listItem._id}>
             <Link to={`/listings/${listItem._id}`} onClick={this.handleClick}>
               <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${listItem.images[0]}.jpg`}/>
               <p>{listItem.title}</p>
-              <p>Only ${listItem.price} to rent</p>
+              <p>${listItem.price} / Day</p>
             </Link>
           </div>
         );
@@ -39,8 +39,12 @@ class MoreFromSeller extends Component {
 
     return (
       <div className="all-listings-from-user">
-        <h2>All listings from this seller</h2>
+        <h4 className='all-items-seller-heading'><strong>ALL ITEMS FROM RENTER</strong></h4>
+        <img className='profile-pic-single' src={this.props.userId.profilePic}/>
+        <h4>{this.props.userId.name}</h4>
+        <div>
             {listItems}
+        </div>
       </div>
     );
   }

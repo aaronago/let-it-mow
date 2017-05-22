@@ -47,6 +47,7 @@
   }
   .col-3 {
     flex: 0 0 calc(100% / 12 * 3);
+    background-color: #cdd9d3;
   }
   .col-4 {
     flex: 0 0 calc(100% / 12 * 4);

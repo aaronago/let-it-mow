@@ -79,7 +79,11 @@ html, body {
   map
 **********************************/
 .listings-map {
-  margin-left: 150px;
+  height: 100%;
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
 }
 /**********************************
   listing form

@@ -4,6 +4,7 @@ import { fetchListing, startConversation } from '../actions';
 import MoreFromSeller from './more-from-seller';
 import GoogleMapReact from 'google-map-react';
 import FontAwesome from 'react-fontawesome'
+import Footer from './common/footer';
 
 class SingleListingPage extends Component {
   constructor(props){
@@ -76,6 +77,7 @@ class SingleListingPage extends Component {
         <h4 className='all-items-seller-heading'><strong>ALL ITEMS FROM RENTER</strong></h4>
           <MoreFromSeller className='more-seller' userId={listing.createdBy} picId={this.props.match.params}/>
         </div>
+          <Footer />
       </div>
     );
   }

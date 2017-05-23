@@ -1,0 +1,33 @@
+.flex-nav-footer {
+  background-color: #cdd9d3;
+  width: 100%;
+  padding-top: 15px;
+  height: 130px;
+  text-align: center;
+}
+
+.footer-motto {
+  font-size: 16px;
+  vertical-align: bottom;
+}
+.footer-copyright {
+  font-size: 14px;
+  color: grey;
+  vertical-align: bottom;
+}
+.footer-logo {
+  float: left;
+  padding-left: 30px;
+  padding-top: 15px;
+}
+.terms {
+  text-align: left;
+  font-family:'Roboto Condensed', sans-serif;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.terms-header {
+  color: darkgreen;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}

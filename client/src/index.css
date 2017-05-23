@@ -12,7 +12,16 @@ html, body {
   height: 100%;
   background-color: #f2f5f4;
   margin: 0;
+}
 
+a {
+  text-decoration: none;
+  color: #010d07;
+}
+
+a:hover {
+
+  color: #84a192;
 }
 /**********************************
   nav
@@ -84,16 +93,13 @@ html, body {
   map
 **********************************/
 .listings-map {
-  width: calc(100% - 10rem);
-  width: 95%;
-  max-width: 50rem;
-  margin: 40px auto;
-  padding: 20px;
+  width: 100%;
   position: relative;
   overflow: hidden;
   margin: auto;
+  margin-bottom: 30px;
   border-radius: 4px;
-  border-width: 50px;
+  border-width: 20px;
   border-style: solid;
   border-color: #cdd9d3;
 }

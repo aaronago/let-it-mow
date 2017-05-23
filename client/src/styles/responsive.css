@@ -34,7 +34,5 @@
 
 .listings-map {
   width: calc(100% - 10rem);
-  max-width: 50rem;
-  margin: 40px auto;
   border-radius: 4px;
 }

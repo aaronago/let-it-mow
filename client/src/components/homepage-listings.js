@@ -91,7 +91,7 @@ class HomepageListings extends Component {
            />
         </div>
       </div>
-      <div className="row">
+      <div className="row listing-card">
       {listings.map(card => {
         return (
 

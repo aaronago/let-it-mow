@@ -1,9 +1,18 @@
 # Let It Mow
-This application builds upon [sharing economy](http://people.uta.fi/~kljuham/2015-hamari_at_al-the_sharing_economy.pdf)  by offering a fully featured marketplace where users can find equipment that they need for yardwork and rent it out for the day (or the week) instead buying something that they may only use once or twice a year. Users can also post listings for equipment that they own and make a few extra dollars by renting it out to their neighbors.
+This application builds upon the [sharing economy](http://people.uta.fi/~kljuham/2015-hamari_at_al-the_sharing_economy.pdf)  by offering a fully featured marketplace where users can find equipment that they need for yard work and rent it out for the day (or the week) instead buying something that they may use once or twice a year. Users can also post listings for equipment that they own and make extra money by renting it out to their neighbors.
 
-The live app can be viewed here: [Let It Mow](http://let-it-mow.herokuapp.com/). It is currently centered around the Denver, Colorado area but is easily scalable to include any city or locale. 
+The live app can be viewed here: [Let It Mow](http://let-it-mow.herokuapp.com/). It is currently centered around the Denver, Colorado area but is easily scalable to include any city or locale.
 
+## Features
 
+### User Submit Form
+
+  The user submit form to allow users to add new rental listings is implemented
+with [Redux Form](http://redux-form.com/6.7.0/).
+
+Using Redux Form simplified much of building the form component. The code for creating each field is very consistent, making the code clean and easy to understand. Form validation is made easier using the validate method, and accessing the form's field values for submittal or to pass as props is uncomplicated and requires few lines of code.
+
+The documentation for Redux Form is fairly comprehensive and there are decent examples to help get anyone started with it.
 
 ## Getting started
 
@@ -23,7 +32,8 @@ $ cd spaced-repetition-starter
 $ npm install
 ```
 
-You can run it locally now with `npm run dev`, but the Google OAuth stuff won't work without your own credentials.
+You can run it locally now with `npm run dev`, except you will need your own credentials
+to get up and running with Google OAth.
 
 ### Get Google OAuth Credentials
 
@@ -56,7 +66,7 @@ module.exports = {
 }
 ```
 
-This file is in ignored by git because it is in your `.gitignore`. Never commit or push 'secret.js', the client id and secret need to be kept safe like a password.
+This file is ignored by git because it is in your `.gitignore`. Never commit or push 'secret.js', the client id and secret need to be kept safe like a password.
 
 ### Local Development
 
@@ -98,3 +108,29 @@ To fix this, go back to the Google API Dashboard and:
 - Add `http://your-app-name-123.herokuapp.com/api/auth/google/callback` to Authorized redirect URIs
 
 Try to log in  `Log in with Google` again, and you're golden!
+
+## Project's background information
+
+#### Project's main goal
+
+The goal of this project was to build an application that works and that people want to use.
+
+#### Project's objective
+
+The main object of this project is to practice and showcase the skills we've been learning in the
+last few months.
+
+#### Steps taken to complete the project
+
+- Come up with project ideas
+- Decide as a group on the best idea
+- Choosing an API
+- Design user flows
+- Come up with application wireframes
+- Finish and present MVP
+- Get user feedback
+- Improve application upon feedback
+- Style
+- [Documentation](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)
+- Final clean up
+- Presentation

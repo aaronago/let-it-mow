@@ -8,7 +8,6 @@ import {createStore, applyMiddleware} from 'redux';
 import rootReducer from './reducers';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-
 import App from './components/app';
 import SingleListingPage from './components/single-listing-page';
 import Map from './components/map-components/map';
@@ -22,6 +21,7 @@ import './styles/grid.css';
 import './styles/responsive.css';
 import './styles/footer.css';
 import './styles/single-listing.css';
+import './styles/dashboard.css';
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 

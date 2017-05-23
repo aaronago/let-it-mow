@@ -35,6 +35,9 @@ class UserListings extends Component {
       this.redirect();
       return null;
     }
+    function date(listings) {
+
+    }
     const formBtn = this.state.hidden ? 'Add a Listing' : 'Close Form';
     const hidden = this.state.hidden ? 'hidden' : '';
     const listings = this.props.userListings;
@@ -47,7 +50,6 @@ class UserListings extends Component {
       );
     }) :  <div>`You don't have any listings yet`</div>;
 
-
     return (
       <div className="user-listings">
         <div className={hidden}>
@@ -55,11 +57,22 @@ class UserListings extends Component {
         </div>
         <button className='btn-round'
           onClick={this.onClick}>{formBtn}</button>
+        <div className='row dashboard-listings'>
+        <div className='col-7'>
         <h2>Your Listings</h2>
           <div className='listings-gallery'>
             {listItem}
           </div>
-
+         </div>
+         <div className='col-5 dashboard-stats'>
+           <h2>Your Info!</h2>
+           <h4 className='all-items-seller-heading'>NUMBER OF ITEMS LISTED</h4>
+             <p>{listings.length}</p>
+           <h4 className='all-items-seller-heading'>NEWEST LISTING</h4>
+           <h4 className='all-items-seller-heading'>OLDEST LISTING</h4>
+           <h4 className='all-items-seller-heading'>BEST BARGAIN</h4>
+         </div>
+         </div>
       </div>
     );
   }

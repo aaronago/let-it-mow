@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchConversations } from '../../actions';
 import { Link } from 'react-router-dom';
-
+import '../../styles/chat-styles.css';
 
 
 class ChatContainer extends Component {
@@ -22,21 +22,30 @@ class ChatContainer extends Component {
     }
 
     const rooms = conversations.map(room => {
+      const pic = `http://res.cloudinary.com/letitmow/image/upload/w_80,h_80/${room.listing.images[0]}.jpg`;
       if (room.message[0].body != undefined) {
         return (
-
-          <div key={room.message[0].conversationId}>
-            <Link to={`/chat/${room.message[0].conversationId}`}>
-              <li>Chat with {room.message[0].author.name} about {room.listing.title}</li>
-            </Link>
-          </div>
+            <div className="col-8 convo-container">
+              <Link to={`/chat/${room.message[0].conversationId}`}>
+                <div className="convo-box" key={room.message[0].conversationId}>
+                    <div>
+                      Chat with {room.message[0].author.name} about {room.listing.title}
+                    </div>
+                    <div className="user-photo">
+                      <img src={pic} />
+                    </div>
+                </div>
+              </Link>
+            </div>
         );
       }
     });
 
     return (
-      <div>
-        {rooms}
+      <div className="wrapper">
+        <div className="row">
+          {rooms}
+        </div>
       </div>
     );
   }

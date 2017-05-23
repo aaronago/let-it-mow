@@ -1,0 +1,38 @@
+@media all and (min-width: 600px) {
+  /**********************************
+    nav
+  **********************************/
+  .flex-nav ul {
+    display: flex;
+    list-style: none;
+    align-items: baseline;
+  }
+
+  .flex-nav li {
+    padding: 5px;
+    margin: auto 5px;
+  }
+
+  .flex-nav img {
+    margin-left: 80px;
+  }
+
+  .one {
+    flex-grow: 1;
+  }
+
+  .two,
+  .three {
+    display: block;
+    max-width: 20%;
+  }
+}
+
+/**********************************
+  map
+**********************************/
+
+.listings-map {
+  width: calc(100% - 10rem);
+  border-radius: 4px;
+}

@@ -13,7 +13,7 @@ class GeoMap extends React.Component {
              markers={markers}
              center={{lat: 39.6989145,lng: -104.9808785 }}
              containerElement={<div style={{ height: 300, width: '100%' }} />}
-             mapElement={<div style={{ height: '80%', width: '80%'}} />}
+             mapElement={<div style={{ height: '100%', width: '100%'}} />}
             />
           </div>
     );

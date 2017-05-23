@@ -2,30 +2,7 @@
   /**********************************
     nav
   **********************************/
-  .flex-nav ul {
-    display: flex;
-    list-style: none;
-    align-items: baseline;
-  }
 
-  .flex-nav li {
-    padding: 5px;
-    margin: auto 5px;
-  }
-
-  .flex-nav img {
-    margin-left: 80px;
-  }
-
-  .one {
-    flex-grow: 1;
-  }
-
-  .two,
-  .three {
-    display: block;
-    max-width: 20%;
-  }
 }
 
 /**********************************
@@ -58,8 +35,15 @@
 
 @media all and (min-width: 720px) {
 
+  .equip-search {
+    background-color: #fff;
+    box-shadow: none;
+    display: block;
+    min-width: 50%;
+  }
+
   .equip-search input {
-    width: 120%;
+    width: 50%;
     padding: 12px 50px;
     box-sizing: border-box;
     border-radius: 4px;
@@ -69,8 +53,12 @@
   }
 
   .equip-search input:focus {
-    width: 200%;
+    width: 100%;
     outline: none;
     border: 2px solid #527c67;
+  }
+
+  .filter {
+    min-width: 40%;
   }
 }

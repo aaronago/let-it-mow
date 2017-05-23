@@ -33,10 +33,12 @@ export class Header extends Component {
 
       <div>
         <nav className="flex-nav">
-          <ul>
-            <li className="one right"><Link to='/'><img src={img} /></Link></li>
-            <li className="two right">{isLoggedIn}</li>
-            <li className="three">
+          <ul className="logo">
+            <li><Link to='/'><img src={img} /></Link></li>
+          </ul>
+          <ul className="buttons">
+            <li>{isLoggedIn}</li>
+            <li>
               <div className={rentLink} >
                 <Link className="btn-square"
                   to={`/mylistings/`}>Dashboard</Link>

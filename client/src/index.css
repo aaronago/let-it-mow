@@ -33,31 +33,27 @@ a:hover {
   height: 130px;
 }
 
-.flex-nav ul {
-  list-style: none;
-  align-items: baseline;
-}
-
-.flex-nav li {
-  padding: 5px;
-  margin: auto 5px;
-}
-
-.flex-nav img {
-  margin: auto;
-}
-
-.one {
-  flex-grow: 1;
+.logo {
+  margin: auto 60px;
+  list-style-type: none;
   float: left;
 }
 
-.two,
-.three {
-  display: block;
-  width: 50%;
+.buttons {
+  list-style-type: none;
   float: right;
-  margin: auto;
+  margin-right: 40px;
+}
+
+.buttons ul {
+
+
+}
+
+.buttons li {
+  width: 200px;
+  justify-content: space-around;
+
 }
 
 .disable-link {
@@ -253,6 +249,7 @@ a:hover {
   background-color: #fff;
   box-shadow: none;
   display: block;
+  min-width: 100%;
 }
 
 .equip-search input {
@@ -275,6 +272,7 @@ a:hover {
 .filter {
   margin: 0 auto 60px;
   width: 100%;
+  min-width: 100%;
   background-color: #fff;
   box-shadow: none;
   display: block;

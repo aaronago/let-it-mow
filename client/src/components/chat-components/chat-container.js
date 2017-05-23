@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchConversations } from '../../actions';
-import { Link } from 'react-router-dom';
+
+import ConvoBox from './convo-box';
 import '../../styles/chat-styles.css';
 
 
@@ -21,30 +22,20 @@ class ChatContainer extends Component {
       return <div>...Loading</div>;
     }
 
-    const rooms = conversations.map(room => {
-      const pic = `http://res.cloudinary.com/letitmow/image/upload/w_80,h_80/${room.listing.images[0]}.jpg`;
-      if (room.message[0].body != undefined) {
-        return (
-            <div className="col-8 convo-container">
-              <Link to={`/chat/${room.message[0].conversationId}`}>
-                <div className="convo-box" key={room.message[0].conversationId}>
-                    <div>
-                      Chat with {room.message[0].author.name} about {room.listing.title}
-                    </div>
-                    <div className="user-photo">
-                      <img src={pic} />
-                    </div>
-                </div>
-              </Link>
-            </div>
-        );
+    const rooms = conversations.length > 0 ? conversations.map(room => {
+      if (room.message.length > 0) {
+        return  <ConvoBox listing={room.listing} message={room.message[0]} key={room.message[0]._id}/>;
       }
-    });
+    }) : <div className="convo-box">
+          <div>
+            <h2>It doesn't looke like you have any active conversations.</h2>
+          </div>
+        </div>;
 
     return (
       <div className="wrapper">
         <div className="row">
-          {rooms}
+            {rooms}
         </div>
       </div>
     );

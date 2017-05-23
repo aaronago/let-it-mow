@@ -70,13 +70,13 @@ class HomepageListings extends Component {
     }
 
     return (
-    <div className="wrapper">
+    <div className="wrapper equip-display">
       <div className="row">
-        <div className="col-3">
-          <input type="text" value={this.state.searchString}
+        <div className="col-3 equip-search">
+          <input className="" type="text" value={this.state.searchString}
           onChange={this.handleChange} placeholder="Search Equipment"/>
         </div>
-        <div className="col-4">
+        <div className="col-4 filter">
           <h4 className='filter-title'>Filter By Price</h4>
           <p className='price-text'>{`$${lowPrice} to $${highPrice} /day`}</p>
           <Range className=''
@@ -91,7 +91,7 @@ class HomepageListings extends Component {
            />
         </div>
       </div>
-      <div className="row">
+      <div className="row listing-card">
       {listings.map(card => {
         return (
 

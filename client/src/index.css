@@ -33,31 +33,27 @@ a:hover {
   height: 130px;
 }
 
-.flex-nav ul {
-  list-style: none;
-  align-items: baseline;
-}
-
-.flex-nav li {
-  padding: 5px;
-  margin: auto 5px;
-}
-
-.flex-nav img {
-  margin: auto;
-}
-
-.one {
-  flex-grow: 1;
+.logo {
+  margin: auto 60px;
+  list-style-type: none;
   float: left;
 }
 
-.two,
-.three {
-  display: block;
-  width: 50%;
+.buttons {
+  list-style-type: none;
   float: right;
-  margin: auto;
+  margin-right: 40px;
+}
+
+.buttons ul {
+
+
+}
+
+.buttons li {
+  width: 200px;
+  justify-content: space-around;
+
 }
 
 .disable-link {
@@ -101,7 +97,8 @@ a:hover {
   border-radius: 4px;
   border-width: 20px;
   border-style: solid;
-  border-color: #cdd9d3;
+  border-color: #fff;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
 }
 /**********************************
   listing form
@@ -139,8 +136,8 @@ a:hover {
   text-decoration: none;
   outline-color: #062f1a;
   transition: background .5s;
-  width: 100%;
-
+  width: 70%;
+  float: right;
 }
 .btn-square:hover {
   background: #094426;
@@ -184,3 +181,104 @@ a:hover {
 /*********************************
    carousel
 *********************************/
+.carousel-container {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 40%;
+  float: left;
+  color: #333;
+  margin-top: 20px;
+  margin-left: 20px;
+  background: lightgrey;
+}
+.single-list-item-key {
+  display: inline-block;
+  padding-right: 20px;
+
+}
+.single-item-image {
+  width: 100%;
+}
+@media all and (min-width: 593px) and (max-width: 1040px) {
+  .single-item-image {
+    margin-top: 30%;
+  }
+}
+.chat-with-button {
+  margin-bottom: 80px;
+}
+.all-items-seller-heading {
+  color: #696969;
+
+}
+.all-listings-from-user {
+  border-radius: 1%;
+}
+.user-listings-container {
+  background-color: #f2f5f4;
+}
+.all-items-seller-heading:before, .all-items-seller-heading:after {
+  content: "";
+  display: inline-block;
+  width: 9%;
+  margin: 0 .5em 0 -55%;
+  vertical-align: middle;
+  border-bottom: 1px solid;
+}
+.all-items-seller-heading:after {
+  margin: 0 -55% 0 .5em;
+}
+.single-item-listings-container {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.single-listing-title {
+  padding-bottom: 30px;
+}
+.profile-pic-single {
+  border-radius: 50%;
+  height: 85px;
+  width: 85px;
+  margin-top: 10px;
+}
+
+/*********************************
+   input
+*********************************/
+
+.equip-search {
+  background-color: #fff;
+  box-shadow: none;
+  display: block;
+  min-width: 100%;
+}
+
+.equip-search input {
+  width: 100%;
+  padding: 12px 50px;
+  margin: 20px auto;
+  text-align: left;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: none;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.equip-search input:focus {
+  outline: none;
+  border: 2px solid #527c67;
+}
+
+.filter {
+  margin: 0 auto 60px;
+  width: 100%;
+  min-width: 100%;
+  background-color: #fff;
+  box-shadow: none;
+  display: block;
+}
+
+.equip-display {
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+}

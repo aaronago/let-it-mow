@@ -34,6 +34,7 @@ class ChatContainer extends Component {
 
     return (
       <div className="wrapper">
+        <h2>Here Are Your Open Conversations</h2>
         <div className="row">
             {rooms}
         </div>

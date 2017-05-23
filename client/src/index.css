@@ -178,11 +178,17 @@ html, body {
 }
 .single-list-item-key {
   display: inline-block;
-  padding-right: 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  margin-right: 20px;
 
 }
 .single-item-image {
   width: 100%;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 @media all and (min-width: 593px) and (max-width: 1040px) {
   .single-item-image {
@@ -199,14 +205,27 @@ html, body {
 .all-items-seller-heading {
   color: #696969;
   margin-top: 40px;
+  margin-bottom: 40px;
 
 
 }
 .all-listings-from-user {
-  border-radius: 1%;
+  border-radius: 2%;
+  background-color: #fff;
+  padding-bottom: 20px;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+
 }
-.user-listings-container {
+.col-6.user-listings-container{
   background-color: #f2f5f4;
+  box-shadow: none;
+}
+.more-seller-container {
+  background-color: #f2f5f4;
+  border-radius: 2%;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-top: 20px;
 }
 .all-items-seller-heading:before, .all-items-seller-heading:after {
   content: "";
@@ -235,9 +254,12 @@ html, body {
   height: 85px;
   width: 85px;
   margin-top: 10px;
+  margin-bottom: 5px;
 }
 .static-map {
   height: 300px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .single-item-des {
   margin-bottom: 10px;
@@ -256,4 +278,36 @@ html, body {
 }
 .email-logo {
   color: grey;
+}
+.more-seller-name {
+  margin-bottom: 15px;
+}
+.more-seller-price {
+  color: grey;
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.more-seller-item-title {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+}
+.more-seller-link {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+.more-seller-thumbnail {
+  width: 100%;
+}
+
+.chat-row-single {
+  background-color: #fff;
+  border-radius: 2%;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  padding-bottom: 18px;
+  padding-top: 10px;
 }

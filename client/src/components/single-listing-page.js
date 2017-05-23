@@ -65,12 +65,15 @@ class SingleListingPage extends Component {
           <FontAwesome className='fa fa-envelope-square' size='3x' aria-hidden='true'/></a>
         </div>
       <div className='col-6 user-listings-container'>
+       <div className='chat-row-single'>
         <h1>${listing.price} / Day</h1>
         <h2 className='single-listing-title'>{listing.title}</h2>
           <form action="" onSubmit={this.onSubmit}>
             <input className='single-page-chat'type="text" placeholder='Type Message...' autoFocus='true' onChange={this.onInputChange}/>
             <input className='btn-square chat-with-button'type="submit" value={`Send Chat To ${listing.createdBy.name}`}/>
           </form>
+        </div>
+        <h4 className='all-items-seller-heading'><strong>ALL ITEMS FROM RENTER</strong></h4>
           <MoreFromSeller className='more-seller' userId={listing.createdBy} picId={this.props.match.params}/>
         </div>
       </div>

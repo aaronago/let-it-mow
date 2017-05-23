@@ -38,6 +38,7 @@
     justify-content: space-around;
   }
 
+
   [class*="col-"] {
     margin-right: 2%;
   }

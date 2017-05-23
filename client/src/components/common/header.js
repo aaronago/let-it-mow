@@ -34,7 +34,9 @@ export class Header extends Component {
       <div>
         <nav className="flex-nav">
           <ul>
+
             <li className="one right"><Link to='/'><img src={img} /></Link></li>
+            <li><i className="ion-android-chat chat-icon"></i></li>
             <li className="two right">{isLoggedIn}</li>
             <li className="three">
               <div className={rentLink} >
@@ -42,6 +44,7 @@ export class Header extends Component {
                   to={`/mylistings/`}>Dashboard</Link>
               </div>
             </li>
+
           </ul>
           <span className={loginMsg}>Please login to list and manage your rentals</span>
         </nav>

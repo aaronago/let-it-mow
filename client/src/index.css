@@ -12,6 +12,9 @@ html, body {
   height: 100%;
   background-color: #f2f5f4;
   margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+
 }
 
 a {

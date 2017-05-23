@@ -18,12 +18,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.5s, color 0.3s;
+  transition: background-color 0.7s, color 0.7s;
 }
 
 .convo-box:hover {
   background-color: #333;
   color: #3A6951;
+}
+
+.convo-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.convo-details p {
+  font-size: 75%;
 }
 
 

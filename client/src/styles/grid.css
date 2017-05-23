@@ -10,18 +10,15 @@
 
 [class*="col-"] {
   margin-bottom: 20px;
-  padding-top: 25px;
-  padding-bottom: 20px;
   min-height: 20px;
-  background: #f2f5f4;
+  background: #fff;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .col-3 {
   flex: 0 0 calc(100% / 12 * 3);
-  background-color: #cdd9d3;
-  box-shadow: none;
+
 }
 
 .col-3 input {
@@ -43,9 +40,6 @@
 
 .col-4 {
   flex: 0 0 calc(90% / 12 * 4);
-  margin: 0 auto 60px;
-  background-color: #cdd9d3;
-  box-shadow: none;
 }
 
 @media all and (min-width: 600px) {
@@ -76,8 +70,7 @@
   }
   .col-3 {
     flex: 0 0 calc(100% / 12 * 3);
-    background-color: #cdd9d3;
-    box-shadow: none;
+
   }
 
   .col-3 input {
@@ -99,9 +92,6 @@
 
   .col-4 {
     flex: 0 0 calc(90% / 12 * 4);
-    background-color: #cdd9d3;
-    color: #010d07;
-    box-shadow: none;
   }
   .col-5 {
     flex: 0 0 calc(90% / 12 * 5);

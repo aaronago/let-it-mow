@@ -7,10 +7,12 @@
 }
 
 .footer-motto {
+  margin-top: 15px;
   font-size: 16px;
   vertical-align: bottom;
 }
 .footer-copyright {
+  margin-top: 15px;
   font-size: 14px;
   color: grey;
   vertical-align: bottom;
@@ -30,4 +32,16 @@
   color: darkgreen;
   padding-bottom: 20px;
   padding-top: 20px;
+}
+@media all and (max-width: 700px) {
+  .footer-content{
+    clear: both;
+  }
+  .flex-nav-footer {
+    clear: both;
+    overflow: auto;
+  }
+  .footer-logo {
+    margin-left: 30%;
+  }
 }

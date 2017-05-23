@@ -77,7 +77,6 @@ class SingleListingPage extends Component {
         <h4 className='all-items-seller-heading'><strong>ALL ITEMS FROM RENTER</strong></h4>
           <MoreFromSeller className='more-seller' userId={listing.createdBy} picId={this.props.match.params}/>
         </div>
-          <Footer />
       </div>
     );
   }

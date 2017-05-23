@@ -14,6 +14,7 @@ import SingleListingPage from './components/single-listing-page';
 import Map from './components/map-components/map';
 import UserListings from './components/user-listings';
 import Header from './components/common/header';
+import Footer from './components/common/footer';
 import ChatContainer from './components/chat-components/chat-container';
 import ChatRoom from './components/chat-components/chat-room';
 import Terms from './components/common/terms-conditions';
@@ -37,6 +38,7 @@ ReactDOM.render(
           <Route path="/mylistings/" component={UserListings} />
           <Route path="/" component={App} />
         </Switch>
+        <Footer />
       </div>
     </BrowserRouter>
   </Provider>,

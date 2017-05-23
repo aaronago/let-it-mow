@@ -240,4 +240,20 @@ html, body {
   height: 300px;
 }
 .single-item-des {
+  margin-bottom: 10px;
+}
+.single-des-p {
+  margin-bottom: 10px;
+}
+.faicon {
+  padding-left: 20px;
+}
+.twitter-logo {
+  color: #00aced;
+}
+.facebook-logo {
+  color:#3b5998;
+}
+.email-logo {
+  color: grey;
 }

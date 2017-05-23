@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 700px) {
   .wrapper {
     width: calc(100% - 5rem);
     background: #cdd9d3;

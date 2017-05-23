@@ -3,7 +3,16 @@ This application builds upon the [sharing economy](http://people.uta.fi/~kljuham
 
 The live app can be viewed here: [Let It Mow](http://let-it-mow.herokuapp.com/). It is currently centered around the Denver, Colorado area but is easily scalable to include any city or locale.
 
+## Features
 
+### User Submit Form
+
+  The user submit form to allow users to add new rental listings is implemented
+with [Redux Form](http://redux-form.com/6.7.0/).
+
+Using Redux Form simplified much of building the form component. The code for creating each field is very consistent, making the code clean and easy to understand. Form validation is made easier using the validate method, and accessing the form's field values for submittal or to pass as props is uncomplicated and requires few lines of code.
+
+The documentation for Redux Form is fairly comprehensive and there are decent examples to help get anyone started with it.
 
 ## Getting started
 

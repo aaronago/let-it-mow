@@ -69,7 +69,7 @@ class SingleListingPage extends Component {
         <h1>${listing.price} / Day</h1>
         <h2 className='single-listing-title'>{listing.title}</h2>
           <form action="" onSubmit={this.onSubmit}>
-            <input className='single-page-chat'type="text" placeholder='Type Message...' autoFocus='true' onChange={this.onInputChange}/>
+            <input className='single-page-chat'type="text" value={this.state.text} placeholder='Type Message...' autoFocus='true' onChange={this.onInputChange}/>
             <input className='btn-square chat-with-button'type="submit" value={`Send Chat To ${listing.createdBy.name}`}/>
           </form>
         </div>

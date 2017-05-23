@@ -36,3 +36,41 @@
   width: calc(100% - 10rem);
   border-radius: 4px;
 }
+
+/**********************************
+  input and filter
+**********************************/
+
+.equip-search {
+  box-shadow: none;
+}
+
+.filter {
+  color: #010d07;
+  box-shadow: none;
+}
+/**********************************
+  listings display main page
+**********************************/
+.equip-display {
+  margin: 40px auto;
+}
+
+@media all and (min-width: 720px) {
+
+  .equip-search input {
+    width: 120%;
+    padding: 12px 50px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #fff;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  .equip-search input:focus {
+    width: 200%;
+    outline: none;
+    border: 2px solid #527c67;
+  }
+}

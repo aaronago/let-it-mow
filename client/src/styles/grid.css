@@ -28,7 +28,7 @@
   width: 100%;
   padding: 12px 50px;
   margin: 20px auto;
-  text-align: center;
+  text-align: left;
   box-sizing: border-box;
   border-radius: 4px;
   background-color: #e6ece9;
@@ -48,11 +48,11 @@
   box-shadow: none;
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 720px) {
   .wrapper {
     width: calc(100% - 5rem);
     background: #cdd9d3;
-    margin: 0 auto;
+    margin: 40px auto;
     border-radius: 4px;
   }
 
@@ -81,9 +81,8 @@
   }
 
   .col-3 input {
-    width: 100%;
+    width: 120%;
     padding: 12px 50px;
-    margin: 8px 0;
     box-sizing: border-box;
     border-radius: 4px;
     background-color: #e6ece9;

@@ -5,6 +5,7 @@ import { createListing } from '../actions/index';
 import request from 'superagent';
 import ImgUpload from './image-uploader';
 import PreviewImage from './preview-image';
+import PreviewText from './preview-text';
 
 
 
@@ -17,9 +18,12 @@ class AddItemForm extends Component {
     super(props);
 
     this.state = {
-      public_ids: []
+      public_ids: [],
+      renderText: false
     };
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.resetForm = this.resetForm.bind(this);
+    this.previewText = this.previewText.bind(this);
   }
 
   renderField({input, label, type, textarea, placeholder, meta: { touched, error } }) {
@@ -44,7 +48,8 @@ class AddItemForm extends Component {
       if (err) console.error(err);
       if (res.body.secure_url !== '') {
         this.setState({
-          public_ids: [...this.state.public_ids, res.body.public_id]
+          public_ids: [...this.state.public_ids, res.body.public_id],
+          renderText: true
         });
       }
     });
@@ -58,14 +63,30 @@ class AddItemForm extends Component {
       onClick();
       reset();
       this.setState({
-        public_ids: []
+        public_ids: [],
+        renderText: false
       });
     });
   }
 
+  resetForm() {
+    this.props.reset();
+    this.setState({
+      public_ids: [],
+      renderText: false
+    });
+  }
+
+  previewText() {
+    let formValues = '';
+    if (this.state.renderText && this.props.formValues) {
+      formValues = <PreviewText formValues={this.props.formValues} />;
+    }
+    return formValues;
+  }
+
   render() {
     const gallery = this.state.public_ids.map(id => {
-      console.log(this.props.formValues)
       return <PreviewImage key={id} id={id} />;
     });
 
@@ -115,13 +136,16 @@ class AddItemForm extends Component {
             <button className='btn-square'
               type="submit" disabled={submitting}>Submit</button>
             <button className='btn-square'
-              type="button" disabled={pristine || submitting} onClick={reset}>
-              Clear Values
+              type="button" disabled={pristine || submitting} onClick={this.resetForm}>
+              Clear Form
             </button>
           </div>
         </form>
         <div className="preview-gallery">
           {gallery}
+        </div>
+        <div>
+          {this.previewText()}
         </div>
     </div>
     );

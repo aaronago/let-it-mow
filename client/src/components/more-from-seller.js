@@ -25,10 +25,10 @@ class MoreFromSeller extends Component {
       if (listItem._id !==  this.props.picId.id) {
         return (
           <div className='single-list-item-key' key={listItem._id}>
-            <Link to={`/listings/${listItem._id}`} onClick={this.handleClick}>
-              <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${listItem.images[0]}.jpg`}/>
-              <p>{listItem.title}</p>
-              <p>${listItem.price} / Day</p>
+            <Link className='more-seller-link' to={`/listings/${listItem._id}`} onClick={this.handleClick}>
+              <img className='more-seller-thumbnail' src={`http://res.cloudinary.com/letitmow/image/upload/w_175,h_200/${listItem.images[0]}.jpg`}/>
+              <p className='more-seller-item-title'>{listItem.title}</p>
+              <p className='more-seller-price'>${listItem.price} / Day</p>
             </Link>
           </div>
         );
@@ -39,10 +39,9 @@ class MoreFromSeller extends Component {
 
     return (
       <div className="all-listings-from-user">
-        <h4 className='all-items-seller-heading'><strong>ALL ITEMS FROM RENTER</strong></h4>
         <img className='profile-pic-single' src={this.props.userId.profilePic}/>
-        <h4>{this.props.userId.name}</h4>
-        <div>
+        <h4 className='more-seller-name'>{this.props.userId.name}</h4>
+        <div className='more-seller-container'>
             {listItems}
         </div>
       </div>

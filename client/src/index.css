@@ -252,10 +252,11 @@ a:hover {
 .equip-search {
   background-color: #fff;
   box-shadow: none;
+  display: block;
 }
 
 .equip-search input {
-  width: 95%;
+  width: 100%;
   padding: 12px 50px;
   margin: 20px auto;
   text-align: left;
@@ -273,8 +274,10 @@ a:hover {
 
 .filter {
   margin: 0 auto 60px;
+  width: 100%;
   background-color: #fff;
   box-shadow: none;
+  display: block;
 }
 
 .equip-display {

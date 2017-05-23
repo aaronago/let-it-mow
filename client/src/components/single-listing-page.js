@@ -44,11 +44,10 @@ class SingleListingPage extends Component {
 
     const position = listing.geometry.coordinates
 
-
     return (
       <div className='row single-item-listings-container'>
         <div className='col-6'>
-          <img className='single-item-image' src={`http://res.cloudinary.com/letitmow/image/upload/w_500,h_700,c_scale/${listing.images[0]}.jpg`}/>
+          <img className='single-item-image' src={`http://res.cloudinary.com/letitmow/image/upload/w_500,q_auto,fl_any_format,c_scale/${listing.images[0]}.jpg`}/>
           <h4 className='all-items-seller-heading single-item-des'>DESCRIPTION</h4>
           <p className='single-des-p'>{listing.description}</p>
           <div className='static-map'>

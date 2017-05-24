@@ -44,7 +44,6 @@ class SingleListingPage extends Component {
     }
 
 
-    const position = listing.geometry.coordinates
     const time = listing.createdAt;
     const sent = moment(time).fromNow();
     console.log(sent)

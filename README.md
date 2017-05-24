@@ -26,7 +26,7 @@ The documentation for Redux Form is fairly comprehensive and there are decent ex
 
 ### Messaging and Real Time chat
 Let it Mow offers users the ability to send a message to any renter about any piece of equipment directly through the site.
-![chat](https://photos.google.com/album/AF1QipMIzlerD59hyILpNcKG8MN-sxiCdwTRdMETbhmT/photo/AF1QipPMEsH0fqBJaXMA2QCYheZJvJgA8lpRH8Q8B0jk)
+![chat](https://raw.githubusercontent.com/Jean-Luc19/let-it-mow/unread-messages-feature/client/public/images/chat-screen-shot1.png)
 
 The next time the owner of that listing visits the site he'll be notified that he has new messages about that listing.
 

@@ -11,6 +11,11 @@
 
 }
 
+input::placeholder {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 /**********************************
   map
 **********************************/
@@ -59,7 +64,7 @@
   }
 
   .equip-search input:focus {
-    width: 100%;
+    width: 90%;
     outline: none;
     border: 2px solid #527c67;
   }

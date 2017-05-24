@@ -1,0 +1,32 @@
+.dash-stat {
+ font-size: 28px;
+ color: #3a6951;
+ font-weight: bold;
+}
+.dash-head {
+  margin-bottom: 10px;
+  margin-top: 50px;
+}
+.dash-title {
+  padding-top: 30px;
+  margin-bottom: 20px;
+}
+.rc-slider-step {
+  background-color: #3a6951;
+}
+.rc-slider-handle {
+  height: 30px;
+  width: 30px;
+  border-color: #3a6951;
+}
+.rc-slider-handle:hover {
+  border-color: brown;
+}
+.stats-container {
+  background-color: #f2f5f4;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 2%;
+  padding-top: 15px;
+  padding-bottom: 20px;
+}

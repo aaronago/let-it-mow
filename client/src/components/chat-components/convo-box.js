@@ -6,7 +6,7 @@ import '../../styles/chat-styles.css';
 
 const ConvoBox = props => {
   const { listing, message } = props;
-  const read = message.read ? '' : 'unread meassage'
+  const read = message.read ? '' : 'unread meassage';
   const lastMessage = message.body.slice(0,20).concat('...');
   const time = message.createdAt;
   const sent = moment(time).fromNow();

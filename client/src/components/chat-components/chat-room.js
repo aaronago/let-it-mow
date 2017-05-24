@@ -60,7 +60,7 @@ class ChatRoom extends Component {
     const chatMessages = this.props.messages.map(message => {
       const who = name == message.author.name ? 'self' : 'friend';
       if (who === 'friend') {
-        this.props.markRead(message._id)
+        this.props.markRead(message._id);
       }
       return (
         <div className={`chat ${who}`} key={message._id}>

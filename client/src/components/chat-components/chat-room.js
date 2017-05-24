@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchConversation, sendReply, fetchUser, markRead } from '../../actions';
+import { fetchConversation, sendReply, fetchUser, markRead, fetchConversations } from '../../actions';
 import io from 'socket.io-client';
 import '../../styles/chat-styles.css';
 
@@ -49,6 +50,10 @@ class ChatRoom extends Component {
     return pic ? <img src={pic} alt={name}/> : <p>{name.slice(0,1)}</p>;
   }
 
+  handleMouseMove() {
+    this.props.fetchConversations();
+  }
+
   render() {
 
     const { message, name, readerId } = this.props;
@@ -73,7 +78,7 @@ class ChatRoom extends Component {
     });
 
     return (
-      <div className="chat-room">
+      <div onMouseMove={this.handleMouseMove.bind(this)} className="chat-room">
         <div className="chatbox">
           <div className="chatlogs">
             {chatMessages}
@@ -99,4 +104,4 @@ const mapStateToProps = state => ({
   readerId: state.listings._id
 });
 
-export default connect(mapStateToProps, { fetchConversation, sendReply, fetchUser, markRead })(ChatRoom);
+export default connect(mapStateToProps, { fetchConversation, sendReply, fetchUser, markRead, fetchConversations })(ChatRoom);

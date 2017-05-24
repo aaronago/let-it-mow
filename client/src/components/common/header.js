@@ -3,9 +3,14 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Cookies from 'js-cookie';
 import img from './let-it-mow-logo.png';
+import FontAwesome from 'react-fontawesome';
+import { fetchConversations } from '../../actions';
 
 
 export class Header extends Component {
+  handleMouseMove() {
+    this.props.fetchConversations();
+  }
 
   render() {
 
@@ -29,14 +34,23 @@ export class Header extends Component {
       );
     }
 
+  const notify = this.props.unread > 0 ? 'ion-email-unread nav-chat-unread' : 'ion-ios-email-outline nav-chat-read';
+
     return (
 
-      <div>
+      <div onMouseMove={this.handleMouseMove.bind(this)}>
         <nav className="flex-nav">
           <ul className="logo">
             <li><Link to='/'><img src={img} /></Link></li>
           </ul>
-          <ul className="buttons">
+          <ul className="nav-buttons">
+            <li>
+              <div >
+                <Link to={`/chat`}>
+                    <i className={notify}></i>
+                </Link>
+              </div>
+            </li>
             <li>{isLoggedIn}</li>
             <li>
               <div className={rentLink} >
@@ -53,7 +67,8 @@ export class Header extends Component {
 };
 
 const mapStateToProps = (state, props) => ({
-  name: state.listings.name
+  name: state.listings.name,
+  unread: state.chat.unreadCount
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { fetchConversations })(Header);

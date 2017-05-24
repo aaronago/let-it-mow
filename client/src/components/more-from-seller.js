@@ -20,7 +20,6 @@ class MoreFromSeller extends Component {
 
   render() {
     let listItems = this.props.allFromSeller;
-    console.log(this.props)
     listItems = this.props.allFromSeller.map (listItem => {
       if (listItem._id !==  this.props.picId.id) {
         return (

@@ -96,6 +96,7 @@ class HomepageListings extends Component {
         </div>
       </div>
       <div className="row listing-card">
+        <div className='row listing-card-container'>
       {listings.map(card => {
         return (
 
@@ -103,6 +104,7 @@ class HomepageListings extends Component {
            price={card.price} id={card._id}/>
        )}
      )}
+         </div>
       </div>
     </div>
    )

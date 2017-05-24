@@ -12,6 +12,7 @@ export const fetchUserSuccess = (user) => ({
     name: user.name,
     userId: user.googleID,
     picture: user.profilePicUrl,
+    _id: user._id
 });
 
 export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
@@ -70,9 +71,10 @@ export const fetchMoreFromSellerFailure = (error) => ({
 //-----------Conversation Action Types-------------//
 
 export const FETCH_CONVERSATIONS_SUCCESS = 'FETCH_CONVERSATIONS_SUCCESS';
-export const fetchConversationsSuccess = (conversations) => ({
+export const fetchConversationsSuccess = (conversations, unreadCount) => ({
   type: FETCH_CONVERSATIONS_SUCCESS,
-  conversations
+  conversations,
+  unreadCount
 });
 
 export const FETCH_CONVERSATIONS_FAILURE = 'FETCH_CONVERSATIONS_FAILURE';
@@ -229,8 +231,12 @@ export const fetchConversations = () => dispatch => {
   })
   .then(response => response.json())
   .then(json => {
+    const count = json.conversations.reduce((a, b) => {
+      const count = b.message[0].read ? 0 : 1;
+      return a + count;
+    },0);
 
-    dispatch(fetchConversationsSuccess(json.conversations));
+    dispatch(fetchConversationsSuccess(json.conversations, count));
   })
   .catch(err => dispatch(fetchConversationsFailure(err)));
 };
@@ -285,6 +291,28 @@ export const startConversation = (data) => dispatch => {
       },
       method: 'POST',
       body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then(json => {
+      console.log(json);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+};
+
+export const markRead = messageId => dispatch => {
+
+  const accessToken = Cookies.get('accessToken');
+
+  return fetch(`/api/chat/${messageId}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
     })
     .then((response) => response.json())
     .then(json => {

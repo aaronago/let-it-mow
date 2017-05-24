@@ -36,7 +36,6 @@ exports.getConversations = (req, res, next) => {
 
 exports.getConversation = (req, res, next) => {
   Message.find({ conversationId: req.params.conversationId })
-    .select('createdAt body author')
     .sort('createdAt')
     .populate({
       path: 'author',
@@ -61,7 +60,8 @@ exports.newConversation = (req, res, next) => {
       const message = new Message({
         conversationId: newConvo._id,
         author: req.user._id,
-        body: req.body.message
+        body: req.body.message,
+        read: false
       });
       return message.save();
     })
@@ -72,10 +72,12 @@ exports.newConversation = (req, res, next) => {
 };
 
 exports.sendReply = (req, res, next) => {
+
   const reply = new Message({
     conversationId: req.params.conversationId,
     body: req.body.message,
-    author: req.user._id
+    author: req.user._id,
+    read: false
   });
 
   reply.save()
@@ -84,3 +86,21 @@ exports.sendReply = (req, res, next) => {
     })
     .catch(err => res.send({ error: err }));
 };
+
+exports.markRead = (req, res, next) => {
+
+  Message.findOne({ _id: req.params.conversationId })
+    .then(message => {
+        return Message.findOneAndUpdate({ _id: message._id }, {$set: { read: true }}, { new: true });
+    })
+    .then(updatedMessage => res.status(200).json({messages: updatedMessage}))
+}
+// Message.findOne({ _id: req.params.conversationId })
+//   .then(messages => {
+//     const updates = messages.map(message => {
+//       return Message.findOneAndUpdate({ _id: message._id }, {$set: { read: true }}, { new: true });
+//     })
+//     return Promise.all(updates)
+//   })
+//   .then(updatedMessages => res.status(200).json({messages: updatedMessages}))
+// }

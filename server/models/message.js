@@ -14,6 +14,10 @@ const MessageSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  read: {
+    type: Boolean,
+    required: true
   }
 },
 {

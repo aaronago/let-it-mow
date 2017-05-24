@@ -7,20 +7,16 @@ import '../../styles/chat-styles.css';
 
 
 class ChatContainer extends Component {
-  constructor(props){
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchConversations();
   }
 
   render() {
-    const { conversations } = this.props;
-    console.log(conversations);
-    if (!conversations) {
+    if (this.props.conversations.length === 0) {
       return <div>...Loading</div>;
     }
+    const { conversations } = this.props;
 
     const rooms = conversations.length > 0 ? conversations.map(room => {
       if (room.message.length > 0) {

@@ -29,7 +29,8 @@ exports.getConversations = (req, res, next) => {
       return Promise.all(fullConversations);
     })
     .then(allConversations => {
-      return res.status(200).json({ conversations: allConversations });
+      const fullConversations = allConversations.filter(x => x.message.length > 0);
+      return res.status(200).json({ conversations: fullConversations, user: req.user._id });
     })
     .catch(err => res.send(err));
 };

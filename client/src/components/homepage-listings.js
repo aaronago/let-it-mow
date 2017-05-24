@@ -100,7 +100,7 @@ class HomepageListings extends Component {
       {listings.map(card => {
         return (
 
-          <GalleryListing key={card._id} images={card.images} title={card.title}
+          <GalleryListing key={card._id} created={card.createdAt} images={card.images} title={card.title}
            price={card.price} id={card._id}/>
        )}
      )}

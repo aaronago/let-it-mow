@@ -10,7 +10,7 @@ const ConvoBox = props => {
   const lastMessage = message.body.slice(0,20).concat('...');
   const time = message.createdAt;
   const sent = moment(time).fromNow();
-
+  
 
   return (
     <div className="col-8 convo-container">

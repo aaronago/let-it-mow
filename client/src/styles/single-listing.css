@@ -1,0 +1,148 @@
+.carousel-container {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 40%;
+  float: left;
+  color: #333;
+  margin-top: 20px;
+  margin-left: 20px;
+  background: lightgrey;
+}
+.single-list-item-key {
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  margin-right: 20px;
+
+}
+.single-item-image {
+  width: 100%;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+@media all and (min-width: 593px) and (max-width: 1040px) {
+  .single-item-image {
+    margin-top: 30%;
+  }
+}
+.chat-with-button {
+  margin: auto;
+  max-width: 250px;
+  font-size: 18px;
+  cursor: pointer;
+
+}
+.all-items-seller-heading {
+  color: #696969;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+
+}
+.all-listings-from-user {
+  border-radius: 2%;
+  background-color: #fff;
+  padding-bottom: 20px;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+
+}
+.col-6.user-listings-container{
+  background-color: #f2f5f4;
+  box-shadow: none;
+}
+.more-seller-container {
+  background-color: #f2f5f4;
+  border-radius: 2%;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-top: 20px;
+}
+.all-items-seller-heading:before, .all-items-seller-heading:after {
+  content: "";
+  display: inline-block;
+  width: 9%;
+  margin: 0 .5em 0 -55%;
+  vertical-align: middle;
+  border-bottom: 1px solid;
+}
+.all-items-seller-heading:after {
+  margin: 0 -55% 0 .5em;
+}
+.single-item-listings-container {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.single-listing-title {
+  padding-bottom: 30px;
+}
+.single-page-chat {
+  width: 350px;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+.profile-pic-single {
+  border-radius: 50%;
+  height: 85px;
+  width: 85px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.static-map {
+  height: 300px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.single-item-des {
+  margin-bottom: 10px;
+}
+.single-des-p {
+  margin-bottom: 10px;
+}
+.faicon {
+  padding-left: 20px;
+}
+.twitter-logo {
+  color: #00aced;
+}
+.facebook-logo {
+  color:#3b5998;
+}
+.email-logo {
+  color: grey;
+}
+.more-seller-name {
+  margin-bottom: 15px;
+}
+.more-seller-price {
+  color: grey;
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.more-seller-item-title {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+}
+.more-seller-link {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+.more-seller-thumbnail {
+  width: 100%;
+}
+
+.chat-row-single {
+  background-color: #fff;
+  border-radius: 2%;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  padding-bottom: 18px;
+  padding-top: 10px;
+}
+.user-delete-btn {
+  padding-left: 25px;
+}

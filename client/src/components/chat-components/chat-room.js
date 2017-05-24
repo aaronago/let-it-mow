@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchConversation, sendReply, fetchUser } from '../../actions';
+import { fetchConversation, sendReply, fetchUser, markRead } from '../../actions';
 import io from 'socket.io-client';
+import '../../styles/chat-styles.css';
 
 
 class ChatRoom extends Component {
@@ -49,13 +50,18 @@ class ChatRoom extends Component {
   }
 
   render() {
-    const { message, name } = this.props;
+
+    const { message, name, readerId } = this.props;
+
 
     this.socket.on('refresh messages', () => {
     this.props.fetchConversation(this.props.match.params.conversationId);
     });
     const chatMessages = this.props.messages.map(message => {
       const who = name == message.author.name ? 'self' : 'friend';
+      if (who === 'friend') {
+        this.props.markRead(message._id);
+      }
       return (
         <div className={`chat ${who}`} key={message._id}>
           <div className="user-photo">
@@ -83,12 +89,14 @@ class ChatRoom extends Component {
 
   componentWillUnmount() {
     this.socket.emit('leave conversation', this.props.match.params.conversationId);
+
   }
 }
 
 const mapStateToProps = state => ({
   messages: state.chat.messages,
-  name: state.listings.name
+  name: state.listings.name,
+  readerId: state.listings._id
 });
 
-export default connect(mapStateToProps, { fetchConversation, sendReply, fetchUser })(ChatRoom);
+export default connect(mapStateToProps, { fetchConversation, sendReply, fetchUser, markRead })(ChatRoom);

@@ -1,0 +1,75 @@
+@media all and (min-width: 600px) {
+  /**********************************
+    nav
+  **********************************/
+
+}
+
+.chat-icon {
+  font-size: 250%;
+  color: #3a6951;
+
+}
+
+input::placeholder {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/**********************************
+  map
+**********************************/
+
+.listings-map {
+  width: calc(100% - 10rem);
+  border-radius: 4px;
+}
+
+/**********************************
+  input and filter
+**********************************/
+
+.equip-search {
+  box-shadow: none;
+}
+
+.filter {
+  color: #010d07;
+  box-shadow: none;
+}
+/**********************************
+  listings display main page
+**********************************/
+.equip-display {
+  margin: 40px auto;
+}
+
+@media all and (min-width: 720px) {
+
+  .equip-search {
+    background-color: #fff;
+    box-shadow: none;
+    display: block;
+    min-width: 50%;
+  }
+
+  .equip-search input {
+    width: 50%;
+    padding: 12px 50px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #fff;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  .equip-search input:focus {
+    width: 90%;
+    outline: none;
+    border: 2px solid #527c67;
+  }
+
+  .filter {
+    min-width: 40%;
+  }
+}

@@ -1,42 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchConversations } from '../../actions';
-import { Link } from 'react-router-dom';
 
+import ConvoBox from './convo-box';
+import '../../styles/chat-styles.css';
 
 
 class ChatContainer extends Component {
-  constructor(props){
-    super(props);
-  }
 
   componentDidMount() {
     this.props.fetchConversations();
   }
 
   render() {
-    const { conversations } = this.props;
-    console.log(conversations);
-    if (!conversations) {
+    if (this.props.conversations.length === 0) {
       return <div>...Loading</div>;
     }
+    const { conversations } = this.props;
 
-    const rooms = conversations.map(room => {
-      if (room.message[0].body != undefined) {
-        return (
-
-          <div key={room.message[0].conversationId}>
-            <Link to={`/chat/${room.message[0].conversationId}`}>
-              <li>Chat with {room.message[0].author.name} about {room.listing.title}</li>
-            </Link>
-          </div>
-        );
+    const rooms = conversations.length > 0 ? conversations.map(room => {
+      if (room.message.length > 0) {
+        return  <ConvoBox listing={room.listing} message={room.message[0]} key={room.message[0]._id}/>;
       }
-    });
+    }) : <div className="convo-box">
+          <div>
+            <h2>It doesnt look like you have any active conversations.</h2>
+          </div>
+        </div>;
 
     return (
-      <div>
-        {rooms}
+      <div className="wrapper">
+        <h2>Here Are Your Open Conversations</h2>
+        <div className="row">
+            {rooms}
+        </div>
       </div>
     );
   }

@@ -12,9 +12,9 @@ class GalleryListing extends Component {
       <div className="col-2">
         <Link to={`/listings/${this.props.id}`}>
 
-            <img src={`http://res.cloudinary.com/letitmow/image/upload/w_250,h_200/${this.props.images[0]}.jpg`}/>
-            <p>{this.props.title}</p>
-            <p>Only ${this.props.price} to rent</p>
+            <img src={`http://res.cloudinary.com/letitmow/image/upload/w_200,h_200/${this.props.images[0]}.jpg`}/>
+            <p className='more-seller-item-title'>{this.props.title}</p>
+            <p className='more-seller-price'>${this.props.price} / Day</p>
 
         </Link>
       </div>

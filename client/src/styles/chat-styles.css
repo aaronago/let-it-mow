@@ -1,0 +1,171 @@
+/*-----------------------
+   Chat Container
+-------------------------*/
+.convo-container {
+  border-radius: 5px;
+}
+
+.convo-container a {
+  text-decoration: none;
+}
+
+.convo-box {
+  border-radius: 5px;
+  background-color: #3A6951;
+  color: #eee;
+  padding: 0 10px;
+  min-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.7s, color 0.7s;
+}
+
+.convo-box:hover {
+  background-color: #a58c6e;
+  color: #eee;
+}
+
+.convo-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.convo-details p {
+  font-size: 75%;
+}
+
+
+
+/*-----------------------
+   Chat Room
+-------------------------*/
+
+.chat-room {
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: tahoma, sans-serif;
+}
+
+.chatbox {
+  width: 500px;
+  min-width: 390px;
+  height: 600px;
+  background: #fff;
+  padding: 25px;
+  margin: 20px auto;
+  box-shadow: 0 3px #ccc;
+}
+
+.chatlogs {
+  padding: 10px;
+  width: 100%;
+  height: 450px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.chatlogs::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.chat {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.convo-box .user-photo,
+.chat .user-photo {
+  width: 60px;
+  height: 60px;
+  background: #094426;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.chat .user-photo img {
+  width: 100%;
+  height: 100%;
+
+}
+.chat .user-photo p {
+  text-align: center;
+  font-size: 20px;
+  color: #eee;
+}
+
+.chat .chat-message {
+  width: 80%;
+  padding: 15px;
+  margin: 5px 10px 0;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 75%;
+}
+
+.friend .chat-message {
+  background: #3a6951;
+}
+
+.self .chat-message {
+  background: #a58c6e;
+
+  order: -1;
+}
+
+.chat-form {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.chat-form textarea {
+  background: #fbfbfb;
+  width: 75%;
+  height: 50px;
+  border: 2px solid #eee;
+  border-radius: 3px;
+  resize: none;
+  padding: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.chat-form textarea:focus {
+  background: #fff;
+}
+.chat-form textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-form textarea::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.chat-form input {
+  background:  #3a6951;
+  padding: 5px 15px;
+  font-size: 30px;
+  color: #fff;
+  border: none;
+  margin: 0 10px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 5px #000000;
+  box-shadow: 5px 5px 10px #666666;
+  cursor: pointer;
+  transition: background .5s ease;
+}
+
+.chat-form input:hover {
+  background: #094426;
+}

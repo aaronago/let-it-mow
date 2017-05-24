@@ -5,6 +5,7 @@ import { createListing } from '../actions/index';
 import request from 'superagent';
 import ImgUpload from './image-uploader';
 import PreviewImage from './preview-image';
+import PreviewText from './preview-text';
 
 
 
@@ -17,20 +18,25 @@ class AddItemForm extends Component {
     super(props);
 
     this.state = {
-      public_ids: []
+      public_ids: [],
+      renderText: false
     };
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.resetForm = this.resetForm.bind(this);
+    this.previewText = this.previewText.bind(this);
   }
 
   renderField({input, label, type, textarea, placeholder, meta: { touched, error } }) {
-    const textareaType = <textarea {...input} placeholder={placeholder} type={type} />;
-    const inputType = <input {...input} placeholder={placeholder} type={type} />;
+    const textareaType = <textarea className="textarea" {...input} placeholder={placeholder} type={type} />;
+    const inputType = <input className="input" {...input} placeholder={placeholder} type={type} />;
     return (
-      <div>
-        <label>{label}</label>
+      <div className="form-field">
+        <label className="form-label">{label}</label>
         <div>
           {textarea ? textareaType : inputType}
-          {touched ? error : ''}
+          <div className="field-msg">
+            {touched ? error : ''}
+          </div>
         </div>
       </div>
     );
@@ -44,7 +50,8 @@ class AddItemForm extends Component {
       if (err) console.error(err);
       if (res.body.secure_url !== '') {
         this.setState({
-          public_ids: [...this.state.public_ids, res.body.public_id]
+          public_ids: [...this.state.public_ids, res.body.public_id],
+          renderText: true
         });
       }
     });
@@ -58,14 +65,30 @@ class AddItemForm extends Component {
       onClick();
       reset();
       this.setState({
-        public_ids: []
+        public_ids: [],
+        renderText: false
       });
     });
   }
 
+  resetForm() {
+    this.props.reset();
+    this.setState({
+      public_ids: [],
+      renderText: false
+    });
+  }
+
+  previewText() {
+    let formValues = '';
+    if (this.state.renderText && this.props.formValues) {
+      formValues = <PreviewText formValues={this.props.formValues} />;
+    }
+    return formValues;
+  }
+
   render() {
     const gallery = this.state.public_ids.map(id => {
-      console.log(this.props.formValues)
       return <PreviewImage key={id} id={id} />;
     });
 
@@ -73,7 +96,7 @@ class AddItemForm extends Component {
 
     return (
       <div className="form">
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <form className="submit-data col-5" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
           <Field
             name="title"
@@ -108,20 +131,23 @@ class AddItemForm extends Component {
             placeholder="Enter Your Zip"
           />
 
-          <div>
+          <div className="form-field">
             <ImgUpload handleImageUpload={this.handleImageUpload}/>
           </div>
-          <div>
-            <button className='btn-square'
+          <div className="btn-holder">
+            <button className="btn-square"
               type="submit" disabled={submitting}>Submit</button>
-            <button className='btn-square'
-              type="button" disabled={pristine || submitting} onClick={reset}>
-              Clear Values
+            <button className="btn-square"
+              type="button" disabled={pristine || submitting} onClick={this.resetForm}>
+              Clear Form
             </button>
           </div>
         </form>
-        <div className="preview-gallery">
-          {gallery}
+        <div className="preview-gallery col-5">
+          <h3 className="preview-label">Listing Preview</h3>
+          <div className="preview-images">{gallery}</div>
+          <div className="preview-text">{this.previewText()}</div>
+
         </div>
     </div>
     );
@@ -134,13 +160,13 @@ function validate(values) {
     errors.title = 'Please enter an Item Name';
   }
   if (!values.price) {
-    errors.price = 'Please enter a Price';
+    errors.price = 'Enter a Price';
   }
   if (!values.description) {
-    errors.description = 'Please enter a Description';
+    errors.description = '*Required';
   }
   if(!values.zipcode || values.zipcode.length < 5) {
-    errors.zipcode = 'Please enter a valid 5 digit Zip';
+    errors.zipcode = '5 digit Zip required';
   }
   return errors;
 }

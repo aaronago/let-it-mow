@@ -18,6 +18,7 @@ export default (state=initialState, action) => {
                  name: action.name,
                  userId: action.userId,
                  error: null,
+                 _id: action._id
                };
       case actions.FETCH_LISTINGS_SUCCESS:
         return { ...state,

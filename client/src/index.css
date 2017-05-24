@@ -194,7 +194,7 @@ input::placeholder {
   outline-color: #062f1a;
   transition: background .5s;
   width: 70%;
-
+}
 .btn-square:hover {
   background: #094426;
   text-decoration: none;

@@ -119,7 +119,7 @@ a:hover {
 }
 
 /**********************************
-  Buttons
+  buttons
 **********************************/
 .btn-square {
   -webkit-border-radius: 5;
@@ -284,4 +284,51 @@ a:hover {
 .equip-display {
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
   margin: 40px auto;
+}
+/*********************************
+   form
+*********************************/
+
+.input {
+  border: 5px ridge #84a192;
+  border-radius: 3px;
+}
+.textarea {
+  border: 5px ridge #84a192;
+  border-radius: 3px;
+}
+.form-field {
+  margin-top: 15px;
+}
+.field-msg {
+  color: red;
+  font-size: 16px;
+}
+.form {
+  margin-bottom: 25px;
+}
+.submit-data {
+  margin: 5%;
+  display: block;
+}
+.preview-gallery {
+  height: auto;
+  display: block;
+  text-align: center;
+  margin: 5%;
+}
+.preview-images {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.preview-text {
+  display: block;
+}
+.dropzone {
+  margin: auto;
+
+}
+.btn-holder {
+  text-align: center;
 }

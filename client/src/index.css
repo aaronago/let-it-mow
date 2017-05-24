@@ -69,7 +69,6 @@ h2:after {
   margin-top: 30px;
 }
 
-=======
 input::placeholder {
   font-size: 90%;
 }
@@ -77,34 +76,66 @@ input::placeholder {
 /**********************************
   nav
 **********************************/
+
 .flex-nav {
   background-color: #cdd9d3;
   width: 100%;
   padding-top: 15px;
   height: 130px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .logo {
   margin: 20px 40px;
   list-style-type: none;
-  float: left;
   max-width: 0.5rem;
+
 }
 
-.buttons {
+.nav-buttons {
+  max-width: 400px;
   list-style-type: none;
-  float: right;
-  margin-right: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 
-.buttons li {
+.nav-buttons li {
   width: 160px;
+}
+.nav-buttons li:first-child {
+  width: 60px;
+}
+
+.nav-chat-read {
+  font-size: 300%;
+  color: #3a6951;
+}
+
+.nav-chat-unread {
+  font-size: 300%;
+  color: red;
 }
 
 .disable-link {
   pointer-events: none;
 }
+@media all and (max-width: 600px) {
+  .flex-nav {
+    height: 200px;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .logo {
+    align-self: stretch;
+  }
+}
+
 /**********************************
   gallery
 **********************************/
@@ -363,13 +394,15 @@ input::placeholder {
 .form {
   margin-bottom: 25px;
 }
-.form-label {
-  background-color: #f2f5f4;
-  padding: 6px 20px;
-}
 .submit-data {
   margin: 3% 2%;
   display: block;
+}
+.form-controls {
+  padding: 15px 0;
+  margin: 20px;
+  background-color: #f2f5f4;
+  border-radius: 2%;
 }
 .dropzone {
   height: 200px;

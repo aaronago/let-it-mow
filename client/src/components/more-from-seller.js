@@ -31,7 +31,6 @@ class MoreFromSeller extends Component {
 
   render() {
     let listItems = this.props.allFromSeller;
-    console.log(this.props)
     listItems = this.props.allFromSeller.map (listItem => {
       const time = listItem.createdAt;
       const sent = moment(time).fromNow();

@@ -231,10 +231,16 @@ export const fetchConversations = () => dispatch => {
   })
   .then(response => response.json())
   .then(json => {
+    const user = json.user;
     const count = json.conversations.reduce((a, b) => {
-      const count = b.message[0].read ? 0 : 1;
-      return a + count;
+
+      const unreads = b.message[0].read || b.message[0].author._id === user ? 0 : 1;
+      return a + unreads;
     },0);
+
+    console.log(count);
+
+
 
     dispatch(fetchConversationsSuccess(json.conversations, count));
   })

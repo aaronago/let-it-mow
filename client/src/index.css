@@ -363,13 +363,15 @@ input::placeholder {
 .form {
   margin-bottom: 25px;
 }
-.form-label {
-  background-color: #f2f5f4;
-  padding: 6px 20px;
-}
 .submit-data {
   margin: 3% 2%;
   display: block;
+}
+.form-controls {
+  padding: 15px 0;
+  margin: 20px;
+  background-color: #f2f5f4;
+  border-radius: 2%;
 }
 .dropzone {
   height: 200px;

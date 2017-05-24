@@ -97,49 +97,51 @@ class AddItemForm extends Component {
       <div className="row form">
         <form className="submit-data col-5" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <h2 className='dash-stat dash-title'>Listing Form</h2>
-          <Field
-            name="title"
-            type="text"
-            component={this.renderField}
-            label="Item for Rent"
-            placeholder="Mower"
-          />
+          <div className="form-controls">
+            <Field
+              name="title"
+              type="text"
+              component={this.renderField}
+              label="Item for Rent"
+              placeholder="Mower"
+            />
 
-          <Field
-            name="price"
-            type="number"
-            component={this.renderField}
-            label="Price per Day"
-            placeholder="20"
-          />
+            <Field
+              name="price"
+              type="number"
+              component={this.renderField}
+              label="Price per Day"
+              placeholder="20"
+            />
 
-          <Field
-            name="description"
-            type="text"
-            textarea={true}
-            component={this.renderField}
-            label="Description"
-            placeholder="5 hp, 21 in mower"
-          />
+            <Field
+              name="description"
+              type="text"
+              textarea={true}
+              component={this.renderField}
+              label="Description"
+              placeholder="5 hp, 21 in mower"
+            />
 
-          <Field
-            name="zipcode"
-            type="number"
-            component={this.renderField}
-            label="Your Zip"
-            placeholder="Enter Your Zip"
-          />
+            <Field
+              name="zipcode"
+              type="number"
+              component={this.renderField}
+              label="Your Zip"
+              placeholder="Enter Your Zip"
+            />
 
-          <div className="form-field">
-            <ImgUpload handleImageUpload={this.handleImageUpload}/>
-          </div>
-          <div className="btn-holder">
-            <button className="btn-square btn-form"
-              type="submit" disabled={submitting}>Submit</button>
-            <button className="btn-square btn-form"
-              type="button" disabled={pristine || submitting} onClick={this.resetForm}>
-              Clear Form
-            </button>
+            <div className="form-field">
+              <ImgUpload handleImageUpload={this.handleImageUpload}/>
+            </div>
+            <div className="btn-holder">
+              <button className="btn-square btn-form"
+                type="submit" disabled={submitting}>Submit</button>
+              <button className="btn-square btn-form"
+                type="button" disabled={pristine || submitting} onClick={this.resetForm}>
+                Clear Form
+              </button>
+            </div>
           </div>
         </form>
         <div className="preview-gallery col-6">

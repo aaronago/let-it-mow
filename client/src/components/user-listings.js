@@ -21,6 +21,7 @@ class UserListings extends Component {
 
  componentDidMount() {
     this.props.dispatch(actions.fetchUserListings());
+    this.props.dispatch(actions.fetchConversations());
   }
   oldDate(listings) {
     let result=[]
@@ -44,7 +45,7 @@ class UserListings extends Component {
           bb = b.split('/').reverse().join();
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
   })
-  return result[0]
+  return result[result.length-1]
   }
   onClick() {
     this.setState({hidden: !this.state.hidden});
@@ -65,7 +66,7 @@ class UserListings extends Component {
     const listings = this.props.userListings;
     const listItem = listings.length > 0 ? listings.map (listItem => {
       return (
-        <div key={listItem._id}>
+        <div className='user-listing-key-container'key={listItem._id}>
           <UserItem userId={listItem.createdBy} images={listItem.images} title={listItem.title}
            price={listItem.price} id={listItem._id} />
         </div>

@@ -14,7 +14,6 @@ html, body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
-
 }
 
 a {
@@ -25,6 +24,10 @@ a {
 a:hover {
 
   color: #84a192;
+}
+
+input::placeholder {
+  font-size: 90%;
 }
 /**********************************
   nav
@@ -37,9 +40,10 @@ a:hover {
 }
 
 .logo {
-  margin: auto 60px;
+  margin: 20px 40px;
   list-style-type: none;
   float: left;
+  max-width: 0.5rem;
 }
 
 .buttons {
@@ -48,15 +52,9 @@ a:hover {
   margin-right: 40px;
 }
 
-.buttons ul {
-
-
-}
 
 .buttons li {
-  width: 200px;
-  justify-content: space-around;
-
+  width: 160px;
 }
 
 .disable-link {
@@ -136,6 +134,7 @@ a:hover {
   display: block;
   background: #3a6951;
   padding: 10px 20px 10px 20px;
+  margin: 8px;
   text-decoration: none;
   outline-color: #062f1a;
   transition: background .5s;
@@ -257,7 +256,7 @@ a:hover {
 
 .equip-search input {
   width: 100%;
-  padding: 12px 50px;
+  padding: 12px 10px;
   margin: 20px auto;
   text-align: left;
   box-sizing: border-box;

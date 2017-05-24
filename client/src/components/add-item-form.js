@@ -55,7 +55,6 @@ class AddItemForm extends Component {
         });
       }
     });
-
   }
 
   onSubmit(values) {
@@ -95,9 +94,9 @@ class AddItemForm extends Component {
     const { handleSubmit, pristine, reset, submitting } = this.props;
 
     return (
-      <div className="form">
+      <div className="row form">
         <form className="submit-data col-5" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-
+          <h2 className='dash-stat dash-title'>Listing Form</h2>
           <Field
             name="title"
             type="text"
@@ -135,16 +134,16 @@ class AddItemForm extends Component {
             <ImgUpload handleImageUpload={this.handleImageUpload}/>
           </div>
           <div className="btn-holder">
-            <button className="btn-square"
+            <button className="btn-square btn-form"
               type="submit" disabled={submitting}>Submit</button>
-            <button className="btn-square"
+            <button className="btn-square btn-form"
               type="button" disabled={pristine || submitting} onClick={this.resetForm}>
               Clear Form
             </button>
           </div>
         </form>
-        <div className="preview-gallery col-5">
-          <h3 className="preview-label">Listing Preview</h3>
+        <div className="preview-gallery col-6">
+          <h2 className='dash-stat dash-title'>Listing Preview</h2>
           <div className="preview-images">{gallery}</div>
           <div className="preview-text">{this.previewText()}</div>
 
@@ -157,13 +156,13 @@ class AddItemForm extends Component {
 function validate(values) {
   const errors = {};
   if (!values.title) {
-    errors.title = 'Please enter an Item Name';
+    errors.title = 'Item required';
   }
   if (!values.price) {
-    errors.price = 'Enter a Price';
+    errors.price = 'Price Required';
   }
   if (!values.description) {
-    errors.description = '*Required';
+    errors.description = 'Description required';
   }
   if(!values.zipcode || values.zipcode.length < 5) {
     errors.zipcode = '5 digit Zip required';

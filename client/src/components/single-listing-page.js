@@ -5,6 +5,7 @@ import MoreFromSeller from './more-from-seller';
 import GoogleMapReact from 'google-map-react';
 import FontAwesome from 'react-fontawesome';
 import Footer from './common/footer';
+import moment from 'moment';
 
 class SingleListingPage extends Component {
   constructor(props){
@@ -42,7 +43,13 @@ class SingleListingPage extends Component {
       return <div>...Loading</div>;
     }
 
+
+    const time = listing.createdAt;
+    const sent = moment(time).fromNow();
+    console.log(sent)
+
     const position = listing.geometry.coordinates;
+
 
     return (
       <div className='row single-item-listings-container'>

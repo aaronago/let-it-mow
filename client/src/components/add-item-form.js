@@ -27,14 +27,16 @@ class AddItemForm extends Component {
   }
 
   renderField({input, label, type, textarea, placeholder, meta: { touched, error } }) {
-    const textareaType = <textarea {...input} placeholder={placeholder} type={type} />;
-    const inputType = <input {...input} placeholder={placeholder} type={type} />;
+    const textareaType = <textarea className="textarea" {...input} placeholder={placeholder} type={type} />;
+    const inputType = <input className="input" {...input} placeholder={placeholder} type={type} />;
     return (
-      <div>
-        <label>{label}</label>
+      <div className="form-field">
+        <label className="form-label">{label}</label>
         <div>
           {textarea ? textareaType : inputType}
-          {touched ? error : ''}
+          <div className="field-msg">
+            {touched ? error : ''}
+          </div>
         </div>
       </div>
     );
@@ -94,7 +96,7 @@ class AddItemForm extends Component {
 
     return (
       <div className="form">
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <form className="submit-data col-5" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
           <Field
             name="title"
@@ -129,23 +131,23 @@ class AddItemForm extends Component {
             placeholder="Enter Your Zip"
           />
 
-          <div>
+          <div className="form-field">
             <ImgUpload handleImageUpload={this.handleImageUpload}/>
           </div>
-          <div>
-            <button className='btn-square'
+          <div className="btn-holder">
+            <button className="btn-square"
               type="submit" disabled={submitting}>Submit</button>
-            <button className='btn-square'
+            <button className="btn-square"
               type="button" disabled={pristine || submitting} onClick={this.resetForm}>
               Clear Form
             </button>
           </div>
         </form>
-        <div className="preview-gallery">
-          {gallery}
-        </div>
-        <div>
-          {this.previewText()}
+        <div className="preview-gallery col-5">
+          <h3 className="preview-label">Listing Preview</h3>
+          <div className="preview-images">{gallery}</div>
+          <div className="preview-text">{this.previewText()}</div>
+
         </div>
     </div>
     );
@@ -158,13 +160,13 @@ function validate(values) {
     errors.title = 'Please enter an Item Name';
   }
   if (!values.price) {
-    errors.price = 'Please enter a Price';
+    errors.price = 'Enter a Price';
   }
   if (!values.description) {
-    errors.description = 'Please enter a Description';
+    errors.description = '*Required';
   }
   if(!values.zipcode || values.zipcode.length < 5) {
-    errors.zipcode = 'Please enter a valid 5 digit Zip';
+    errors.zipcode = '5 digit Zip required';
   }
   return errors;
 }

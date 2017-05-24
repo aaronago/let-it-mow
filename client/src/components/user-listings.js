@@ -46,7 +46,6 @@ class UserListings extends Component {
   })
   return result[0]
   }
-
   onClick() {
     this.setState({hidden: !this.state.hidden});
   }
@@ -82,20 +81,23 @@ class UserListings extends Component {
           onClick={this.onClick}>{formBtn}</button>
         <div className='row dashboard-listings'>
         <div className='col-7'>
-        <h2>Your Listings</h2>
+        <h2 className='dash-stat dash-title'>Your Listings</h2>
           <div className='listings-gallery'>
             {listItem}
           </div>
          </div>
          <div className='col-5 dashboard-stats'>
-           <h2>Your Info!</h2>
-           <h4 className='all-items-seller-heading'>NUMBER OF ITEMS LISTED</h4>
+           <h2 className='dash-stat dash-title'>Your Info!</h2>
+           <div className='stats-container'>
+           <h4 className='all-items-seller-heading dash-head'>NUMBER OF ITEMS LISTED</h4>
              <p className='dash-stat'>{listings.length}</p>
-           <h4 className='all-items-seller-heading'>NEWEST LISTING</h4>
+           <h4 className='all-items-seller-heading dash-head'>NEWEST LISTING</h4>
              <p className='dash-stat'>{this.newDate(listings)}</p>
-           <h4 className='all-items-seller-heading'>OLDEST LISTING</h4>
+           <h4 className='all-items-seller-heading dash-head'>OLDEST LISTING</h4>
              <p className='dash-stat'>{this.oldDate(listings)}</p>
-           <h4 className='all-items-seller-heading'>BEST BARGAIN</h4>
+           <h4 className='all-items-seller-heading dash-head'>OPEN CHATS</h4>
+             <p className='dash-stat'>{this.props.conversations.length}</p>
+            </div>
          </div>
          </div>
       </div>
@@ -105,7 +107,8 @@ class UserListings extends Component {
 
 const mapStateToProps = (state, props) => ({
   userListings: state.listings.userListings,
-  userId: state.listings.userId
+  userId: state.listings.userId,
+  conversations: state.chat.conversations
 });
 
 

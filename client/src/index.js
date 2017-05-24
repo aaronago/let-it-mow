@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as Cookies from 'js-cookie';
-import LoginPage from './components/login-page';
 import './index.css';
-import { Route, IndexRoute, browserHistory, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, IndexRoute, BrowserRouter, Switch } from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import rootReducer from './reducers';
 import thunk from 'redux-thunk';

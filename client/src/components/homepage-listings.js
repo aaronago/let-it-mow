@@ -80,9 +80,13 @@ class HomepageListings extends Component {
           <h4 className='filter-title'>Filter By Price</h4>
           <p className='price-text'>{`$${lowPrice} to $${highPrice} /day`}</p>
           <Range className=''
-                 marks={marks}
+                //  marks={marks}
+                 maximumTrackStyle={{ backgroundColor: '#3a6951', height: 10 }}
+                 minimumTrackStyle={{ backgroundColor: 'green', height: 10 }}
+                 handleStyle={{borderColor: 'green'}}
                  min={5}
                  max={50}
+                 dots={false}
                  defaultValue={[10,50]}
                  allowCross={false}
                  value={this.state.value}

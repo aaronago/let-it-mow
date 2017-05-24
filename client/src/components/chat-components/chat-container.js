@@ -24,7 +24,7 @@ class ChatContainer extends Component {
       }
     }) : <div className="convo-box">
           <div>
-            <h2>It doesn't looke like you have any active conversations.</h2>
+            <h2>It doesnt look like you have any active conversations.</h2>
           </div>
         </div>;
 

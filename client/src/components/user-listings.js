@@ -45,7 +45,7 @@ class UserListings extends Component {
           bb = b.split('/').reverse().join();
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
   })
-  return result[0]
+  return result[result.length-1]
   }
   onClick() {
     this.setState({hidden: !this.state.hidden});

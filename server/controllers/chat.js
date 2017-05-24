@@ -93,8 +93,8 @@ exports.markRead = (req, res, next) => {
     .then(message => {
         return Message.findOneAndUpdate({ _id: message._id }, {$set: { read: true }}, { new: true });
     })
-    .then(updatedMessage => res.status(200).json({messages: updatedMessage}))
-}
+    .then(updatedMessage => res.status(200).json({messages: updatedMessage}));
+};
 // Message.findOne({ _id: req.params.conversationId })
 //   .then(messages => {
 //     const updates = messages.map(message => {

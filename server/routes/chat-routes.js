@@ -15,7 +15,7 @@ router.post('/new', bearerAuth, chatController.newConversation);
 
 router.post('/:conversationId', bearerAuth, chatController.sendReply);
 
-router.put('/:conversationId', chatController.markRead)
+router.put('/:conversationId', chatController.markRead);
 
 
 

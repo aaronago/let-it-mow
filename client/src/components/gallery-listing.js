@@ -14,7 +14,7 @@ class GalleryListing extends Component {
 
             <img src={`http://res.cloudinary.com/letitmow/image/upload/w_250,h_200/${this.props.images[0]}.jpg`}/>
             <p>{this.props.title}</p>
-            <p>Only ${this.props.price} to rent</p>
+            <p>${this.props.price} / Day</p>
 
         </Link>
       </div>

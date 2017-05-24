@@ -13,7 +13,7 @@ class ChatContainer extends Component {
   }
 
   render() {
-    if (this.props.conversations.length === 0) {
+    if (!this.props.conversations) {
       return <div>...Loading</div>;
     }
     const { conversations } = this.props;

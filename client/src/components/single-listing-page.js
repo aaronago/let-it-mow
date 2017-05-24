@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchListing, startConversation } from '../actions';
 import MoreFromSeller from './more-from-seller';
 import GoogleMapReact from 'google-map-react';
-import FontAwesome from 'react-fontawesome'
+import FontAwesome from 'react-fontawesome';
 import Footer from './common/footer';
 
 class SingleListingPage extends Component {
@@ -42,7 +42,7 @@ class SingleListingPage extends Component {
       return <div>...Loading</div>;
     }
 
-    const position = listing.geometry.coordinates
+    const position = listing.geometry.coordinates;
 
     return (
       <div className='row single-item-listings-container'>

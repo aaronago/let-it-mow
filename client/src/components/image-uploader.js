@@ -27,8 +27,10 @@ export default class ImgUpload extends Component {
   render() {
     return (
       <div>
-        <div className="dropzone">
+        <div>
           <Dropzone
+            className="dropzone"
+            activeStyle={{"border": "4px solid #1bcc72"}}
             multiple={false}
             accept="image/*"
             onDrop={this.onDrop}>

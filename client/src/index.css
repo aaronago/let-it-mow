@@ -357,18 +357,32 @@ input::placeholder {
   color: red;
   font-size: 16px;
 }
+.form-holder {
+  margin: 0 auto;
+}
 .form {
   margin-bottom: 25px;
 }
+.form-label {
+  background-color: #f2f5f4;
+  padding: 6px 20px;
+}
 .submit-data {
-  margin: 5%;
+  margin: 3% 2%;
   display: block;
+}
+.dropzone {
+  height: 200px;
+  width: 200px;
+  border: 2px solid #527c67;
+  border-radius: 2px;
+  margin: auto;
 }
 .preview-gallery {
   height: auto;
   display: block;
   text-align: center;
-  margin: 5%;
+  margin: 3%;
 }
 .preview-images {
   display: inline-flex;
@@ -378,10 +392,6 @@ input::placeholder {
 .preview-text {
   display: block;
 }
-.dropzone {
-  margin: auto;
-
-}
 .btn-holder {
-  text-align: center;
+  padding-left: 20%;
 }

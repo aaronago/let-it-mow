@@ -61,7 +61,7 @@ let server;
 
 function runServer(db=secret.DATABASE_URL, port=3001) {
     return new Promise((resolve, reject) => {
-      mongoose.connect(db || process.env.DATABASE_URL, err => {
+      mongoose.createConnection(db || process.env.DATABASE_URL, err => {
         if(err) {
           return reject(err);
         }

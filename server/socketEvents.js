@@ -13,6 +13,7 @@ exports = module.exports = (io) => {
       io.sockets.in(conversation).emit('refresh messages', conversation);
     });
 
+
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });

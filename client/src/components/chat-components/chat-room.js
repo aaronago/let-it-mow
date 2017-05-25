@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { fetchConversation, sendReply, fetchUser, markRead, fetchConversations } from '../../actions';
 import io from 'socket.io-client';
@@ -17,6 +18,7 @@ class ChatRoom extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.handleUserPhoto = this.handleUserPhoto.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.scrollToBottom = this.scrollToBottom.bind(this);
   }
 
   componentWillMount() {
@@ -24,10 +26,12 @@ class ChatRoom extends Component {
   }
 
   componentDidMount() {
+    this.scrollToBottom();
     const id = this.props.match.params.conversationId;
     this.props.fetchConversation(id);
     this.socket.emit('enter conversation', id);
     this.props.fetchUser();
+    this.scrollToBottom();
   }
 
   onSubmit(e) {
@@ -40,6 +44,7 @@ class ChatRoom extends Component {
     };
     this.props.sendReply(replyData);
     this.setState({text: ''});
+    this.scrollToBottom();
   }
 
   handleChange(e) {
@@ -50,11 +55,14 @@ class ChatRoom extends Component {
     return pic ? <img src={pic} alt={name}/> : <p>{name.slice(0,1)}</p>;
   }
 
-  handleMouseMove() {
-    this.props.fetchConversations();
+
+  scrollToBottom() {
+    this.logEnd.scrollIntoView();
   }
 
   render() {
+
+    const fetchConvoDebounced = _.debounce(() => {this.props.fetchConversations() ;}, 2000);
 
     const { message, name, readerId } = this.props;
 
@@ -78,16 +86,20 @@ class ChatRoom extends Component {
     });
 
     return (
-      <div onMouseMove={this.handleMouseMove.bind(this)} className="chat-room">
-        <div className="chatbox">
+      <div onMouseMove={fetchConvoDebounced} className="chat-room">
+        <div className="chatbox" >
           <div className="chatlogs">
             {chatMessages}
+            <div style={ {float:"left", clear: "both"} } ref={(el) => {this.logEnd = el;}}></div>
           </div>
+
         <form className="chat-form" onSubmit={this.onSubmit}>
-          <textarea value={this.state.text} onChange={this.handleChange} />
+          <input type="text" value={this.state.text} onChange={this.handleChange} />
           <input type="submit" value="Send"/>
+
         </form>
-      </div>
+
+        </div>
       </div>
     );
   }

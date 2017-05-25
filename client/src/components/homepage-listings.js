@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GalleryListing from './gallery-listing';
 import Slider, {Range} from 'rc-slider';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import 'rc-tooltip/assets/bootstrap.css';
 import Tooltip from 'rc-tooltip';
 import 'rc-slider/assets/index.css';
+import { fetchConversations } from '../actions';
 
 function log(value) {
-  return value
+  return value;
 }
 class HomepageListings extends Component {
   constructor(props) {
@@ -15,33 +17,37 @@ class HomepageListings extends Component {
     this.state = {
       searchString: '',
       value: [0,50]
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.onSliderChange = this.onSliderChange.bind(this)
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.onSliderChange = this.onSliderChange.bind(this);
   }
   handleChange(e){
     this.setState({searchString:e.target.value});
     }
-  onSliderChange = (value) => {
+  onSliderChange (value) {
     log(value);
     this.setState({
       value,
     });
   }
+  componentDidMount() {
+    this.props.fetchConversations();
+  }
+
 
   render() {
 
-    let listings = this.props.listings
+    let listings = this.props.listings;
     let searchString = this.state.searchString.trim().toLowerCase();
-    let lowPrice = this.state.value[0]
-    let highPrice = this.state.value[1]
+    let lowPrice = this.state.value[0];
+    let highPrice = this.state.value[1];
     let marks = {
       10: '$10',
       20: '$20',
       30: '$30',
       40: '$40',
       50: '$50'
-    }
+    };
 
     if(searchString.length > 0){
         listings = listings.filter(function(l){
@@ -50,23 +56,23 @@ class HomepageListings extends Component {
     }
     if(lowPrice > 0 && highPrice < 10) {
          listings = listings.filter(function(l) {
-           return l.price < 10
-         })
+           return l.price < 10;
+         });
     }
     if(lowPrice > 0 && highPrice < 20) {
          listings = listings.filter(function(l) {
-           return l.price < 20
-         })
+           return l.price < 20;
+         });
     }
     if(lowPrice > 0 && highPrice < 30) {
          listings = listings.filter(function(l) {
-           return l.price < 30
-         })
+           return l.price < 30;
+         });
     }
     if(lowPrice > 0 && highPrice < 40) {
          listings = listings.filter(function(l) {
-           return l.price < 40
-         })
+           return l.price < 40;
+         });
     }
 
     return (
@@ -99,15 +105,22 @@ class HomepageListings extends Component {
         <div className='row listing-card-container'>
       {listings.map(card => {
         return (
+          <CSSTransitionGroup
+            transitionName="flip"
+            transitionAppear={true}
+            transitionAppearTimeout={700}
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}>
+            <GalleryListing key={card._id} created={card.createdAt} images={card.images} title={card.title}
+            price={card.price} id={card._id}/>
+          </CSSTransitionGroup>
 
-          <GalleryListing key={card._id} created={card.createdAt} images={card.images} title={card.title}
-           price={card.price} id={card._id}/>
-       )}
+       );}
      )}
          </div>
       </div>
     </div>
-   )
+  );
   }
 }
 
@@ -115,4 +128,4 @@ const mapStateToProps = (state, props) => ({
   listings: state.listings.listings
 });
 
-export default connect(mapStateToProps)(HomepageListings);
+export default connect(mapStateToProps, { fetchConversations })(HomepageListings);

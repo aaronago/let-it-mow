@@ -6,6 +6,7 @@ import GoogleMapReact from 'google-map-react';
 import FontAwesome from 'react-fontawesome';
 import Footer from './common/footer';
 import moment from 'moment';
+import ListingHeaderCard from './listing-header-card.js';
 
 class SingleListingPage extends Component {
   constructor(props){
@@ -13,30 +14,12 @@ class SingleListingPage extends Component {
     this.state = {
       text: ''
     };
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchListing(id);
   }
-
-  onInputChange(e) {
-    this.setState({text: e.target.value});
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-    const data = {
-      listingId: this.props.listing._id,
-      createdBy: this.props.listing.createdBy._id,
-      message: this.state.text
-    };
-    this.props.startConversation(data);
-    this.setState({text: ''});
-  }
-
   render() {
     const { listing } = this.props;
     if(!listing) {
@@ -46,7 +29,6 @@ class SingleListingPage extends Component {
 
     const time = listing.createdAt;
     const sent = moment(time).fromNow();
-    console.log(sent)
 
     const position = listing.geometry.coordinates;
 
@@ -72,14 +54,7 @@ class SingleListingPage extends Component {
           <FontAwesome className='fa fa-envelope-square' size='3x' aria-hidden='true'/></a>
         </div>
       <div className='col-6 user-listings-container'>
-       <div className='chat-row-single'>
-        <h1>${listing.price} / Day</h1>
-        <h2 className='single-listing-title'>{listing.title}</h2>
-          <form action="" onSubmit={this.onSubmit}>
-            <input className='single-page-chat'type="text" value={this.state.text} placeholder='Type Message...' autoFocus='true' onChange={this.onInputChange}/>
-            <input className='btn-square chat-with-button'type="submit" value={`Send Chat To ${listing.createdBy.name}`}/>
-          </form>
-        </div>
+        <ListingHeaderCard listing={listing}/>
         <h4 className='all-items-seller-heading'><strong>ALL ITEMS FROM RENTER</strong></h4>
           <MoreFromSeller className='more-seller' userId={listing.createdBy} picId={this.props.match.params}/>
         </div>

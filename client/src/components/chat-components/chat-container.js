@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchConversations } from '../../actions';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+
+import { fetchConversations, fetchUser } from '../../actions';
 
 import ConvoBox from './convo-box';
 import '../../styles/chat-styles.css';
@@ -10,6 +12,7 @@ class ChatContainer extends Component {
 
   componentDidMount() {
     this.props.fetchConversations();
+    this.props.fetchUser();
   }
 
   render() {
@@ -20,7 +23,7 @@ class ChatContainer extends Component {
 
     const rooms = conversations.length > 0 ? conversations.map(room => {
       if (room.message.length > 0) {
-        return  <ConvoBox listing={room.listing} message={room.message[0]} key={room.message[0]._id}/>;
+        return  <ConvoBox userId={this.props.userId} listing={room.listing} message={room.message[0]} key={room.message[0]._id}/>;
       }
     }) : <div className="convo-box">
           <div>
@@ -32,7 +35,15 @@ class ChatContainer extends Component {
       <div className="wrapper">
         <h2>Here Are Your Open Conversations</h2>
         <div className="row">
-            {rooms}
+
+            <CSSTransitionGroup style={{width: "60%"}}
+              transitionName="fade"
+              transitionAppear={true}
+              transitionAppearTimeout={700}
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={300}>
+              {rooms}
+            </CSSTransitionGroup>
         </div>
       </div>
     );
@@ -41,7 +52,8 @@ class ChatContainer extends Component {
 
 const mapStateToProps = (state) => ({
   conversations: state.chat.conversations,
-  name: state.listings.name
+  name: state.listings.name,
+  userId: state.listings._id
 });
 
-export default connect(mapStateToProps, { fetchConversations })(ChatContainer);
+export default connect(mapStateToProps, { fetchConversations, fetchUser })(ChatContainer);

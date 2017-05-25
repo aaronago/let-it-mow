@@ -87,6 +87,8 @@ class AddItemForm extends Component {
   }
 
   render() {
+    const previewMsg = this.state.renderText ? '' : 'Form text and photos will display here';
+
     const gallery = this.state.public_ids.map(id => {
       return <PreviewImage key={id} id={id} />;
     });
@@ -146,9 +148,11 @@ class AddItemForm extends Component {
         </form>
         <div className="preview-gallery col-6">
           <h2 className='dash-stat dash-title'>Listing Preview</h2>
-          <div className="preview-images">{gallery}</div>
-          <div className="preview-text">{this.previewText()}</div>
-
+          <div className="preview-content">
+            <p>{previewMsg}</p>
+            <div className="preview-images">{gallery}</div>
+            <div className="preview-text">{this.previewText()}</div>
+          </div>
         </div>
     </div>
     );

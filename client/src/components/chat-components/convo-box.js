@@ -13,7 +13,7 @@ const ConvoBox = props => {
   const read = !message.read && message.author._id !== userId ? 'unread' : 'read';
 
   return (
-    <div className={`col-12 convo-container`}>
+    <div className={`col-8 convo-container`}>
     <Link to={`/chat/${message.conversationId}`}>
       <div className={`convo-box ${read}`} key={message.conversationId}>
           <div className="convo-details">

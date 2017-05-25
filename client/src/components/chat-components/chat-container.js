@@ -36,10 +36,10 @@ class ChatContainer extends Component {
         <h2>Here Are Your Open Conversations</h2>
         <div className="row">
 
-            <CSSTransitionGroup style={{width: "90%"}}
+            <CSSTransitionGroup style={{width: "60%"}}
               transitionName="fade"
               transitionAppear={true}
-              transitionAppearTimeout={500}
+              transitionAppearTimeout={700}
               transitionEnterTimeout={300}
               transitionLeaveTimeout={300}>
               {rooms}

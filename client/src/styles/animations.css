@@ -21,7 +21,7 @@
 
 .fade-appear.fade-appear-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
+  transition: opacity .7s ease-in;
 }
 
 .slide-horizontal-enter {

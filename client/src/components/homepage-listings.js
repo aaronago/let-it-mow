@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GalleryListing from './gallery-listing';
 import Slider, {Range} from 'rc-slider';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import 'rc-tooltip/assets/bootstrap.css';
 import Tooltip from 'rc-tooltip';
 import 'rc-slider/assets/index.css';
@@ -99,9 +100,16 @@ class HomepageListings extends Component {
         <div className='row listing-card-container'>
       {listings.map(card => {
         return (
+          <CSSTransitionGroup
+            transitionName="flip"
+            transitionAppear={true}
+            transitionAppearTimeout={700}
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}>
+            <GalleryListing key={card._id} created={card.createdAt} images={card.images} title={card.title}
+            price={card.price} id={card._id}/>
+          </CSSTransitionGroup>
 
-          <GalleryListing key={card._id} created={card.createdAt} images={card.images} title={card.title}
-           price={card.price} id={card._id}/>
        )}
      )}
          </div>

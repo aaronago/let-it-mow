@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Cookies from 'js-cookie';
@@ -8,9 +9,7 @@ import { fetchConversations } from '../../actions';
 
 
 export class Header extends Component {
-  handleMouseMove() {
-    this.props.fetchConversations();
-  }
+
 
   render() {
 
@@ -34,11 +33,13 @@ export class Header extends Component {
       );
     }
 
+    const fetchConvoDebounced = _.debounce(() => {this.props.fetchConversations() ;}, 2000);
+
   const notify = this.props.unread > 0 ? 'ion-email-unread nav-chat-unread' : 'ion-ios-email-outline nav-chat-read';
 
     return (
 
-      <div onMouseMove={this.handleMouseMove.bind(this)}>
+      <div onMouseMove={fetchConvoDebounced}>
         <nav className="flex-nav">
           <ul className="logo">
             <li><Link to='/'><img src={img} /></Link></li>

@@ -300,7 +300,7 @@ export const startConversation = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => {
-      console.log(json);
+
     })
     .catch(error => {
       console.error(error);
@@ -322,7 +322,6 @@ export const markRead = messageId => dispatch => {
     })
     .then((response) => response.json())
     .then(json => {
-      console.log(json);
     })
     .catch(error => {
       console.error(error);

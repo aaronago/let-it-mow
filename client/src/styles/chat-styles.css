@@ -128,7 +128,7 @@
   align-items: flex-start;
 }
 
-.chat-form textarea {
+.chat-form input[type=text] {
   background: #fbfbfb;
   width: 75%;
   height: 50px;
@@ -140,19 +140,24 @@
   color: #333;
 }
 
-.chat-form textarea:focus {
+.chat-form input[type=text]:focus {
   background: #fff;
+  outline-color: #3a6951;
 }
-.chat-form textarea::-webkit-scrollbar {
+.chat-form input[type=text]::-webkit-scrollbar {
   width: 10px;
 }
 
-.chat-form textarea::-webkit-scrollbar-thumb {
+.chat-form input[type=text]::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.1);
 }
 
-.chat-form input {
+chat-form input[type=text]:hover {
+  background: #fff;
+}
+
+.chat-form input[type=submit]{
   background:  #3a6951;
   padding: 5px 15px;
   font-size: 30px;
@@ -166,6 +171,6 @@
   transition: background .5s ease;
 }
 
-.chat-form input:hover {
+.chat-form input[type=submit]:hover {
   background: #094426;
 }

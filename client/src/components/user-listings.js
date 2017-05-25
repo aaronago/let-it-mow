@@ -25,28 +25,28 @@ class UserListings extends Component {
     this.props.dispatch(actions.fetchConversations());
   }
   oldDate(listings) {
-    let result=[]
+    let result=[];
     for(let i=0;i<listings.length;i++) {
-      result.push(listings[i].createdAt.slice(0,10))
+      result.push(listings[i].createdAt.slice(0,10));
     }
     result.sort(function(a, b){
       var aa = a.split('/').reverse().join(),
           bb = b.split('/').reverse().join();
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
-  })
-  return result[0]
+  });
+  return result[0];
   }
   newDate(listings) {
-    let result=[]
+    let result=[];
     for(let i=0;i<listings.length;i++) {
-      result.push(listings[i].createdAt.slice(0,10))
+      result.push(listings[i].createdAt.slice(0,10));
     }
     result.sort(function(a, b){
       var aa = a.split('/').reverse().join(),
           bb = b.split('/').reverse().join();
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
-  })
-  return result[result.length-1]
+  });
+  return result[result.length-1];
   }
   onClick() {
     this.setState({hidden: !this.state.hidden});

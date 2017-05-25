@@ -143,6 +143,7 @@ input::placeholder {
   display: flex;
   flex-wrap: wrap;
   margin: 10px;
+  justify-content: center;
   background-color: #f2f5f4;
   border-radius: 2%;
   margin-left:20px;
@@ -388,14 +389,12 @@ input::placeholder {
   color: red;
   font-size: 16px;
 }
-.form-holder {
-  margin: 0 auto;
-}
 .form {
   margin-bottom: 25px;
 }
 .submit-data {
-  margin: 3% 2%;
+  width: 100%;
+  margin: 0 2%;
   display: block;
 }
 .form-controls {
@@ -403,6 +402,7 @@ input::placeholder {
   margin: 20px;
   background-color: #f2f5f4;
   border-radius: 2%;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
 }
 .dropzone {
   height: 200px;
@@ -412,10 +412,11 @@ input::placeholder {
   margin: auto;
 }
 .preview-gallery {
+  width: 100%;
   height: auto;
   display: block;
   text-align: center;
-  margin: 3%;
+  margin: 0 3%;
 }
 .preview-images {
   display: inline-flex;
@@ -427,4 +428,11 @@ input::placeholder {
 }
 .btn-holder {
   padding-left: 20%;
+}
+.preview-content {
+  padding: 15px 0;
+  margin: 20px;
+  background-color: #f2f5f4;
+  border-radius: 2%;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
 }

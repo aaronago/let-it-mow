@@ -5,6 +5,7 @@ import UserItem from './user-item';
 import Header from './common/header';
 import AddItemForm from './add-item-form';
 import * as Cookies from 'js-cookie';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
 
@@ -61,6 +62,13 @@ class UserListings extends Component {
       this.redirect();
       return null;
     }
+
+    const transitionOptions = {
+      transitionName: 'slide-vertical',
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500
+    };
+
     const formBtn = this.state.hidden ? 'Add a Listing' : 'Close Form';
     const hidden = this.state.hidden ? 'hidden' : '';
     const listings = this.props.userListings;
@@ -71,15 +79,23 @@ class UserListings extends Component {
            price={listItem.price} id={listItem._id} />
         </div>
       );
-    }) :  <div>`You don't have any listings yet`</div>;
+    }) :  <p>You don't have any listings yet</p>;
 
     return (
       <div className="user-listings">
-        <div className={hidden}>
-          <AddItemForm onClick={this.onClick}/>
+        <div className='header-dashboard row'>
+          <h3 className='title-dashboard'>Manage Rentals</h3>
+          <button className='btn-square form-toggle'
+            onClick={this.onClick}>{formBtn}</button>
         </div>
-        <button className='btn-round'
-          onClick={this.onClick}>{formBtn}</button>
+        <div>
+          <CSSTransitionGroup {...transitionOptions}>
+            {this.state.hidden ? '' :
+            <div><AddItemForm onClick={this.onClick}/></div> }
+            {!this.state.hidden ?
+            <div><AddItemForm onClick={this.onClick}/></div> : ''}
+          </CSSTransitionGroup>
+        </div>
         <div className='row dashboard-listings'>
         <div className='col-7'>
         <h2 className='dash-stat dash-title'>Your Listings</h2>

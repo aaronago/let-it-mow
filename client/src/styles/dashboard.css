@@ -11,10 +11,37 @@
   padding-top: 30px;
   margin-bottom: 20px;
 }
+.header-dashboard {
+
+}
+.title-dashboard {
+  font-size: 180%;
+  text-align: center;
+}
+.form-toggle {
+  margin: 0;
+  display: inline;
+  height: 80%;
+  max-width: 150px;
+  float: right;
+}
+.slide-vertical-enter {
+  max-height: 0;
+}
+.slide-vertical-enter-active {
+  max-height: 1000px;
+  transition: .4s ease-in all;
+}
+.slide-vertical-leave {
+  max-height: 1000px;
+}
+.slide-vertical-leave-active {
+  max-height: 0;
+  transition: .4s ease-out all;
+}
 .rc-slider-step {
   background-color: #3a6951;
 }
-
 .rc-slider-handle {
   height: 30px;
   width: 30px;

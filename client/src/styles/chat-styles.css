@@ -11,7 +11,6 @@
 
 .convo-box {
   border-radius: 5px;
-  background-color: #3A6951;
   color: #eee;
   padding: 0 10px;
   min-height: 80px;
@@ -19,6 +18,14 @@
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.7s, color 0.7s;
+}
+
+.read {
+  background-color: #3A6951;
+}
+
+.unread {
+    background-color: #7f0e0e;
 }
 
 .convo-box:hover {

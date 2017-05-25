@@ -24,19 +24,19 @@
   transition: opacity .5s ease-in;
 }
 
-.slide-enter {
+.slide-horizontal-enter {
   transform: translateX(-100%);
 }
 
-.slide-enter-active {
+.slide-horizontal-enter-active {
     animation: slide-in 300ms ease-out forwards;
 }
 
-.slide-leave {
+.slide-horizontal-leave {
     transform: translateX(0%);
 }
 
-.slide-leave-active {
+.slide-horizontal-leave-active {
     animation: slide-out 300ms ease-out forwards;
 }
 
@@ -75,6 +75,14 @@
 .flip-leave-active {
     animation: flip-out 300ms ease-out forwards;
 }
+.flip-appear {
+    transform: rotateY(180deg);
+}
+
+.flip-appear-active {
+    animation: flip-in 300ms ease-out forwards;
+}
+
 
 @keyframes flip-in {
     from {

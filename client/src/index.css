@@ -428,3 +428,11 @@ input::placeholder {
 .btn-holder {
   padding-left: 20%;
 }
+
+/*********************************
+   Single Page Listing Title Card
+*********************************/
+.sent-plane {
+  font-size: 300%;
+  color: #3a6951;
+}

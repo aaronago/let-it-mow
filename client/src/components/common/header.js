@@ -8,6 +8,7 @@ import FontAwesome from 'react-fontawesome';
 import { fetchConversations } from '../../actions';
 
 
+
 export class Header extends Component {
 
 
@@ -64,6 +65,10 @@ export class Header extends Component {
         </nav>
       </div>
     );
+  }
+
+  componentWillUnmount() {
+    console.log('unmounting');
   }
 };
 

@@ -44,6 +44,7 @@ class ChatRoom extends Component {
     };
     this.props.sendReply(replyData);
     this.setState({text: ''});
+    this.scrollToBottom();
   }
 
   handleChange(e) {
@@ -89,7 +90,7 @@ class ChatRoom extends Component {
         <div className="chatbox" >
           <div className="chatlogs">
             {chatMessages}
-            <div ref={(el) => {this.logEnd = el;}}></div>
+            <div style={ {float:"left", clear: "both"} } ref={(el) => {this.logEnd = el;}}></div>
           </div>
 
         <form className="chat-form" onSubmit={this.onSubmit}>

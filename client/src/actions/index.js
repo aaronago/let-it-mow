@@ -114,6 +114,7 @@ export const fetchUser = () => dispatch => {
     })
     .then(user => {
         dispatch(fetchUserSuccess(user));
+        
     })
     .catch(error => {
         dispatch(fetchUserFailure(error));

@@ -28,9 +28,9 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
   const options = {
     uri: `https://www.zipcodeapi.com/rest/${global.secret.ZIPCODE_API_KEY || ZIPCODE_API_KEY}/info.json/${req.body.zipcode}/degrees`,
     json: true
-    console.log(uri);
-  };
 
+  };
+    console.log(options.uri);
   rp(options)
     .then(response => {
       listingDetails.geometry = {coordinates: [response.lng, response.lat]};

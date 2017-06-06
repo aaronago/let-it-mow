@@ -10,6 +10,7 @@ const ConvoBox = props => {
   const lastMessage = message.body.slice(0,20).concat('...');
   const time = message.createdAt;
   const sent = moment(time).fromNow();
+  const reading = moment(time).fromNow()
   const read = !message.read && message.author._id !== userId ? 'unread' : 'read';
 
   return (

@@ -3,23 +3,21 @@ const expect = require('chai').expect;
 const User =  require('../models/user');
 
 
-describe('User', () => {
-  it('should be an object', () => {
+describe('User', function() {
+  it('should be an object', function() {
     const User = require('../models/user');
     expect(User).to.not.be.undefined;
   });
 });
 
-module.exports = {
-  seedUserData: function () {
+module.exports = function seedUserData() {
     console.info('seeding User data');
     const seedData = [];
-    for (let i=1; i<10; i++) {
+    for (let i=0; i<9; i++) {
       seedData.push(generateUserData(i));
     }console.log('Seed data', seedData);
-    return User.insertMany(seedData);
-  }
-};
+     User.insertMany(seedData);
+  };
 
 function generateGoogleId(i) {
   const googleId = [ 4897598347539847597, 8943759348759384759,

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const GeoSchema = new Schema ({
   type: {
@@ -43,7 +44,7 @@ const ListingSchema = new Schema ({
     required: true
   },
   createdBy: {
-    type: Schema.Types.ObjectId,
+    type: ObjectId,
     ref: 'User',
     required: true
   },

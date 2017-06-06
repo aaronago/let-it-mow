@@ -16,17 +16,16 @@ const testDatabase = global.secret.TEST_DATABASE_URL;
 
 chai.use(chaiHttp);
 
-describe('Listing model', () => {
-  it('should exist', () => {
+describe('Listing model', function() {
+  it('should exist', function() {
     expect(Listing).to.not.be.undefined;
   });
 });
 
 function seedListingData() {
   console.info('seeding listing data');
-  userData.seedUserData();
+  userData();
   const seedData = [];
-
   for (let i=1; i<10; i++) {
     seedData.push(generateListingData());
   }
@@ -78,11 +77,16 @@ function generateIds() {
   return id[Math.floor(Math.random() * id.length)];
 }
 
-
 function generateListingData() {
-  console.log('find one', User.findOne());
+  console.log('User.findOne().exec()', User.findOne());
+  const user = User.find().exec()
+    .then(function(user) {
+      console.log('user', user);
+      return user;
+    });
+
   return {
-    createdBy: generateIds(),
+    createdBy: user,
     title: generateTitles(),
     price: generatePrices(),
     desciption: generateDescription(),
@@ -96,42 +100,37 @@ function teardownDb() {
   return mongoose.connection.dropDatabase();
 }
 
-describe('Listing', () => {
+describe('Listing', function() {
 
-  before(() => {
+  before(function() {
     return runServer(testDatabase);
   });
 
-  beforeEach(() => {
+  beforeEach(function() {
     return seedListingData();
   });
 
-  afterEach(() => {
+  afterEach(function() {
     return teardownDb();
   });
 
-  after(() => {
+  after(function() {
     return closeServer(testDatabase);
   });
 
-  describe('listing Get endpoint', () => {
-    console.log('testing 1!!!!');
-    it('should return all listings', () => {
-        console.log('testing 2!!!!');
-        chai.request(app)
-        .get('/api/listings')
-        .then((res) => {
-          console.log('testing 3!!!!');
-          res.should.have.status(200);
-          expect(res).to.be.json;
-          expect(res.body.length).to.be.at.least(1);
-          res.body.forEach(item => {
-            expect(item).to.be.an('object');
-            expect(item).to.have.keys(['title', 'description', 'price', 'createdBy']);
+  it('should return all listings', function() {
+      return chai.request(app)
+      .get('/api/listings')
+      .then(function(res) {
+        res.should.have.status(200);
+        expect(res).to.be.json;
+        expect(res.body.length).to.be.at.least(1);
+        res.body.forEach(function(item) {
+          expect(item).to.be.an('object');
+          expect(item).to.have.keys(['title', 'description', 'price', 'createdBy']);
 
-            return Listing.count();
-          });
+        return Listing.count();
         });
+      });
     });
-  });
 });

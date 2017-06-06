@@ -24,11 +24,13 @@ router.post('/listing', passportGoogle.authenticate('bearer', {session: false}),
     zipcode: req.body.zipcode
   };
 
-  const options = {
-    uri: `https://www.zipcodeapi.com/rest/${global.secret.ZIPCODE_API_KEY}/info.json/${req.body.zipcode}/degrees`,
-    json: true
-  };
 
+  const options = {
+    uri: `https://www.zipcodeapi.com/rest/${global.secret.ZIPCODE_API_KEY || process.env.ZIPCODE_API_KEY}/info.json/${req.body.zipcode}/degrees`,
+    json: true
+
+  };
+    console.log(options.uri);
   rp(options)
     .then(response => {
       listingDetails.geometry = {coordinates: [response.lng, response.lat]};

@@ -79,7 +79,7 @@ function generateIds() {
 
 function generateListingData() {
   console.log('User.findOne().exec()', User.findOne());
-  const user = User.find().exec()
+  const user = User.findOne().exec()
     .then(function(user) {
       console.log('user', user);
       return user;

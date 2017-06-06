@@ -10,14 +10,18 @@ describe('User', function() {
   });
 });
 
-module.exports = function seedUserData() {
-    console.info('seeding User data');
-    const seedData = [];
-    for (let i=0; i<9; i++) {
-      seedData.push(generateUserData(i));
-    }console.log('Seed data', seedData);
-     User.insertMany(seedData);
-  };
+// module.exports = function seedUserData() {
+//     console.info('seeding User data');
+//     const seedData = [];
+//     for (let i=0; i<9; i++) {
+//       seedData.push(generateUserData(i));
+//     } console.log('Seed data', seedData);
+//     for (let i=0; i<seedData.length; i++) {
+//       User.create(seedData[i], function(err, user){
+//         console.log('sedding user', user);
+//       });
+//     }
+//   };
 
 function generateGoogleId(i) {
   const googleId = [ 4897598347539847597, 8943759348759384759,
@@ -27,13 +31,6 @@ function generateGoogleId(i) {
                      1943759834759832475, 3938593798374648704,
                    ];
   return googleId[i];
-}
-
-function generateId(i) {
-  const id = [ 8429014017, 3417359685, 2710764371, 5374131291, 2731188411,
-               3026739410, 1461977045, 4135575380, 6638124817, 1483178215
-             ];
-  return id[i];
 }
 
 function generateProfilePic() {
@@ -66,7 +63,6 @@ function generateName() {
 
 function generateUserData(i) {
   return {
-            _id: generateId(i),
             googleID: generateGoogleId(i),
             name: generateName(),
             profilePic: generateProfilePic(),

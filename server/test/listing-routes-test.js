@@ -23,14 +23,30 @@ describe('Listing model', function() {
 });
 
 function seedListingData() {
-  console.info('seeding listing data');
-  userData();
-  const seedData = [];
-  for (let i=1; i<10; i++) {
-    seedData.push(generateListingData());
-  }
-  console.log('Seed data', seedData);
-  return Listing.insertMany(seedData);
+
+  const newUser = {
+    googleID: 12,
+    name: 'cool bro',
+    accessToken: 'token yo',
+    profilePic: 'pic'
+  };
+
+  User.create(newUser)
+    .then(function(user) {
+      console.log('hello');
+      const seedData = [];
+      for (let i=1; i<2; i++) {
+        console.log('hi')
+
+        seedData.push(generateListingData(user));
+      }
+
+      return Listing.insertMany(seedData);
+    })
+    .catch(function(err) {console.log('error:', err)});
+
+
+
 }
 
 function generateTitles() {
@@ -77,13 +93,10 @@ function generateIds() {
   return id[Math.floor(Math.random() * id.length)];
 }
 
-function generateListingData() {
-  console.log('User.findOne().exec()', User.findOne());
-  const user = User.findOne().exec()
-    .then(function(user) {
-      console.log('user', user);
-      return user;
-    });
+function generateListingData(user) {
+
+
+
 
   return {
     createdBy: user,

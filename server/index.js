@@ -65,7 +65,7 @@ function runServer(db=secret.DATABASE_URL, port=3001) {
         if(err) {
           return reject(err);
         }
-        console.log('Successfully Connected to DB');
+        console.log('Successfully Connected to DB', db);
 
         var httpServer = require('http').Server(app);
         var io = require('socket.io')(httpServer);

@@ -11,13 +11,13 @@ export class Footer extends Component {
 
     return (
       <div className='flex-nav-footer'>
-         <Link to='/'><img className='footer-logo' src={img} /></Link>
+         <Link to='/'><img className='footer-logo' src={img} alt="let it mow goat logo"/></Link>
          <div className='footer-content'>
-         <a href='https://github.com/Jean-Luc19/let-it-mow' className='twitter-logo faicon'>
+         <a href='https://github.com/Jean-Luc19/let-it-mow' className='twitter-logo faicon' aria-label="link to let it mow on twitter">
            <FontAwesome className='fa fa-twitter-square' size='2x' aria-hidden='true'/></a>
-         <a href='https://github.com/Jean-Luc19/let-it-mow' className='facebook-logo faicon'>
+         <a href='https://github.com/Jean-Luc19/let-it-mow' className='facebook-logo faicon' aria-label="link to let it mow on github">
            <FontAwesome className='fa fa-facebook-square' size='2x' aria-hidden='true'/></a>
-         <a href='https://github.com/Jean-Luc19/let-it-mow' className='email-logo faicon'>
+         <a href='https://github.com/Jean-Luc19/let-it-mow' className='email-logo faicon' aria-label="email link">
            <FontAwesome className='fa fa-envelope-square' size='2x' aria-hidden='true'/></a>
          <p className='footer-motto'>Rent secondhand yard equipment in the United States quickly,
          safely and locally on Let it Mow. Start making money today!</p>
@@ -25,7 +25,7 @@ export class Footer extends Component {
          & Conditions</Link></p>
          </div>
       </div>
-    )
+    );
 }
 }
 const mapStateToProps = (state, props) => ({

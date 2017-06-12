@@ -22,7 +22,7 @@ const ConvoBox = props => {
             <p>By {message.author.name}, {sent}</p>
           </div>
           <div className="user-photo">
-            <img src={`http://res.cloudinary.com/letitmow/image/upload/w_80,h_80/${listing.images[0]}.jpg`} />
+            <img src={`http://res.cloudinary.com/letitmow/image/upload/w_80,h_80/${listing.images[0]}.jpg`} alt={listing.title}/>
           </div>
       </div>
     </Link>

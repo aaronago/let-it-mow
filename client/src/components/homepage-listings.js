@@ -79,8 +79,10 @@ class HomepageListings extends Component {
     <div className="wrapper equip-display">
       <div className="row">
         <div className="col-3 equip-search">
-          <input className="" type="text" value={this.state.searchString}
-          onChange={this.handleChange} placeholder="Search Equipment"/>
+          <label htmlFor="equipment search">
+            <input className="" type="text" value={this.state.searchString}
+            onChange={this.handleChange} placeholder="Search Equipment"/>
+          </label>
         </div>
         <div className="col-4 filter">
           <h4 className='filter-title'>Filter By Price</h4>

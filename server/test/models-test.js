@@ -13,7 +13,6 @@ describe('User', function() {
     const u = new User();
     u.validate(function(err) {
       expect(err.errors.name).to.exist;
-      done();
     });
   });
 });

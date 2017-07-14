@@ -36,7 +36,8 @@ class SingleListingPage extends Component {
     return (
       <div className='row single-item-listings-container'>
         <div className='col-6'>
-          <img className='single-item-image' src={`http://res.cloudinary.com/letitmow/image/upload/w_500,q_auto,fl_any_format,c_scale/${listing.images[0]}.jpg`}/>
+          <img className='single-item-image' src={`http://res.cloudinary.com/letitmow/image/upload/w_500,q_auto,fl_any_format,c_scale/${listing.images[0]}.jpg`}
+          alt={listing.title}/>
           <h4 className='all-items-seller-heading single-item-des'>DESCRIPTION</h4>
           <p className='single-des-p'>{listing.description}</p>
           <div className='static-map'>
@@ -46,11 +47,11 @@ class SingleListingPage extends Component {
           </GoogleMapReact>
           </div>
         <h4 className='all-items-seller-heading single-item-des'>SHARE THIS PRODUCT</h4>
-        <a href='https://github.com/Jean-Luc19/let-it-mow' className='twitter-logo faicon'>
+        <a href='https://github.com/Jean-Luc19/let-it-mow' className='twitter-logo faicon' aria-label="click to tweet about this listing">
           <FontAwesome className='fa fa-twitter-square' size='3x' aria-hidden='true'/></a>
-        <a href='https://github.com/Jean-Luc19/let-it-mow' className='facebook-logo faicon'>
+        <a href='https://github.com/Jean-Luc19/let-it-mow' className='facebook-logo faicon' aria-label="click to share this listing on facebook">
           <FontAwesome className='fa fa-facebook-square' size='3x' aria-hidden='true'/></a>
-        <a href='https://github.com/Jean-Luc19/let-it-mow' className='email-logo faicon'>
+        <a href='https://github.com/Jean-Luc19/let-it-mow' className='email-logo faicon' aria-label="click to email this user about this listing">
           <FontAwesome className='fa fa-envelope-square' size='3x' aria-hidden='true'/></a>
         </div>
       <div className='col-6 user-listings-container'>

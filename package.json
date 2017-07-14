@@ -1,8 +1,11 @@
 {
-  "name": "thinkful-full-stack-template-v2",
+  "name": "Let-It-Mow",
   "version": "0.1.0",
   "description": "A full-stack starter template",
   "main": "index.js",
+  "engines": {
+    "node": "6.11.1"
+  },
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm run build",

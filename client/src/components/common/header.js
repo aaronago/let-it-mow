@@ -43,12 +43,12 @@ export class Header extends Component {
       <div onMouseMove={fetchConvoDebounced}>
         <nav className="flex-nav">
           <ul className="logo">
-            <li><Link to='/'><img src={img} /></Link></li>
+            <li><Link to='/'><img src={img} alt="let it mow goat logo"/></Link></li>
           </ul>
           <ul className="nav-buttons">
             <li>
               <div >
-                <Link to={`/chat`}>
+                <Link to={`/chat`} aria-label="link your conversations on let it mow">
                     <i className={notify}></i>
                 </Link>
               </div>
@@ -67,9 +67,6 @@ export class Header extends Component {
     );
   }
 
-  componentWillUnmount() {
-    console.log('unmounting');
-  }
 };
 
 const mapStateToProps = (state, props) => ({

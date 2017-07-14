@@ -92,8 +92,6 @@ class UserListings extends Component {
           <CSSTransitionGroup {...transitionOptions}>
             {this.state.hidden ? '' :
             <div><AddItemForm onClick={this.onClick}/></div> }
-            {!this.state.hidden ?
-            <div><AddItemForm onClick={this.onClick}/></div> : ''}
           </CSSTransitionGroup>
         </div>
         <div className='row dashboard-listings'>
